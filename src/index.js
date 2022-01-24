@@ -3,10 +3,10 @@ import ReactDOM from "react-dom";
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import 'react-bootstrap';
-import App from "./Page/main/App";
+import App from "./App";
 
 ReactDOM.render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
