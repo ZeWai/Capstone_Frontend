@@ -1,0 +1,14 @@
+.modalheader,
+.modalbody,
+.modalfooter {
+  justify-content: center;
+}
+
+.modalfooter {
+  border: none;
+}
+.loginbutton {
+  border-radius: 40px;
+  padding: 2px 50px;
+  border: none;
+}
