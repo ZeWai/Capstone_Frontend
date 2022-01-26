@@ -30,9 +30,9 @@ export default function Login() {
     return (
         <>
             <Modal.Header className="modalheader">
-                Login
+                Log In
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='modalbody'>
                 <Row>
                     <Col />
                     <Col>
@@ -60,7 +60,7 @@ export default function Login() {
                     </Col>
                     <Col />
                 </Row>
-
+                <br /><br /><br />
             </Modal.Body>
             <Modal.Footer className="modalfooter">
                 <button className="loginbutton" onClick={login}>Login</button>
