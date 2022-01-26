@@ -27,7 +27,11 @@
 
 .content {
   padding-top: 100px;
-  background: gray;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("./rooftopfarm.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background: linear-gradient();
 }
 .welcome-heading button {
   background: #43c1c6;

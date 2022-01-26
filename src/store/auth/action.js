@@ -1,5 +1,8 @@
 import axios from "axios"
-export const LOGIN = 'LOGIN';
+import jwt_decode from "jwt-decode";
+export const ADMIN_LOGIN = 'ADMIN_LOGIN';
+export const CLIENT_LOGIN = 'CLIENT_LOGIN';
+export const FARMER_LOGIN = 'FARMER_LOGIN';
 export const LOGOUT = 'LOGOUT';
 
 export const loginUserThunk = (username, password) => {
@@ -10,11 +13,19 @@ export const loginUserThunk = (username, password) => {
             })
             .then((res) => {
                 if (res.data === null) {
-                    console.log("User / password incorrect")  // Action when fila to login (not finish)
+                    console.log("User / password incorrect")  // Action when fail to login (not finish)
                 }
                 else {
-                    localStorage.setItem("LoggedInToken", res.data);
-                    dispatch({ type: LOGIN })
+                    if (jwt_decode(res.data).role === 'admin') {
+                        localStorage.setItem("LoggedInToken", res.data);
+                        dispatch({ type: ADMIN_LOGIN })
+                    } else if (jwt_decode(res.data).role === 'client') {
+                        localStorage.setItem("LoggedInToken", res.data);
+                        dispatch({ type: CLIENT_LOGIN })
+                    } else if (jwt_decode(res.data).role === 'farmer') {
+                        localStorage.setItem("LoggedInToken", res.data);
+                        dispatch({ type: FARMER_LOGIN })
+                    }
                 }
             })
     }
@@ -27,12 +38,7 @@ export const signupUserThunk = (username, password) => {   //  login will perfor
                 username, password
             })
             .then((res) => {
-                if (res.data === null) {
-                    localStorage.setItem("LoggedInToken", res.data);
-                    dispatch({ type: LOGIN })
-                } else {
-                    console.log('Username has been used') // Action when fila to signup (not finish)
-                }
+                console.log('Username has been used') // Action when fila to signup (not finish)
             })
     }
 }

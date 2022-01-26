@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import { Modal } from "react-bootstrap";
 import Login from './Login/Login'
 import './Navbar.css'
 
-
-
 export default function Navbar() {
     const [modal, setModal] = useState(false);
     const modalClose = () => setModal(false);
+
     return (
         <div className="navbar">
             <ul className="navbaritem">
@@ -20,7 +19,6 @@ export default function Navbar() {
                     <Login />
                 </Modal>
                 <Link to='/contect'><li className='navitem'>Contact Us</li></Link>
-                <Link to='/about'><li className='navitem'>About Us</li></Link>
                 <Link to='/home'><li className='navitem'>Home</li></Link>
             </ul>
         </div >

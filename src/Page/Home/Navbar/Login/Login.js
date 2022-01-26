@@ -10,14 +10,21 @@ export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const auth = useSelector((state) => state.authStore.auth);
+    const role = useSelector((state) => state.authStore.role);
     let dispatch = useDispatch();
     let navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (auth === true) {
-    //         navigate("/dashboard");
-    //     }
-    // }, [auth === true, navigate]);
+    useEffect(() => {
+        if (auth) {
+            if (role === 'client') {
+                navigate('/dashboard')
+            } else if (role === 'admin') {
+                navigate('/admin')
+            } else if (role === 'farmer') {
+                navigate('/farm_planner')
+            }
+        }
+    }, [auth, role, navigate]);
 
     const login = (e) => {
         e.preventDefault();

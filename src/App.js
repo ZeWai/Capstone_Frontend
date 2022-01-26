@@ -1,26 +1,42 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom"
 import Home from "./Page/Home/Home";
-import Login from "./Page/Login/Login";
-// import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import Admin from './Admin/Admin'
+import Dashboard from './Dashboard/Dashboard';
+import Farmer from './Farmer/Farmer';
+import { logoutThunk } from './store/auth/action';
 
-// function Auth({ page }) {
-//   let auth = useSelector((state) => state.authStore.auth)
-//   return auth ? page : <Navigate to='/home' />;
-// }
 
+function ClientAuth({ children }) {
+  let auth = useSelector((state) => state.authStore.auth);
+  let role = useSelector((state) => state.authStore.role)
+  return (auth && role === 'client') ? children : <Navigate to='/home' />;
+}
+
+function AdminAuth({ children }) {
+  let auth = useSelector((state) => state.authStore.auth);
+  let role = useSelector((state) => state.authStore.role)
+  return (auth && role === 'admin') ? children : <Navigate to='/home' />;
+}
+
+function FarmerAuth({ children }) {
+  let auth = useSelector((state) => state.authStore.auth);
+  let role = useSelector((state) => state.authStore.role)
+  return (auth && role === 'farmer') ? children : <Navigate to='/home' />;
+}
 function App() {
+  const dispatch = useDispatch()
+  dispatch(logoutThunk());
   return (
-
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to='/home' />} />
           <Route path="/home" element={<Home />} />
-          {/* <Route path="/dashboard" element={<Auth><Dashboard /></Auth>} />
-          <Route path="/admin" element={<Auth><Admin /></Auth>} />
-          <Route path="/farm_planner" element={<Auth><Farmplanner /></Auth>} /> */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<ClientAuth><Dashboard /></ClientAuth>} />
+          <Route path="/admin" element={<AdminAuth><Admin /></AdminAuth>} />
+          <Route path="/farm_planner" element={<FarmerAuth ><Farmer /></FarmerAuth>} />
           <Route path="*" element={<Navigate to='/home' />} />
         </Routes>
       </BrowserRouter>
