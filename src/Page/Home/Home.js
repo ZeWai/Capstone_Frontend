@@ -1,9 +1,12 @@
-import "./Home.css";
+import Content from './Content/Content'
+import Navbar from './Navbar/Navbar'
+import './Home.css'
 
 export default function Home() {
     return (
         <>
-            <h1>Home Page</h1>
+            <Navbar />
+            <Content />
         </>
     )
 }

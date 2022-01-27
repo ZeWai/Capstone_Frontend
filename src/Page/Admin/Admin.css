@@ -48,14 +48,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 47px;
+    margin-bottom: 30px;
+}
+.admin-input-wrapper{
+    margin-bottom: 30px;
 }
 .admin-input-box,
-.admin-input-box-areaCode{
+.admin-input-box-tel,
+.admin-input-box-postCode{
     background: #F5F5F5;
     border-radius: 25px;
     border: none;
     height: 35px;
+    padding-left: 25px;
 }
 .admin-title{
     display: flex;
@@ -139,4 +144,14 @@
     width: 30px;
     height: 30px;
     border: none;
+}
+/*checkbox*/
+.admin-input-checkbox-label{
+    font-size: 20px;
+    line-height: 24px;
+}
+.admin-input-checkbox-box{
+    width: 18px;
+    height: 19px;
+    margin-left: 23px;
 }

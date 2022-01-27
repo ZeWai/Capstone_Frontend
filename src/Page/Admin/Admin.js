@@ -1,6 +1,6 @@
 import "./Admin.css";
 import { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 export default function Admin() {
@@ -38,6 +38,10 @@ export default function Admin() {
         return (
             <>
                 <div className="admin-form-wrapper row">
+                    <p className="admin-input-title col-4">Company Name</p>
+                    <input className="admin-input-box col-8" placeholder="Please enter company name..."></input>
+                </div>
+                <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Username</p>
                     <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..."></input>
                 </div>
@@ -51,12 +55,21 @@ export default function Admin() {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-areaCode col-2" placeholder="Please enter post code..." defaultValue="852"></input>
-                    <input className="admin-input-box col-6" placeholder="Please enter your mobile number..."></input>
+                    <input className="admin-input-box-postCode col-1" placeholder="Please enter post code..." defaultValue="852"></input>
+                    <input className="admin-input-box-tel col-7" placeholder="Please enter your mobile number..."></input>
+                </div>
+                <div className="admin-form-wrapper row">
+                    <p className="admin-input-title col-4">Address</p>
+                    <input className="admin-input-box col-8" placeholder="Please enter address..."></input>
                 </div>
                 <div className="admin-input-wrapper row">
                     <p className="admin-input-title col-4">Company Logo</p>
-                    <p className="admin-logo-name col-4">No iamge</p>
+                    <p className="admin-logo-name col-4">Please upload a logo here</p>
+                    <button className="admin-logo-select-btn col-4">Choose File</button>
+                </div>
+                <div className="admin-input-wrapper row">
+                    <p className="admin-input-title col-4">Floor Plan</p>
+                    <p className="admin-logo-name col-4">Please upload a floor plan here</p>
                     <button className="admin-logo-select-btn col-4">Choose File</button>
                 </div>
                 <div className="admin-form-wrapper">
@@ -82,8 +95,8 @@ export default function Admin() {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-areaCode col-2" placeholder="Please enter post code..." defaultValue="852"></input>
-                    <input className="admin-input-box col-6" placeholder="Please enter your mobile number..."></input>
+                    <input className="admin-input-box-postCode col-1" placeholder="Please enter post code..." defaultValue="852"></input>
+                    <input className="admin-input-box-tel col-7" placeholder="Please enter your mobile number..."></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Can access to</p>
