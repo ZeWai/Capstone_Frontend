@@ -1,7 +1,7 @@
 .content {
   margin: 0;
   height: 100vh;
-  background-image: url("./rooftopfarm.jpg");
+  background-image: url("../../image/background/rooftopfarm.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
   display: flex;

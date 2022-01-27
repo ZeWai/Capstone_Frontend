@@ -1,0 +1,39 @@
+.navbar {
+  display: inline;
+}
+
+.navbaritem {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: black;
+}
+.navitem {
+  margin: 15px 30px;
+  padding: 0 20px;
+  float: right;
+  color: white;
+  font-size: 20px;
+}
+
+.brandname {
+  margin: 20px 0;
+  padding: 0;
+  padding-left: 40px;
+  float: left;
+}
+.brandname img {
+  height: 30px;
+}
+
+.loginbtn {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
