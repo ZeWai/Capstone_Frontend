@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { loginUserThunk } from '../../store/auth/action'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import './Home.css'
 
 export default function Home() {
@@ -45,26 +47,30 @@ export default function Home() {
         <div className='content'>
 
             <div className='loginbox'>
-                <div className="heading1"><h1>Rooftop Republic</h1></div>
+                <div className="heading1"><span>Rooftop Republic</span></div>
                 <div className="heading2"><span>Log In</span></div>
-                <div className="input">
+                <div className="form">
                     <label>Username</label>
                     <br />
+                    <div className="input">
+                    <div className="icon"><FontAwesomeIcon icon={faUser} /></div>
                     <input
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.currentTarget.value.trim())}
-                    />
+                        /></div>
                     <br /><br />
                     <label>Password</label>
                     <br />
+                    <div className="input">
+                    <div className="icon"><FontAwesomeIcon icon={faLock} /></div>
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         onKeyPress={EnterPress}
-                    /></div>
-                <div className="btn"><button onClick={login}>Login</button></div>
+                        /></div></div>
+                <div className="btn"><button onClick={login}>Log In</button></div>
             </div>
         </div>
     );
