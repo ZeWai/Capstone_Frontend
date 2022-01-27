@@ -1,0 +1,58 @@
+.content {
+  margin: 0;
+  height: 100vh;
+  background-image: url("./rooftopfarm.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loginbox {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+  overflow: hidden;
+  width: 400px;
+}
+.loginbox .heading1 {
+  padding-top: 20px;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+.loginbox .heading2 {
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.loginbox .input {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.loginbox .input input {
+  margin-top: 5px;
+  border-radius: 30px;
+  padding: 0 10px;
+  size: 10;
+}
+
+.loginbox .btn {
+  margin-top: 30px;
+  width: 100%;
+  text-align: end;
+  cursor: default;
+}
+.loginbox .btn button {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 7px 30px;
+  font-size: 15px;
+  border-radius: 30px;
+}
