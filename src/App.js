@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom"
 import Home from "./Page/Home/Home";
 import { useSelector, useDispatch } from "react-redux";
-import Admin from './Admin/Admin'
-import Dashboard from './Dashboard/Dashboard';
-import Farmer from './Farmer/Farmer';
+import Admin from './Page/Admin/Admin'
+import Dashboard from './Page/Dashboard/Dashboard';
+import Farmer from './Page/Farmer/Farmer';
 import { logoutThunk } from './store/auth/action';
 
 

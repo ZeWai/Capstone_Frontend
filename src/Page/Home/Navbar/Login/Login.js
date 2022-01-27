@@ -47,7 +47,7 @@ export default function Login() {
                         <input
                             type="text"
                             value={username}
-                            onChange={(e) => setUsername(e.currentTarget.value)}
+                            onChange={(e) => setUsername(e.currentTarget.value.trim())}
                         />
                     </Col>
                     <Col />
