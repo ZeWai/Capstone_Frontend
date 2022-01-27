@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faSignOutAlt  } from '@fortawesome/free-solid-svg-icons';
 import logoutBtn from '../../image/btn/logout.png';
 import { logoutThunk } from '../../store/auth/action';
 import { fireEvent } from "@testing-library/react";
@@ -51,7 +51,7 @@ export default function Admin() {
     const [ZoneQty, SetQty] = useState(qty);
     const [ZoneList, SetZoneList] = useState(zoneList);
     const changeZoneQty = (event) => {
-        if (event.target.value <= 0 || event.target.value == "" || event.target.value == null) {
+        if (event.target.value <= 0 || event.target.value === "" || event.target.value == null) {
             qty = 0;
             SetQty(qty);
         } else if (event.target.value >= 6) {
@@ -263,7 +263,10 @@ export default function Admin() {
                         <p className="admin-nav-title">Admin Control Panel</p>
                     </div>
                     <div className="admin-nav-logout-btn-wrapper col-4">
-                        <Link to="/home" className='admin-nav-logout-btn' onClick={logout}><img alt='logout' src={logoutBtn}></img></Link>
+                        <Link to="/home" className='admin-nav-logout-btn' onClick={logout}>
+                            {/* <img alt='logout' src={logoutBtn}></img> */}
+                            <FontAwesomeIcon icon={faSignOutAlt}/>
+                        </Link>
                     </div>
                 </div>
             </div >
