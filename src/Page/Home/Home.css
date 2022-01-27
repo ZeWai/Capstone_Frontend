@@ -13,7 +13,6 @@
   border-radius: 20px;
   color: white;
   display: inline-block;
-  overflow: hidden;
   width: 400px;
 }
 .loginbox .heading1 {
@@ -40,7 +39,6 @@
   margin-top: 5px;
   border-radius: 30px;
   padding: 0 10px;
-  size: 10;
 }
 
 .loginbox .btn {
