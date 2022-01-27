@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faSignOutAlt  } from '@fortawesome/free-solid-svg-icons';
-import logoutBtn from '../../image/btn/logout.png';
+import { faEdit, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+// import logoutBtn from '../../image/btn/logout.png';
 import { logoutThunk } from '../../store/auth/action';
 import { fireEvent } from "@testing-library/react";
 
@@ -265,7 +265,7 @@ export default function Admin() {
                     <div className="admin-nav-logout-btn-wrapper col-4">
                         <Link to="/home" className='admin-nav-logout-btn' onClick={logout}>
                             {/* <img alt='logout' src={logoutBtn}></img> */}
-                            <FontAwesomeIcon icon={faSignOutAlt}/>
+                            <FontAwesomeIcon className='nav-logout-btn' icon={faSignOutAlt} size="2x" />
                         </Link>
                     </div>
                 </div>
