@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Modal } from "react-bootstrap";
 import Login from './Login/Login'
 import './Navbar.css'

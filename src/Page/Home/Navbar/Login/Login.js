@@ -47,6 +47,7 @@ export default function Login() {
                         <input
                             type="text"
                             value={username}
+                            placeholder="Enter username..."
                             onChange={(e) => setUsername(e.currentTarget.value.trim())}
                         />
                     </Col>
@@ -60,6 +61,7 @@ export default function Login() {
                         <input
                             type="password"
                             value={password}
+                            placeholder="Enter password..."
                             onChange={(e) => setPassword(e.currentTarget.value)}
                         // onKeyPress={EnterPress}
                         />

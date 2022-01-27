@@ -1,9 +1,16 @@
 import "./Admin.css";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import logoutBtn from '../../image/btn/logout.png';
+import { logoutThunk } from '../../store/auth/action';
+import { fireEvent } from "@testing-library/react";
+
 
 export default function Admin() {
+    const dispatch = useDispatch()
     // for testing get all client API.
     let clientList = [
         { id: 1, username: "test1", admin: "client", farmerAssigned: ["test4", "test5"] },
@@ -18,6 +25,10 @@ export default function Admin() {
         { id: 7, username: "test6", admin: "farmer", placeAssigned: ["test1"] },
         { id: 8, username: "test6", admin: "farmer", placeAssigned: ["test1"] },
     ]
+    //handle logout
+    const logout = () => {
+        dispatch(logoutThunk());
+    }
     //handle checkbox
     let access = [];
     const handleCheckBox = (event) => {
@@ -33,48 +44,93 @@ export default function Admin() {
             }
         }
     }
+    //handle zone qty change
+    let qty;
+    let zoneList = [];
+    let zoneName = ["A", "B", "C", "D", "E", "F"]
+    const [ZoneQty, SetQty] = useState(qty);
+    const [ZoneList, SetZoneList] = useState(zoneList);
+    const changeZoneQty = (event) => {
+        if (event.target.value <= 0 || event.target.value == "" || event.target.value == null) {
+            qty = 0;
+            SetQty(qty);
+        } else if (event.target.value >= 6) {
+            qty = 6;
+            SetQty(qty);
+        }
+        else {
+            qty = event.target.value;
+            SetQty(qty);
+        }
+        for (let i = 0; i < qty; i++) {
+            zoneList.push({ zone: (zoneName[i]) })
+        }
+        return SetZoneList(zoneList);
+    }
+
     const [adminTitle, setAdminTitle] = useState("Create Clients Account")
     let clientsForm = () => {
         return (
             <>
-                <div className="admin-form-wrapper row">
-                    <p className="admin-input-title col-4">Company Name</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter company name..."></input>
+                <div className="admin-form-upper-wrapper">
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">Company Name</p>
+                        <input className="admin-input-box col-8" placeholder="Please enter company name..."></input>
+                    </div>
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">Username</p>
+                        <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..."></input>
+                    </div>
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">Email</p>
+                        <input className="admin-input-box col-8" placeholder="Please enter your email..."></input>
+                    </div>
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">Password</p>
+                        <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..."></input>
+                    </div>
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">Contact no.</p>
+                        <input className="admin-input-box-postCode col-1" placeholder="Please enter post code..." defaultValue="852"></input>
+                        <input className="admin-input-box-tel col-7" placeholder="Please enter your mobile number..."></input>
+                    </div>
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">Address</p>
+                        <input className="admin-input-box col-8" placeholder="Please enter address..."></input>
+                    </div>
+                    <div className="admin-input-wrapper row">
+                        <p className="admin-input-title col-4">Company Logo</p>
+                        <p className="admin-logo-name col-4">Please upload a logo here</p>
+                        <button className="admin-logo-select-btn col-4">Choose File</button>
+                    </div>
+                    <div className="admin-input-wrapper row">
+                        <p className="admin-input-title col-4">Floor Plan</p>
+                        <p className="admin-logo-name col-4">Please upload a floor plan here</p>
+                        <button className="admin-logo-select-btn col-4">Choose File</button>
+                    </div>
                 </div>
-                <div className="admin-form-wrapper row">
-                    <p className="admin-input-title col-4">Username</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..."></input>
+                <div className="admin-form-lower-wrapper">
+                    <div className="admin-form-wrapper row">
+                        <p className="admin-input-title col-4">No. of Zone</p>
+                        <input className="admin-input-box col-8" onChange={changeZoneQty} placeholder="Max 6 zone..." min="0" max="6" defaultValue="1"></input>
+                    </div>
+                    {
+                        ZoneList.map((zone) => {
+                            return (
+                                <>
+                                    <div className="admin-form-wrapper row">
+                                        <p className="admin-input-title col-4">Zone {zone.zone}</p>
+                                        <label className="col-8">Size<input className="admin-input-box" placeholder="Please enter oty of zone..." defaultValue="1"></input>m²</label>
+                                    </div>
+                                </>
+                            )
+                        })
+                    }
+                    <div className="admin-form-wrapper">
+                        <button className="admin-client-create-btn">Create</button>
+                    </div>
                 </div>
-                <div className="admin-form-wrapper row">
-                    <p className="admin-input-title col-4">Email</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter your email..."></input>
-                </div>
-                <div className="admin-form-wrapper row">
-                    <p className="admin-input-title col-4">Password</p>
-                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..."></input>
-                </div>
-                <div className="admin-form-wrapper row">
-                    <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-postCode col-1" placeholder="Please enter post code..." defaultValue="852"></input>
-                    <input className="admin-input-box-tel col-7" placeholder="Please enter your mobile number..."></input>
-                </div>
-                <div className="admin-form-wrapper row">
-                    <p className="admin-input-title col-4">Address</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter address..."></input>
-                </div>
-                <div className="admin-input-wrapper row">
-                    <p className="admin-input-title col-4">Company Logo</p>
-                    <p className="admin-logo-name col-4">Please upload a logo here</p>
-                    <button className="admin-logo-select-btn col-4">Choose File</button>
-                </div>
-                <div className="admin-input-wrapper row">
-                    <p className="admin-input-title col-4">Floor Plan</p>
-                    <p className="admin-logo-name col-4">Please upload a floor plan here</p>
-                    <button className="admin-logo-select-btn col-4">Choose File</button>
-                </div>
-                <div className="admin-form-wrapper">
-                    <button className="admin-client-create-btn">Create</button>
-                </div>
+
             </>
         )
     }
@@ -198,6 +254,19 @@ export default function Admin() {
     const [overviewFarmer, setOverviewFarmer] = useState(false)
     return (
         <>
+            <div className="admin-nav container-fluid">
+                <div className="admin-wrapper row">
+                    <div className="admin-nav-logo-wrapper col-4">
+                        <img className="admin-nav-logo" alt='logo' src='https://cdn.shopify.com/s/files/1/0273/3250/9795/files/Rooftop_Republic_White_Logo_2048x2048.png?v=1584432103'></img>
+                    </div>
+                    <div className="admin-nav-title-wrapper col-4">
+                        <p className="admin-nav-title">Admin Control Panel</p>
+                    </div>
+                    <div className="admin-nav-logout-btn-wrapper col-4">
+                        <Link to="/home" className='admin-nav-logout-btn' onClick={logout}><img alt='logout' src={logoutBtn}></img></Link>
+                    </div>
+                </div>
+            </div >
             <div className="admin-body container-fluid">
                 <div className="row">
                     <div className="col-3 admin-control">

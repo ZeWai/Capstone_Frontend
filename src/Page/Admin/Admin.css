@@ -2,14 +2,66 @@
 .admin-body{
     font-family: 'Barlow', sans-serif;
 }
+/*admin upper body*/
+.admin-form-upper-wrapper{
+    border-bottom:1px solid black;
+    padding-right: 1vw;
+}
+/*admin lower body*/
+.admin-form-lower-wrapper{
+    padding-top: 40px;
+}
+/*admin navbar*/
+.admin-nav{
+    background: black;
+    height: 7vh;
+}
+.admin-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.admin-nav-logo-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.admin-nav-logo{
+    width: 75px;
+    height: 7vh;
+    object-fit: contain;
+    margin-left: 28px;
+}
+.admin-nav-title-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin-nav-title{
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-top: 15px;
+}
+.admin-nav-logout-btn-wrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.admin-nav-logout-btn{
+    width: 50px;
+    height: 5vh;
+    object-fit: contain;
+    margin-right: 55px;
+    background: black;
+    border: none;
+}
 /*control panel*/
 .admin-control{
     background-color: #F5F5F5;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height:100vh;
-
 }
 .admin-btn-wrapper{
     display: flex;
@@ -43,15 +95,18 @@
     flex-direction: column;
     align-items: center;
 }
+
 /*form wrapper*/
 .admin-form-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+    padding-left: 1vw;
 }
 .admin-input-wrapper{
     margin-bottom: 30px;
+    padding-left: 1vw;
 }
 .admin-input-box,
 .admin-input-box-tel,
@@ -61,6 +116,10 @@
     border: none;
     height: 35px;
     padding-left: 25px;
+}
+.admin-form-wrapper label .admin-input-box{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .admin-title{
     display: flex;
@@ -95,7 +154,7 @@
 .admin-client-create-btn,
 .admin-farmer-create-btn{
     background: #F5F5F5;
-    margin-top: 108px;
+    margin-top: 20px;
     width: 143px;
     height: 44px;
     border: none;
