@@ -1,0 +1,38 @@
+.farmer_content{
+    margin: 4vh 4% 0 3%;
+    color: rgb(66, 193, 198);
+    word-spacing: 2px;
+    font-family: 'Barlow';
+    height:89vh;
+}
+
+.dropdown{
+    border: rgb(66, 193, 198) 1px solid;
+    border-radius: 30px;
+    background: transparent;
+    color: rgb(66, 193, 198);
+    float: right;
+    padding: .25em;
+}
+
+.slidebtn{
+    width:100%;
+    white-space: nowrap;
+    overflow-y:scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border:3px black solid
+}
+
+.slidebtn::-webkit-scrollbar {
+    display: none;
+}
+
+.slidebtn .Tab{
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    color: rgb(128, 128, 128);
+    box-shadow: none;
+}

@@ -37,6 +37,7 @@ function App() {
           <Route path="/dashboard" element={<ClientAuth><Dashboard /></ClientAuth>} />
           <Route path="/admin" element={<AdminAuth><Admin /></AdminAuth>} />
           <Route path="/farm_planner" element={<FarmerAuth ><Farmer /></FarmerAuth>} />
+          <Route path="/farmer" element={<Farmer />}/>
           <Route path="*" element={<Navigate to='/home' />} />
         </Routes>
       </BrowserRouter>
