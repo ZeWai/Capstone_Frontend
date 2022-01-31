@@ -35,31 +35,44 @@ export function GetProductivity(info) {
 export function GetOverThunk(){
     return (dispatch) => {
       console.log("on overthunk")
-        // let token = localStorage.getItem("LoggedInToken");
-        axios.get('http://localhost:8080/api/dashboard/harvest'
-
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
-      )
+        let token = localStorage.getItem("LoggedInToken");
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/harvest`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        })
         .then((response) => {
         console.log(response.data);
         dispatch(GetHarvest(response.data));
         });
 
-        axios.get('http://localhost:8080/api/dashboard/growing')
+       
+     
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/growing`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        })
         .then((response) => {
         console.log(response.data);
         dispatch(GetGrowing(response.data));
         });
 
-        axios.get('http://localhost:8080/api/dashboard/sow')
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/sow`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        })
         .then((response) => {
         console.log(response.data);
         dispatch(GetSow(response.data));
         });
 
-        axios.get('http://localhost:8080/api/dashboard/productivity')
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/productivity`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          })
         .then((response) => {
         console.log(response.data);
         dispatch(GetProductivity(response.data));

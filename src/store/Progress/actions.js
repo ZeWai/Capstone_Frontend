@@ -21,8 +21,12 @@ export function GetProgressThunk(){
     return (dispatch) => {
       console.log("on thunk")
        
-        axios.get('http://localhost:8080/api/dashboard/progress'
-      )
+      let token = localStorage.getItem("LoggedInToken");
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/progress`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          })
         .then((response) => {
         console.log(response.data);
         dispatch(GetProgress(response.data));
@@ -34,8 +38,8 @@ export function GetProgressSThunk(id){
     return (dispatch) => {
       console.log("on thunk" , id)
        
-        axios.get(`http://localhost:8080/api/dashboard/progressS/${id}`
-      )
+        axios.get(`http://localhost:8080/api/dashboard/progressS/${id}`)
+        
         .then((response) => {
         console.log(response.data);
         dispatch(GetProgressS(response.data));

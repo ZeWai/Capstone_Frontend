@@ -11,16 +11,16 @@ export function GetClient(info) {
 export function GetClientThunk(){
     return (dispatch) => {
       console.log("on thunk")
-        // let token = localStorage.getItem("LoggedInToken");
-        axios.get('http://localhost:8080/api/user/single'
-
-        // headers: {
-        //   Authorization: `Bearer ${token}`,
-        // },
-      )
+        let token = localStorage.getItem("LoggedInToken");
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/client`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+    })
         .then((response) => {
         console.log(response.data);
         dispatch(GetClient(response.data));
         });
     }
 }
+
