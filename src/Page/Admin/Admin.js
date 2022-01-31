@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 // import logoutBtn from '../../image/btn/logout.png';
 import { logoutThunk } from '../../store/auth/action';
 import { fireEvent } from "@testing-library/react";
@@ -13,17 +13,17 @@ export default function Admin() {
     const dispatch = useDispatch()
     // for testing get all client API.
     let clientList = [
-        { id: 1, username: "test1", admin: "client", farmerAssigned: ["test4", "test5"] },
-        { id: 2, username: "test2", admin: "client", farmerAssigned: ["test6"] },
-        { id: 3, username: "test3", admin: "client", farmerAssigned: ["test4", "test5", "test6"] },
+        { id: 1, username: "test1", admin: "client", status: true, assigned: ["test4", "test5"], },
+        { id: 2, username: "test2", admin: "client", status: true, assigned: ["test6"] },
+        { id: 3, username: "test3", admin: "client", status: true, assigned: ["test4", "test5", "test6"] },
     ]
     // for testing get all farmer API.
     let farmerList = [
-        { id: 4, username: "test4", admin: "farmer", placeAssigned: ["test1"] },
-        { id: 5, username: "test5", admin: "farmer", placeAssigned: ["test1", "test2"] },
-        { id: 6, username: "test6", admin: "farmer", placeAssigned: ["test1", "test2", "test3"] },
-        { id: 7, username: "test6", admin: "farmer", placeAssigned: ["test1"] },
-        { id: 8, username: "test6", admin: "farmer", placeAssigned: ["test1"] },
+        { id: 4, username: "test4", admin: "farmer", status: true, assigned: ["test1"] },
+        { id: 5, username: "test5", admin: "farmer", status: true, assigned: ["test1", "test2"] },
+        { id: 6, username: "test6", admin: "farmer", status: true, assigned: ["test1", "test2", "test3"] },
+        { id: 7, username: "test6", admin: "farmer", status: true, assigned: ["test1"] },
+        { id: 8, username: "test6", admin: "farmer", status: true, assigned: ["test1"] },
     ]
     //handle logout
     const logout = () => {
@@ -45,24 +45,13 @@ export default function Admin() {
         }
     }
     //handle zone qty change
-    let qty;
     let zoneList = [];
     let zoneName = ["A", "B", "C", "D", "E", "F"]
-    const [ZoneQty, SetQty] = useState(qty);
+    const [ZoneQty, SetQty] = useState();
     const [ZoneList, SetZoneList] = useState(zoneList);
     const changeZoneQty = (event) => {
-        if (event.target.value <= 0 || event.target.value === "" || event.target.value == null) {
-            qty = 0;
-            SetQty(qty);
-        } else if (event.target.value >= 6) {
-            qty = 6;
-            SetQty(qty);
-        }
-        else {
-            qty = event.target.value;
-            SetQty(qty);
-        }
-        for (let i = 0; i < qty; i++) {
+        SetQty(event.target.value)
+        for (let i = 0; i < event.target.value; i++) {
             zoneList.push({ zone: (zoneName[i]) })
         }
         return SetZoneList(zoneList);
@@ -100,19 +89,25 @@ export default function Admin() {
                     </div>
                     <div className="admin-input-wrapper row">
                         <p className="admin-input-title col-4">Company Logo</p>
-                        <p className="admin-logo-name col-4">Please upload a logo here</p>
-                        <button className="admin-logo-select-btn col-4">Choose File</button>
+                        <input className="admin-logo-upload col-8" type="file"></input>
                     </div>
                     <div className="admin-input-wrapper row">
                         <p className="admin-input-title col-4">Floor Plan</p>
-                        <p className="admin-logo-name col-4">Please upload a floor plan here</p>
-                        <button className="admin-logo-select-btn col-4">Choose File</button>
+                        <input className="admin-floorPlan-upload col-8" type="file"></input>
                     </div>
                 </div>
                 <div className="admin-form-lower-wrapper">
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">No. of Zone</p>
-                        <input className="admin-input-box col-8" onChange={changeZoneQty} placeholder="Max 6 zone..." min="0" max="6" defaultValue="1"></input>
+                        <select className="admin-input-select col-8" defaultValue={ZoneQty} onChange={changeZoneQty} >
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                        </select>
                     </div>
                     {
                         ZoneList.map((zone) => {
@@ -120,7 +115,7 @@ export default function Admin() {
                                 <>
                                     <div className="admin-form-wrapper row">
                                         <p className="admin-input-title col-4">Zone {zone.zone}</p>
-                                        <label className="col-8">Size<input className="admin-input-box" placeholder="Please enter oty of zone..." defaultValue="1"></input>m²</label>
+                                        <label className="col-8">Size<input className="admin-input-box" placeholder="Please enter zone size..."></input>m²</label>
                                     </div>
                                 </>
                             )
@@ -138,6 +133,10 @@ export default function Admin() {
         return (
             <>
                 <div className="admin-form-wrapper row">
+                    <p className="admin-input-title col-4">Farmer Name</p>
+                    <input className="admin-input-box col-8" placeholder="Please enter farmer name..."></input>
+                </div>
+                <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Username</p>
                     <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..."></input>
                 </div>
@@ -152,7 +151,11 @@ export default function Admin() {
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
                     <input className="admin-input-box-postCode col-1" placeholder="Please enter post code..." defaultValue="852"></input>
-                    <input className="admin-input-box-tel col-7" placeholder="Please enter your mobile number..."></input>
+                    <input className="admin-input-box-tel col-7" placeholder="Please enter farmer mobile number..."></input>
+                </div>
+                <div className="admin-input-wrapper row">
+                    <p className="admin-input-title col-4">User Icon</p>
+                    <input className="admin-logo-upload col-8" type="file"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Can access to</p>
@@ -187,23 +190,28 @@ export default function Admin() {
                     clientList.map((client, index) => {
                         return (
                             <>
-                                {(index % 2 === 0
-                                    ?
-                                    <div className="admin-list row" style={{ backgroundColor: "#FFFFFF" }}>
-                                        <p className="admin-list-item-user col-6">{client.username}</p>
-                                        <lable className="admin-list-item-label col-3">{client.farmerAssigned.length}</lable>
-                                        <div className="admin-list-farmer-edit-wrapper col-3">
-                                            <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                <div className="admin-client-overview-wrapper">
+                                    {(index % 2 === 0
+                                        ?
+                                        <div className="admin-list row" style={{ backgroundColor: "#FFFFFF" }}>
+                                            <p className="admin-list-item-user col-6">{client.username}</p>
+                                            <lable className="admin-list-item-label col-3">{client.assigned.length}</lable>
+                                            <div className="admin-list-farmer-edit-wrapper col-3">
+                                                <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                                <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    :
-                                    <div className="admin-list row" style={{ backgroundColor: "#F5F5F5" }}>
-                                        <p className="admin-list-item-user col-6">{client.username}</p>
-                                        <lable className="admin-list-item-label col-3">{client.farmerAssigned.length}</lable>
-                                        <div className="admin-list-farmer-edit-wrapper col-3">
-                                            <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
-                                        </div>
-                                    </div>)}
+                                        :
+                                        <div className="admin-list row" style={{ backgroundColor: "#F5F5F5" }}>
+                                            <p className="admin-list-item-user col-6">{client.username}</p>
+                                            <lable className="admin-list-item-label col-3">{client.assigned.length}</lable>
+                                            <div className="admin-list-farmer-edit-wrapper col-3">
+                                                <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                                <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
+                                            </div>
+                                        </div>)}
+                                </div>
+
                             </>
                         )
                     })
@@ -227,17 +235,19 @@ export default function Admin() {
                                     ?
                                     <div className="admin-list row" style={{ backgroundColor: "#FFFFFF" }}>
                                         <p className="admin-list-item-user col-6">{farmer.username}</p>
-                                        <lable className="admin-list-item-label col-3">{farmer.placeAssigned.length}</lable>
+                                        <lable className="admin-list-item-label col-3">{farmer.assigned.length}</lable>
                                         <div className="admin-list-farmer-edit-wrapper col-3">
                                             <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                            <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
                                         </div>
                                     </div>
                                     :
                                     <div className="admin-list row" style={{ backgroundColor: "#F5F5F5" }}>
                                         <p className="admin-list-item-user col-6">{farmer.username}</p>
-                                        <lable className="admin-list-item-label col-3">{farmer.placeAssigned.length}</lable>
+                                        <lable className="admin-list-item-label col-3">{farmer.assigned.length}</lable>
                                         <div className="admin-list-farmer-edit-wrapper col-3">
                                             <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                            <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
                                         </div>
                                     </div>)}
                             </>
