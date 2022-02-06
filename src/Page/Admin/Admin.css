@@ -49,8 +49,6 @@
   align-items: center;
 }
 .admin-nav-logout-btn {
-  /* width: 50px; */
-  /* height: 5vh; */
   object-fit: contain;
   margin-right: 55px;
   background: black;
@@ -142,6 +140,13 @@
   font-size: 15px;
   line-height: 18px;
 }
+.admin-logo-image{
+  height: 300px;
+  width: 300px;
+  object-fit:contain;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+  margin-left: 505px;
+}
 .admin-logo-select-btn {
   background: #f5f5f5;
   border-radius: 25px;
@@ -224,4 +229,10 @@
   width: 18px;
   height: 19px;
   margin-left: 23px;
+}
+/*error msg*/
+.admin-form-errMsg{
+  color: red;
+  font-weight: 700;
+  padding: 10px;
 }
