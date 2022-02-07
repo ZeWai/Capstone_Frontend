@@ -30,6 +30,7 @@ export function GetProgressThunk(){
         .then((response) => {
         console.log(response.data);
         dispatch(GetProgress(response.data));
+        dispatch(GetProgressSThunk(response.data[0].id))
         });
     }
 }

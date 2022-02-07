@@ -253,7 +253,7 @@ a:hover {
 
 .soil-planted{
     width: 200px;
-    padding-left: 10px;
+    padding-left: 40px;
 }
 
 /* Overview */
@@ -293,8 +293,7 @@ a:hover {
 }
 
 .doughnut-container{
-    
-    width: 200px;
+    width: 180px;
 }
 
 /* Progress */

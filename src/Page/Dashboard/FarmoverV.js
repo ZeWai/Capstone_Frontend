@@ -26,7 +26,7 @@ export const FarmoverV = () => {
                 <h1 className='pt-5'>Farm overview</h1>
                 <div className='card mb-3'>
                     <div className="row">
-                        <div className='col-lg-5 overview_box'>
+                        <div className='col-lg-6 overview_box'>
                             <div className='impact-up'>
                                 <div className='impact-up-partA'>
                                     <div className='impact_group m-2 mt-2'>
