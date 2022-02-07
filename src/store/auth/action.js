@@ -4,6 +4,7 @@ export const ADMIN_LOGIN = 'ADMIN_LOGIN';
 export const CLIENT_LOGIN = 'CLIENT_LOGIN';
 export const FARMER_LOGIN = 'FARMER_LOGIN';
 export const LOGOUT = 'LOGOUT';
+export const FAIL_LOGIN="FAIL_LOGIN";
 
 export const loginUserThunk = (username, password) => {
     return (dispatch) => {
@@ -12,10 +13,6 @@ export const loginUserThunk = (username, password) => {
                 username, password
             })
             .then((res) => {
-                if (res.data === null) {
-                    console.log("User / password incorrect")  // Action when fail to login (not finish)
-                }
-                else {
                     if (jwt_decode(res.data).role === 'admin') {
                         localStorage.setItem("LoggedInToken", res.data);
                         dispatch({ type: ADMIN_LOGIN })
@@ -25,8 +22,11 @@ export const loginUserThunk = (username, password) => {
                     } else if (jwt_decode(res.data).role === 'farmer') {
                         localStorage.setItem("LoggedInToken", res.data);
                         dispatch({ type: FARMER_LOGIN })
-                    }
-                }
+                    }            
+            })
+            .catch((res)=> {
+                dispatch({type: FAIL_LOGIN }) // Action when fail to login (not finish)
+                //
             })
     }
 }
