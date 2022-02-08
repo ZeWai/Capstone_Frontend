@@ -1,16 +1,13 @@
 import "./Admin.css";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-// import logoutBtn from '../../image/btn/logout.png';
-import { logoutThunk } from '../../store/auth/action';
-import { fireEvent } from "@testing-library/react";
-
+import axios from 'axios';
+import Logout from './Logout';
+import upload from '../../image/background/upload.png';
 
 export default function Admin() {
-    const dispatch = useDispatch()
     // for testing get all client API.
     let clientList = [
         { id: 1, username: "test1", admin: "client", status: true, assigned: ["test4", "test5"], },
@@ -25,10 +22,206 @@ export default function Admin() {
         { id: 7, username: "test6", admin: "farmer", status: true, assigned: ["test1"] },
         { id: 8, username: "test6", admin: "farmer", status: true, assigned: ["test1"] },
     ]
-    //handle logout
-    const logout = () => {
-        dispatch(logoutThunk());
+
+    //client account reg form
+    //handle name change
+    const [Name, SetName] = useState();
+    const nameChange = (event) => {
+        SetName(event.target.value)
+        return Name;
     }
+    //handle username change
+    const [Username, SetUsername] = useState();
+    const usernameChange = (event) => {
+        SetUsername(event.target.value)
+        return Username;
+    }
+    //handle email change
+    const [Email, SetEmail] = useState();
+    const emailChange = (event) => {
+        SetEmail(event.target.value)
+        return Email;
+    }
+    //handle password change
+    const [Password, SetPassword] = useState();
+    const passwordChange = (event) => {
+        SetPassword(event.target.value)
+        return Password;
+    }
+    //handle postCode change
+    const [PostCode, SetPostCode] = useState(852);
+    const postCodeChange = (event) => {
+        SetPostCode(event.target.value)
+        return PostCode;
+    }
+    //handle telephone change
+    const [Telephone, SetTelephone] = useState();
+    const telephoneChange = (event) => {
+        SetTelephone(event.target.value)
+        return Telephone;
+    }
+    //handle address change
+    const [Address, SetAddress] = useState();
+    const addressChange = (event) => {
+        SetAddress(event.target.value)
+        return Address;
+    }
+    //handle logo upload
+    const [Logo, SetLogo] = useState(null);
+    const logoUpload = (event) => {
+        SetLogo(event.target.files[0]);
+        return Logo;
+    }
+    //handle floor plan upload
+    const [FloorPlan, SetFloorPlan] = useState(null);
+    const floorPlanUpload = (event) => {
+        SetFloorPlan(event.target.files[0]);
+        return FloorPlan;
+    }
+    //handle zone qty change
+    let zoneList = [];
+    let zoneName = ["A", "B", "C", "D", "E", "F"];
+    const [ZoneQty, SetQty] = useState();
+    const [ZoneList, SetZoneList] = useState(zoneList);
+    const [ZoneSizeA, SetZoneSizeA] = useState(0);
+    const [ZoneSizeB, SetZoneSizeB] = useState(0);
+    const [ZoneSizeC, SetZoneSizeC] = useState(0);
+    const [ZoneSizeD, SetZoneSizeD] = useState(0);
+    const [ZoneSizeE, SetZoneSizeE] = useState(0);
+    const [ZoneSizeF, SetZoneSizeF] = useState(0);
+    const [errMsg, SetErrMsg] = useState();
+    const changeZoneQty = (event) => {
+        SetQty(event.target.value)
+        if (event.target.value > zoneList.length) {
+            for (let i = 0; i < event.target.value; i++) {
+                zoneList.push(
+                    zoneName[i]
+                )
+            }
+            SetZoneList(zoneList)
+            return ZoneList;
+        } else {
+            zoneList.pop((6 - event.target.value))
+            SetZoneList(zoneList)
+            return ZoneList;
+        }
+    }
+    const zoneSizeChange = (event) => {
+        if (event.target.id == "zone_A") {
+            if (event.target.value.length > 0) {
+                return SetZoneSizeA(parseInt(event.target.value));
+            } else {
+                return SetZoneSizeA(0);
+            }
+        } else if (event.target.id == "zone_B") {
+            if (event.target.value.length > 0) {
+                return SetZoneSizeB(parseInt(event.target.value));
+            } else {
+                return SetZoneSizeB(0);
+            }
+        } else if (event.target.id == "zone_C") {
+            if (event.target.value.length > 0) {
+                return SetZoneSizeC(parseInt(event.target.value));
+            } else {
+                return SetZoneSizeC(0);
+            }
+        } else if (event.target.id == "zone_D") {
+            if (event.target.value.length > 0) {
+                return SetZoneSizeD(parseInt(event.target.value));
+            } else {
+                return SetZoneSizeD(0);
+            }
+        } else if (event.target.id == "zone_E") {
+            if (event.target.value.length > 0) {
+                return SetZoneSizeE(parseInt(event.target.value));
+            } else {
+                return SetZoneSizeE(0);
+            }
+        } else if (event.target.id == "zone_F") {
+            if (event.target.value.length > 0) {
+                return SetZoneSizeF(parseInt(event.target.value));
+            } else {
+                return SetZoneSizeF(0);
+            }
+        }
+    }
+
+
+
+    //handle client create form
+    const clientCreate = () => {
+        let zoneList = ZoneList;
+        let sizeList = [ZoneSizeA, ZoneSizeB, ZoneSizeC, ZoneSizeD, ZoneSizeE, ZoneSizeF]
+        let clientForm =
+        {
+            username: Username,
+            email: Email,
+            password: Password,
+            postCode: PostCode,
+            tel: Telephone,
+            role: "client",
+            status: true,
+            name: Name,
+            address: Address,
+            icon: URL.createObjectURL(Logo),
+            image: URL.createObjectURL(FloorPlan),
+            zone: [zoneList, sizeList]
+        }
+        //check email valid
+        const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g
+        //check input
+        if (clientForm.name === undefined || clientForm.name.length < 1) {
+            return SetErrMsg("Company name is empty!");
+        } else if (clientForm.username === undefined || clientForm.username.length < 8) {
+            return SetErrMsg("Username at least 8 characters!");
+        } else if (clientForm.email === undefined || !regEx.test(clientForm.email)) {
+            return SetErrMsg("Email is not valid!");
+        } else if (clientForm.password === undefined || clientForm.password.length < 6) {
+            return SetErrMsg("Password at least 6 characters!");
+        } else if (clientForm.postCode === undefined || clientForm.postCode.length < 1) {
+            return SetErrMsg("Post code is empty!");
+        } else if (clientForm.tel === undefined || clientForm.tel.length < 8) {
+            return SetErrMsg("Telephone at least 8 numbers!");
+        } else if (clientForm.address === undefined || clientForm.address.length < 1) {
+            return SetErrMsg("Address is empty!");
+        } else if (clientForm.icon === null) {
+            return SetErrMsg("Please upload logo!");
+        } else if (clientForm.image === null) {
+            return SetErrMsg("Please upload floor plan!");
+        } else if (clientForm.zone[0] === undefined || clientForm.zone[0].length < 1) {
+            return SetErrMsg("Please select at least one zone!");
+        } else if (clientForm.zone[0].length > 0) {
+            let err;
+            for (let i = 0; i < clientForm.zone[0].length; i++) {
+                if (clientForm.zone[0][i].length > 0 && clientForm.zone[1][i] < 1) {
+                    err = `Please provide zone ${clientForm.zone[0][i]} size!`
+                }
+            };
+            axios.post('http://localhost:8080/api/signup', clientForm)
+                .then((res) => {
+                    //clear state
+                    //SetName()
+                    //SetUsername()
+                    //SetEmail()
+                    //SetPassword()
+                    //SetPostCode(852)
+                    //SetTelephone()
+                    //SetAddress()
+                    //SetLogo()
+                    //SetFloorPlan()
+                    //SetQty(0)
+                    //SetZoneList([])
+                    //SetZoneSizeA(0)
+                    //SetZoneSizeB(0)
+                    //SetZoneSizeC(0)
+                    //SetZoneSizeD(0)
+                    //SetZoneSizeE(0)
+                    //SetZoneSizeF(0)
+                    return SetErrMsg(res.data);
+                })
+        }
+    }
+
     //handle checkbox
     let access = [];
     const handleCheckBox = (event) => {
@@ -44,18 +237,6 @@ export default function Admin() {
             }
         }
     }
-    //handle zone qty change
-    let zoneList = [];
-    let zoneName = ["A", "B", "C", "D", "E", "F"]
-    const [ZoneQty, SetQty] = useState();
-    const [ZoneList, SetZoneList] = useState(zoneList);
-    const changeZoneQty = (event) => {
-        SetQty(event.target.value)
-        for (let i = 0; i < event.target.value; i++) {
-            zoneList.push({ zone: (zoneName[i]) })
-        }
-        return SetZoneList(zoneList);
-    }
 
     const [adminTitle, setAdminTitle] = useState("Create Clients Account")
     let clientsForm = () => {
@@ -64,36 +245,48 @@ export default function Admin() {
                 <div className="admin-form-upper-wrapper">
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">Company Name</p>
-                        <input className="admin-input-box col-8" placeholder="Please enter company name..."></input>
+                        <input className="admin-input-box col-8" placeholder="Please enter company name..." defaultValue={Name} onChange={nameChange}></input>
                     </div>
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">Username</p>
-                        <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..."></input>
+                        <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..." defaultValue={Username} onChange={usernameChange}></input>
                     </div>
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">Email</p>
-                        <input className="admin-input-box col-8" placeholder="Please enter your email..."></input>
+                        <input className="admin-input-box col-8" placeholder="Please enter your email..." defaultValue={Email} onChange={emailChange}></input>
                     </div>
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">Password</p>
-                        <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..."></input>
+                        <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..." defaultValue={Password} onChange={passwordChange}></input>
                     </div>
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">Contact no.</p>
-                        <input className="admin-input-box-postCode col-1" placeholder="Please enter post code..." defaultValue="852"></input>
-                        <input className="admin-input-box-tel col-7" placeholder="Please enter your mobile number..."></input>
+                        <input className="admin-input-box-postCode col-1" type="number" placeholder="Please enter post code..." defaultValue={PostCode} onChange={postCodeChange}></input>
+                        <input className="admin-input-box-tel col-7" type="number" placeholder="Please enter your mobile number..." defaultValue={Telephone} onChange={telephoneChange}></input>
                     </div>
                     <div className="admin-form-wrapper row">
                         <p className="admin-input-title col-4">Address</p>
-                        <input className="admin-input-box col-8" placeholder="Please enter address..."></input>
+                        <input className="admin-input-box col-8" placeholder="Please enter address..." defaultValue={Address} onChange={addressChange}></input>
                     </div>
                     <div className="admin-input-wrapper row">
                         <p className="admin-input-title col-4">Company Logo</p>
-                        <input className="admin-logo-upload col-8" type="file"></input>
+                        <input className="admin-logo-upload col-8" type="file" onChange={logoUpload}></input>
+                        {
+                            (Logo !== null) ?
+                                <img className="admin-logo-image col-12" alt={Logo.name} src={URL.createObjectURL(Logo)} />
+                                :
+                                <img className="admin-logo-image col-12" alt="upload" src={upload} />
+                        }
                     </div>
                     <div className="admin-input-wrapper row">
                         <p className="admin-input-title col-4">Floor Plan</p>
-                        <input className="admin-floorPlan-upload col-8" type="file"></input>
+                        <input className="admin-floorPlan-upload col-8" type="file" onChange={floorPlanUpload}></input>
+                        {
+                            (FloorPlan !== null) ?
+                                <img className="admin-logo-image col-12" alt={FloorPlan.name} src={URL.createObjectURL(FloorPlan)} />
+                                :
+                                <img className="admin-logo-image col-12" alt="upload" src={upload} />
+                        }
                     </div>
                 </div>
                 <div className="admin-form-lower-wrapper">
@@ -113,19 +306,29 @@ export default function Admin() {
                         ZoneList.map((zone) => {
                             return (
                                 <>
-                                    <div className="admin-form-wrapper row">
-                                        <p className="admin-input-title col-4">Zone {zone.zone}</p>
-                                        <label className="col-8">Size<input className="admin-input-box" placeholder="Please enter zone size..."></input>m²</label>
-                                    </div>
+                                    <ul >
+                                        <li key={"zone_" + zone + "_wrapper"} className="admin-form-wrapper row">
+                                            <p className="admin-input-title col-4">Zone {zone}</p>
+                                            <label className="col-8">Size
+                                                <input className="admin-input-box" placeholder="Please enter zone size..." onChange={zoneSizeChange} id={"zone_" + zone}></input>
+                                                m²
+                                            </label>
+                                        </li>
+                                    </ul>
                                 </>
                             )
                         })
                     }
+                    {
+                        (errMsg === undefined) ?
+                            < p className="admin-form-errMsg">{errMsg}</p>
+                            :
+                            < p className="admin-form-errMsg">Error : {errMsg}</p>
+                    }
                     <div className="admin-form-wrapper">
-                        <button className="admin-client-create-btn">Create</button>
+                        <button className="admin-client-create-btn" onClick={clientCreate}>Create</button>
                     </div>
                 </div>
-
             </>
         )
     }
@@ -273,7 +476,7 @@ export default function Admin() {
                         <p className="admin-nav-title">Admin Control Panel</p>
                     </div>
                     <div className="admin-nav-logout-btn-wrapper col-4">
-                        <Link to="/home" className='admin-nav-logout-btn' onClick={logout}>
+                        <Link to="/home" className='admin-nav-logout-btn' onClick={Logout}>
                             {/* <img alt='logout' src={logoutBtn}></img> */}
                             <FontAwesomeIcon className='nav-logout-btn' icon={faSignOutAlt} size="2x" />
                         </Link>

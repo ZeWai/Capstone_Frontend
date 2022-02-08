@@ -7,7 +7,7 @@ import Overview from './Overview/Overview';
 import ZonePage from './ZonePage/ZonePage';
 
 export default function Content() {
-    
+
     const clientname = useSelector((state) => state.userStore.clientNames);
     const clientzone = useSelector((state) => state.zoneStore.clientZone);
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export default function Content() {
     const getlocation = ((e) => {
         setLocation(e.currentTarget.value);
         dispatch(GetClientZoneThunk(e.currentTarget.value))
-        console.log(e.currentTarget.value,"changed")
+        console.log(e.currentTarget.value, "changed")
     })
 
     return <div className='farmer_content'>
@@ -35,9 +35,9 @@ export default function Content() {
         </select>
         <br />
         <div className="slidebtn">
-            <button className={currentview==="Overview" ? "ActiveTab":"Tab"} onClick={()=>setCurrentview("Overview")}>Overview</button>
+            <button className={currentview === "Overview" ? "ActiveTab" : "Tab"} onClick={() => setCurrentview("Overview")}>Overview</button>
             {clientzone && clientzone.length > 0 ? clientzone.map((zone) => <button className={currentview === `${zone.area}` ? "ActiveTab" : "Tab"} key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div>
-        {currentview === "Overview" ? <Overview currentview={currentview} /> : <ZonePage currentview={currentview}/>}
+        {currentview === "Overview" ? <Overview currentview={currentview} /> : <ZonePage currentview={currentview} />}
     </div>;
 }
