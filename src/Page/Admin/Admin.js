@@ -8,7 +8,7 @@ import Logout from './Logout';
 import upload from '../../image/background/upload.png';
 
 export default function Admin() {
-    // for testing get all client API.
+    // for testing get all client API
     let clientList = [
         { id: 1, username: "test1", admin: "client", status: true, assigned: ["test4", "test5"], },
         { id: 2, username: "test2", admin: "client", status: true, assigned: ["test6"] },
