@@ -10,7 +10,6 @@ export function GetClient(info) {
   }
 export function GetClientThunk(){
     return (dispatch) => {
-      console.log("on thunk")
         let token = localStorage.getItem("LoggedInToken");
         axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/client`,{
         headers: {

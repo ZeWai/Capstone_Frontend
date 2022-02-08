@@ -8,11 +8,10 @@ export function GetClientZone(zone) {
         payload: zone,
     };
 }
-export function GetClientZoneThunk() {
+export function GetClientZoneThunk (location) {
     return (dispatch) => {
-        console.log("on thunk")
         let token = localStorage.getItem("LoggedInToken");
-        axios.get(`${process.env.REACT_APP_API_SERVER}/api/farmer/zone`, {
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/getzone/${location}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

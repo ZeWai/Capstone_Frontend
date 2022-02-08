@@ -22,7 +22,6 @@
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  border: 3px black solid;
 }
 
 .slidebtn::-webkit-scrollbar {

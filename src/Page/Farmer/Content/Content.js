@@ -2,21 +2,32 @@ import './Content.css'
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetClientNameThunk } from '../../../store/user/actions';
+import { GetClientZoneThunk } from '../../../store/getzone/actions'
+import Overview from './Overview/Overview';
+import ZonePage from './ZonePage/ZonePage';
 
 export default function Content() {
-    const [location, setLocation] = useState("")
+    
     const clientname = useSelector((state) => state.userStore.clientNames);
-    const clientzone = useSelector((state) => state.userStore.clientZone);
+    const clientzone = useSelector((state) => state.zoneStore.clientZone);
     const dispatch = useDispatch();
+    const [location, setLocation] = useState("")
+    const [currentview, setCurrentview] = useState("Overview")
 
+    if (clientname.length > 0 && location === "") {
+        setLocation(clientname[0].username);
+        dispatch(GetClientZoneThunk(clientname[0].username))
+    }
     useEffect(() => {
-        dispatch(GetClientNameThunk());
+        dispatch(GetClientNameThunk())
     }, []);
 
     const getlocation = ((e) => {
-        console.log(e.currentTarget.value)
-        setLocation(e.currentTarget.value)
+        setLocation(e.currentTarget.value);
+        dispatch(GetClientZoneThunk(e.currentTarget.value))
+        console.log(e.currentTarget.value,"changed")
     })
+
     return <div className='farmer_content'>
         <span>Farm Planner | floor plan</span>
         <select value={location} className='dropdown' onChange={(e) => (getlocation(e))} >
@@ -24,17 +35,9 @@ export default function Content() {
         </select>
         <br />
         <div className="slidebtn">
-            <button>Overview</button>
-            {clientzone && clientzone.length > 0 ? clientzone.map((zone) => <span>{zone.zone}</span>) : <span>No zone</span>}
-            {/* <p>{setTest}</p> */}
-            {/* {zones && zones.length > 0
-                ? zones.map((zones, index) => (
-                    <>
-                        <button>{zones.name}</button>
-                    </>
-                )) : <></>
-            } */}
+            <button className="Tab" onClick={()=>setCurrentview("Overview")}>Overview</button>
+            {clientzone && clientzone.length > 0 ? clientzone.map((zone) => <button className="Tab" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>No zone</span>}
         </div>
-
+        {currentview === "Overview" ? <Overview currentview={currentview} /> : <ZonePage currentview={currentview}/>}
     </div>;
 }
