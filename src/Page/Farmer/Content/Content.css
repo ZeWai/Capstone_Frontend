@@ -36,3 +36,13 @@
   color: rgb(128, 128, 128);
   box-shadow: none;
 }
+
+.slidebtn .ActiveTab {
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid rgb(66, 193, 198);
+  font-weight: 700;
+  color: black;
+  box-shadow: none;
+}

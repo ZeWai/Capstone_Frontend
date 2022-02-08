@@ -31,12 +31,12 @@ export default function Content() {
     return <div className='farmer_content'>
         <span>Farm Planner | floor plan</span>
         <select value={location} className='dropdown' onChange={(e) => (getlocation(e))} >
-            {clientname && clientname.length > 0 ? clientname.map((client) => <option key={client.username} value={client.username}>{client.username}</option>) : <option>No Client</option>}
+            {clientname && clientname.length > 0 ? clientname.map((client) => <option key={client.username} value={client.username}>{client.username}</option>) : <span>Please contact admin</span>}
         </select>
         <br />
         <div className="slidebtn">
-            <button className="Tab" onClick={()=>setCurrentview("Overview")}>Overview</button>
-            {clientzone && clientzone.length > 0 ? clientzone.map((zone) => <button className="Tab" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>No zone</span>}
+            <button className={currentview==="Overview" ? "ActiveTab":"Tab"} onClick={()=>setCurrentview("Overview")}>Overview</button>
+            {clientzone && clientzone.length > 0 ? clientzone.map((zone) => <button className={currentview === `${zone.area}` ? "ActiveTab" : "Tab"} key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div>
         {currentview === "Overview" ? <Overview currentview={currentview} /> : <ZonePage currentview={currentview}/>}
     </div>;
