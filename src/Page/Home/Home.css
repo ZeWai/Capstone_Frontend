@@ -82,12 +82,13 @@
   inset -3px -3px 5px rgba(0,0,0,0.5);
 }
 
-.loginbox .btn {
+.loginbox .loginbtn {
   margin-top: 30px;
   width: 100%;
   cursor: default;
+
 }
-.loginbox .btn button {
+.loginbox .loginbtn button {
   background: rgb(31, 131, 242);
   margin-top: 10px;
   width: 100%;
@@ -104,6 +105,6 @@
   font-weight: 600;
   margin-top: 10px;
 }
-.loginbox .btn button:hover{
+.loginbox .loginbtn button:hover{
   filter: brightness(1.2);
 }

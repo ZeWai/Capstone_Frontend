@@ -70,7 +70,7 @@ export default function Home() {
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         onKeyPress={EnterPress}
                         /></div></div>
-                <div className="btn"><button onClick={login}>Log In</button></div>
+                <div className="loginbtn"><button onClick={login}>Log In</button></div>
             </div>
         </div>
     );
