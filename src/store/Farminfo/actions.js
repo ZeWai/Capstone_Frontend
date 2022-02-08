@@ -17,7 +17,6 @@ export function GetClientThunk(){
         },
     })
         .then((response) => {
-        console.log(response.data);
         dispatch(GetClient(response.data));
         });
     }

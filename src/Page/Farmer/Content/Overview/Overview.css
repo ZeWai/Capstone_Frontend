@@ -1,0 +1,19 @@
+.overview{
+    margin-top: 5%;
+    background-color: #42C1C6;
+    width: 100%;
+    padding: 5%;
+}
+
+.overview .schedule{
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 5%;
+}
+
+.overview .schedule .title{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+}
