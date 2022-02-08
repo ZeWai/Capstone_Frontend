@@ -3,7 +3,6 @@
   color: rgb(66, 193, 198);
   word-spacing: 2px;
   font-family: "Barlow";
-  height: 89vh;
 }
 
 .dropdown {
@@ -22,7 +21,6 @@
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  border: 3px black solid;
 }
 
 .slidebtn::-webkit-scrollbar {
@@ -36,4 +34,33 @@
   font-weight: 700;
   color: rgb(128, 128, 128);
   box-shadow: none;
+}
+
+.slidebtn .ActiveTab {
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid rgb(66, 193, 198);
+  font-weight: 700;
+  color: black;
+  box-shadow: none;
+}
+
+.selectbtncontainer{
+  margin-top:3%;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 3px 3px 3px gray;
+  border: none;
+  padding:5% 3%;
+  text-align: center;
+}
+.selectbtn{
+  background-color: rgb(66, 193, 198);
+  border: none;
+  width:120px;
+  margin:3% 5%;
+  height: 50px;
+  color: white;
+  font-weight: 700;
 }

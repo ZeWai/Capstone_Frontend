@@ -4,6 +4,7 @@ import { userReducer } from './user/reducer'
 import { OverviewReducer } from "./Overview/reducers"
 import { FraminfoReducer } from "./Farminfo/reducers";
 import { ProgressReducer } from "./Progress/reducers"
+import { zoneReducer } from "./getzone/reducers"
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     OverStore: OverviewReducer,
     FramStore: FraminfoReducer,
     ProgressStore: ProgressReducer,
+    zoneStore: zoneReducer,
 })
 
 export const store = createStore(

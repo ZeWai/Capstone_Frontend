@@ -236,3 +236,15 @@
   font-weight: 700;
   padding: 10px;
 }
+/*client success*/
+.admin-client-form-success-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.admin-client-form-success-text{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}

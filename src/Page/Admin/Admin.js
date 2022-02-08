@@ -8,7 +8,7 @@ import Logout from './Logout';
 import upload from '../../image/background/upload.png';
 
 export default function Admin() {
-    // for testing get all client API.
+    // for testing get all client API
     let clientList = [
         { id: 1, username: "test1", admin: "client", status: true, assigned: ["test4", "test5"], },
         { id: 2, username: "test2", admin: "client", status: true, assigned: ["test6"] },
@@ -22,132 +22,156 @@ export default function Admin() {
         { id: 7, username: "test6", admin: "farmer", status: true, assigned: ["test1"] },
         { id: 8, username: "test6", admin: "farmer", status: true, assigned: ["test1"] },
     ]
-
+    //page state
+    const [createClientsForm, setCreateClientsForm] = useState(true)
+    const [clientsCreateSuccess, setClientsCreateSuccess] = useState(false)
+    const [createFarmerForm, setCreateFarmerForm] = useState(false)
+    const [overviewClients, setOverviewClients] = useState(false)
+    const [overviewFarmer, setOverviewFarmer] = useState(false)
     //client account reg form
     //handle name change
-    const [Name, SetName] = useState();
+    const [Name, setName] = useState();
     const nameChange = (event) => {
-        SetName(event.target.value)
+        setName(event.target.value)
         return Name;
     }
     //handle username change
-    const [Username, SetUsername] = useState();
+    const [Username, setUsername] = useState();
     const usernameChange = (event) => {
-        SetUsername(event.target.value)
+        setUsername(event.target.value)
         return Username;
     }
     //handle email change
-    const [Email, SetEmail] = useState();
+    const [Email, setEmail] = useState();
     const emailChange = (event) => {
-        SetEmail(event.target.value)
+        setEmail(event.target.value)
         return Email;
     }
     //handle password change
-    const [Password, SetPassword] = useState();
+    const [Password, setPassword] = useState();
     const passwordChange = (event) => {
-        SetPassword(event.target.value)
+        setPassword(event.target.value)
         return Password;
     }
     //handle postCode change
-    const [PostCode, SetPostCode] = useState(852);
+    const [PostCode, setPostCode] = useState(852);
     const postCodeChange = (event) => {
-        SetPostCode(event.target.value)
+        setPostCode(event.target.value)
         return PostCode;
     }
     //handle telephone change
-    const [Telephone, SetTelephone] = useState();
+    const [Telephone, setTelephone] = useState();
     const telephoneChange = (event) => {
-        SetTelephone(event.target.value)
+        setTelephone(event.target.value)
         return Telephone;
     }
     //handle address change
-    const [Address, SetAddress] = useState();
+    const [Address, setAddress] = useState();
     const addressChange = (event) => {
-        SetAddress(event.target.value)
+        setAddress(event.target.value)
         return Address;
     }
     //handle logo upload
-    const [Logo, SetLogo] = useState(null);
+    const [Logo, setLogo] = useState(null);
     const logoUpload = (event) => {
-        SetLogo(event.target.files[0]);
+        setLogo(event.target.files[0]);
         return Logo;
     }
     //handle floor plan upload
-    const [FloorPlan, SetFloorPlan] = useState(null);
+    const [FloorPlan, setFloorPlan] = useState(null);
     const floorPlanUpload = (event) => {
-        SetFloorPlan(event.target.files[0]);
+        setFloorPlan(event.target.files[0]);
         return FloorPlan;
     }
     //handle zone qty change
     let zoneList = [];
     let zoneName = ["A", "B", "C", "D", "E", "F"];
-    const [ZoneQty, SetQty] = useState();
-    const [ZoneList, SetZoneList] = useState(zoneList);
-    const [ZoneSizeA, SetZoneSizeA] = useState(0);
-    const [ZoneSizeB, SetZoneSizeB] = useState(0);
-    const [ZoneSizeC, SetZoneSizeC] = useState(0);
-    const [ZoneSizeD, SetZoneSizeD] = useState(0);
-    const [ZoneSizeE, SetZoneSizeE] = useState(0);
-    const [ZoneSizeF, SetZoneSizeF] = useState(0);
-    const [errMsg, SetErrMsg] = useState();
+    const [ZoneQty, setQty] = useState();
+    const [ZoneList, setZoneList] = useState(zoneList);
+    const [ZoneSizeA, setZoneSizeA] = useState(0);
+    const [ZoneSizeB, setZoneSizeB] = useState(0);
+    const [ZoneSizeC, setZoneSizeC] = useState(0);
+    const [ZoneSizeD, setZoneSizeD] = useState(0);
+    const [ZoneSizeE, setZoneSizeE] = useState(0);
+    const [ZoneSizeF, setZoneSizeF] = useState(0);
+    const [errMsg, setErrMsg] = useState();
     const changeZoneQty = (event) => {
-        SetQty(event.target.value)
+        setQty(event.target.value)
         if (event.target.value > zoneList.length) {
             for (let i = 0; i < event.target.value; i++) {
                 zoneList.push(
                     zoneName[i]
                 )
             }
-            SetZoneList(zoneList)
+            setZoneList(zoneList)
             return ZoneList;
         } else {
             zoneList.pop((6 - event.target.value))
-            SetZoneList(zoneList)
+            setZoneList(zoneList)
             return ZoneList;
         }
     }
     const zoneSizeChange = (event) => {
         if (event.target.id == "zone_A") {
             if (event.target.value.length > 0) {
-                return SetZoneSizeA(parseInt(event.target.value));
+                return setZoneSizeA(parseInt(event.target.value));
             } else {
-                return SetZoneSizeA(0);
+                return setZoneSizeA(0);
             }
         } else if (event.target.id == "zone_B") {
             if (event.target.value.length > 0) {
-                return SetZoneSizeB(parseInt(event.target.value));
+                return setZoneSizeB(parseInt(event.target.value));
             } else {
-                return SetZoneSizeB(0);
+                return setZoneSizeB(0);
             }
         } else if (event.target.id == "zone_C") {
             if (event.target.value.length > 0) {
-                return SetZoneSizeC(parseInt(event.target.value));
+                return setZoneSizeC(parseInt(event.target.value));
             } else {
-                return SetZoneSizeC(0);
+                return setZoneSizeC(0);
             }
         } else if (event.target.id == "zone_D") {
             if (event.target.value.length > 0) {
-                return SetZoneSizeD(parseInt(event.target.value));
+                return setZoneSizeD(parseInt(event.target.value));
             } else {
-                return SetZoneSizeD(0);
+                return setZoneSizeD(0);
             }
         } else if (event.target.id == "zone_E") {
             if (event.target.value.length > 0) {
-                return SetZoneSizeE(parseInt(event.target.value));
+                return setZoneSizeE(parseInt(event.target.value));
             } else {
-                return SetZoneSizeE(0);
+                return setZoneSizeE(0);
             }
         } else if (event.target.id == "zone_F") {
             if (event.target.value.length > 0) {
-                return SetZoneSizeF(parseInt(event.target.value));
+                return setZoneSizeF(parseInt(event.target.value));
             } else {
-                return SetZoneSizeF(0);
+                return setZoneSizeF(0);
             }
         }
     }
-
-
-
+    //clear client form state
+    const clearClinetState = () => {
+        //clear client form state
+        setName();
+        setUsername();
+        setEmail();
+        setPassword();
+        setPostCode(852);
+        setTelephone();
+        setAddress();
+        setLogo(null);
+        setFloorPlan(null);
+        setQty();
+        setZoneList([]);
+        setZoneSizeA(0);
+        setZoneSizeB(0);
+        setZoneSizeC(0);
+        setZoneSizeD(0);
+        setZoneSizeE(0);
+        setZoneSizeF(0);
+        setErrMsg();
+    }
     //handle client create form
     const clientCreate = () => {
         let zoneList = ZoneList;
@@ -163,62 +187,56 @@ export default function Admin() {
             status: true,
             name: Name,
             address: Address,
-            icon: URL.createObjectURL(Logo),
-            image: URL.createObjectURL(FloorPlan),
-            zone: [zoneList, sizeList]
+            icon: Logo,
+            image: FloorPlan,
+            area: zoneList,
+            size: sizeList
         }
         //check email valid
         const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g
         //check input
         if (clientForm.name === undefined || clientForm.name.length < 1) {
-            return SetErrMsg("Company name is empty!");
+            return setErrMsg("Company name is empty!");
         } else if (clientForm.username === undefined || clientForm.username.length < 8) {
-            return SetErrMsg("Username at least 8 characters!");
+            return setErrMsg("Username at least 8 characters!");
         } else if (clientForm.email === undefined || !regEx.test(clientForm.email)) {
-            return SetErrMsg("Email is not valid!");
+            return setErrMsg("Email is not valid!");
         } else if (clientForm.password === undefined || clientForm.password.length < 6) {
-            return SetErrMsg("Password at least 6 characters!");
+            return setErrMsg("Password at least 6 characters!");
         } else if (clientForm.postCode === undefined || clientForm.postCode.length < 1) {
-            return SetErrMsg("Post code is empty!");
+            return setErrMsg("Post code is empty!");
         } else if (clientForm.tel === undefined || clientForm.tel.length < 8) {
-            return SetErrMsg("Telephone at least 8 numbers!");
+            return setErrMsg("Telephone at least 8 numbers!");
         } else if (clientForm.address === undefined || clientForm.address.length < 1) {
-            return SetErrMsg("Address is empty!");
+            return setErrMsg("Address is empty!");
         } else if (clientForm.icon === null) {
-            return SetErrMsg("Please upload logo!");
+            return setErrMsg("Please upload logo!");
         } else if (clientForm.image === null) {
-            return SetErrMsg("Please upload floor plan!");
-        } else if (clientForm.zone[0] === undefined || clientForm.zone[0].length < 1) {
-            return SetErrMsg("Please select at least one zone!");
-        } else if (clientForm.zone[0].length > 0) {
+            return setErrMsg("Please upload floor plan!");
+        } else if (clientForm.area === undefined || clientForm.area.length < 1) {
+            return setErrMsg("Please select at least one zone!");
+        } else if (clientForm.area.length > 0) {
             let err;
-            for (let i = 0; i < clientForm.zone[0].length; i++) {
-                if (clientForm.zone[0][i].length > 0 && clientForm.zone[1][i] < 1) {
-                    err = `Please provide zone ${clientForm.zone[0][i]} size!`
+            for (let i = 0; i < clientForm.area.length; i++) {
+                if (clientForm.area[i].length > 0 && clientForm.size[i] < 1) {
+                    err = `Please provide zone ${clientForm.area[i]} size!`
                 }
             };
-            axios.post('http://localhost:8080/api/signup', clientForm)
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+            let formData = new FormData();
+            for (let field in clientForm) {
+                formData.append(field, clientForm[field]);
+            }
+            axios.post('http://localhost:8080/api/signup', formData, config)
                 .then((res) => {
-                    //clear state
-                    //SetName()
-                    //SetUsername()
-                    //SetEmail()
-                    //SetPassword()
-                    //SetPostCode(852)
-                    //SetTelephone()
-                    //SetAddress()
-                    //SetLogo()
-                    //SetFloorPlan()
-                    //SetQty(0)
-                    //SetZoneList([])
-                    //SetZoneSizeA(0)
-                    //SetZoneSizeB(0)
-                    //SetZoneSizeC(0)
-                    //SetZoneSizeD(0)
-                    //SetZoneSizeE(0)
-                    //SetZoneSizeF(0)
-                    return SetErrMsg(res.data);
+                    return setErrMsg(res.data);
                 })
+            //clear client form state
+            clearClinetState();
+            //hidden
+            setCreateClientsForm(false);
+            //show
+            setClientsCreateSuccess(true);
         }
     }
 
@@ -302,23 +320,21 @@ export default function Admin() {
                             <option>6</option>
                         </select>
                     </div>
-                    {
-                        ZoneList.map((zone) => {
-                            return (
-                                <>
-                                    <ul >
-                                        <li key={"zone_" + zone + "_wrapper"} className="admin-form-wrapper row">
-                                            <p className="admin-input-title col-4">Zone {zone}</p>
-                                            <label className="col-8">Size
-                                                <input className="admin-input-box" placeholder="Please enter zone size..." onChange={zoneSizeChange} id={"zone_" + zone}></input>
-                                                m²
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </>
-                            )
-                        })
-                    }
+                    <ul >
+                        {
+                            ZoneList.map((zone) => {
+                                return (
+                                    <li key={"zone_" + zone + "_wrapper"} className="admin-form-wrapper row">
+                                        <p className="admin-input-title col-4">Zone {zone}</p>
+                                        <label className="col-8">Size
+                                            <input className="admin-input-box" placeholder="Please enter zone size..." onChange={zoneSizeChange} id={"zone_" + zone}></input>
+                                            m²
+                                        </label>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
                     {
                         (errMsg === undefined) ?
                             < p className="admin-form-errMsg">{errMsg}</p>
@@ -328,6 +344,26 @@ export default function Admin() {
                     <div className="admin-form-wrapper">
                         <button className="admin-client-create-btn" onClick={clientCreate}>Create</button>
                     </div>
+                </div>
+            </>
+        )
+    }
+    let clientsSuccess = () => {
+        return (
+            <>
+                <div className="admin-client-form-success-wrapper">
+                    <h1 className="col-12 admin-client-form-success-text">Create Success!</h1>
+                    <button className="col-12 admin-client-create-btn" onClick={() => {
+                        //set title
+                        setAdminTitle("Create Clients Account");
+                        //show
+                        setCreateClientsForm(true);
+                        //hidden
+                        setClientsCreateSuccess(false);
+                        setCreateFarmerForm(false);
+                        setOverviewClients(false);
+                        setOverviewFarmer(false);
+                    }}>Back</button>
                 </div>
             </>
         )
@@ -461,10 +497,7 @@ export default function Admin() {
             </>
         )
     }
-    const [createClientsForm, setCreateClientsForm] = useState(true)
-    const [createFarmerForm, setCreateFarmerForm] = useState(false)
-    const [overviewClients, setOverviewClients] = useState(false)
-    const [overviewFarmer, setOverviewFarmer] = useState(false)
+
     return (
         <>
             <div className="admin-nav container-fluid">
@@ -494,6 +527,7 @@ export default function Admin() {
                                 //show
                                 setCreateClientsForm(true);
                                 //hidden
+                                setClientsCreateSuccess(false);
                                 setCreateFarmerForm(false);
                                 setOverviewClients(false);
                                 setOverviewFarmer(false);
@@ -505,8 +539,11 @@ export default function Admin() {
                                 setCreateFarmerForm(true);
                                 //hidden
                                 setCreateClientsForm(false);
+                                setClientsCreateSuccess(false);
                                 setOverviewClients(false);
                                 setOverviewFarmer(false);
+                                //clear client form state
+                                clearClinetState();
                             }}>Farmer</button>
                             <h1 className="col-12 admin-sub-title">Accounts Overview</h1>
                             <button className="col-12 admin-sub-btn" onClick={() => {
@@ -516,8 +553,11 @@ export default function Admin() {
                                 setOverviewClients(true);
                                 //hidden
                                 setCreateClientsForm(false);
+                                setClientsCreateSuccess(false);
                                 setCreateFarmerForm(false);
                                 setOverviewFarmer(false);
+                                //clear client form state
+                                clearClinetState();
                             }}>Client</button>
                             <button className="col-12 admin-sub-btn" onClick={() => {
                                 //set title
@@ -526,8 +566,11 @@ export default function Admin() {
                                 setOverviewFarmer(true);
                                 //hidden
                                 setCreateClientsForm(false);
+                                setClientsCreateSuccess(false);
                                 setCreateFarmerForm(false);
                                 setOverviewClients(false);
+                                //clear client form state
+                                clearClinetState();
                             }}>Farmer</button>
                         </div>
                     </div>
@@ -536,6 +579,7 @@ export default function Admin() {
                             <h1 className="col-12 admin-title">{adminTitle}</h1>
                             <div className="col-12 admin-form-body" >
                                 {createClientsForm && clientsForm()}
+                                {clientsCreateSuccess && clientsSuccess()}
                                 {createFarmerForm && farmerForm()}
                                 {overviewClients && clientsOview()}
                                 {overviewFarmer && farmerOview()}
