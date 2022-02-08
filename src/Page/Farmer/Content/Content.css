@@ -3,7 +3,6 @@
   color: rgb(66, 193, 198);
   word-spacing: 2px;
   font-family: "Barlow";
-  height: 89vh;
 }
 
 .dropdown {
@@ -48,19 +47,19 @@
 }
 
 .selectbtncontainer{
-  margin-top:5%;
+  margin-top:3%;
   border-radius: 20px;
   background-color: white;
   box-shadow: 3px 3px 3px gray;
   border: none;
-  padding:6% 1%;
+  padding:5% 3%;
   text-align: center;
 }
 .selectbtn{
   background-color: rgb(66, 193, 198);
   border: none;
   width:120px;
-  margin:3% 4%;
+  margin:3% 5%;
   height: 50px;
   color: white;
   font-weight: 700;

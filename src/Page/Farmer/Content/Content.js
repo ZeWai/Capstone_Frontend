@@ -28,7 +28,7 @@ export default function Content() {
         console.log(e.currentTarget.value, "changed")
     })
 
-    return <div className='farmer_content'>
+    return<><div className='farmer_content'>
         <span>Farm Planner | floor plan</span>
         <select value={location} className='dropdown' onChange={(e) => (getlocation(e))} >
             {clientname && clientname.length > 0 ? clientname.map((client) => <option key={client.username} value={client.username}>{client.username}</option>) : <option>Please contact admin</option>}
@@ -38,10 +38,9 @@ export default function Content() {
             <button className={currentview === "Overview" ? "ActiveTab" : "Tab"} onClick={() => setCurrentview("Overview")}>Overview</button>
             {clientzone && clientzone.length > 0 ? clientzone.map((zone) =>
                 <button className={currentview === `${zone.area}` ? "ActiveTab" : "Tab"} key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
-        </div>
-        {currentview === "Overview" ? <><div className='selectbtncontainer'>
+        </div>{currentview === "Overview" ? <><div className='selectbtncontainer'>
             {clientzone && clientzone.length > 0 ? clientzone.map((zone) =>
                 <button className="selectbtn" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
-        </div><Overview currentview={currentview} /> </> : <ZonePage currentview={currentview} />}
-    </div>;
+        </div></> : <></>}
+    </div>{currentview === "Overview" ? <Overview currentview={currentview} />: <ZonePage currentview={currentview} />}</>;
 }
