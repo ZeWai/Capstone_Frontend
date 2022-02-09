@@ -1,14 +1,65 @@
 import './Overview.css'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {GetCropThunk} from '../../../../store/Getcrop/actions'
 
 export default function Overview(props) {
-    const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    const today = new Date();
+    const dispatch = useDispatch();
+    const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+    const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest)
 
+    console.log(props.location)
+    useEffect(() => {
+        dispatch(GetCropThunk(props.location))
+    }, [props.location]);
 
-    return <div className='overview'>
+    const showharvest = [...readytoharvest]
+    const harvest = [];
+    if(showharvest.length >=6){
+    for (let i = 0; i <= 5; i++){
+        harvest.push(showharvest[i])
+        };
+    } else if (showharvest.length>1 && showharvest.length<=6){
+        for (let i = 0; i <= showharvest.length; i++) {
+            harvest.push(showharvest[i])
+        };
+    }
+
+    const type = ((type) => {
+        if (type === "Fruit") {
+            return "🍎";
+        } else if (type === "Herb") {
+            return '🌿';
+        } else if (type ==="Flower") {
+            return "🌸"
+        } else if (type === "Root/Stem") {
+            return "🌱"
+        } else if (type === "Leafy Green") {
+            return "🥬"
+        }
+            else
+        { return "☘️" }
+        
+    })
+
+    return<>
+    <div className='farmer-overview'>
         <div className='schedule'>
-            <span className='title'>Estimate Harvest Schedule {date}</span>
-            
+            <p className='title'>Estimate Harvest Schedule </p>
+            {harvest && harvest.length > 0 ? harvest.map((data) =>
+                <div key={`${data.name} ${data.yield} ${data.area} ${data.harvest_date}`} className='farmer_schedule'>
+                    <span>{data.harvest_date.slice(8, 10)}/{data.harvest_date.slice(5, 7)}</span>
+                    <br/>
+                    <span>{type(`${data.type}`)}</span>
+                    <br />
+                    <span> {data.name}</span>
+                    <br />
+                    <span> {data.yield}</span>
+                    <br />
+                    <span> Zone {data.area}</span></div>)
+                : <span>No Crops Here</span>}
         </div>
-    </div>;
+        </div>
+    </>;
 }

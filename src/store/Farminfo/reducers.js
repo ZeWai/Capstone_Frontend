@@ -4,7 +4,7 @@ const initialState = {
     Cinfo:["as"]
 }
 
-export function FraminfoReducer(state = initialState, action) {
+export function FarminfoReducer(state = initialState, action) {
     switch(action.type){
         case GET_CLIENT_INFO:
             return {

@@ -42,5 +42,5 @@ export default function Content() {
             {clientzone && clientzone.length > 0 ? clientzone.map((zone) =>
                 <button className="selectbtn" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div></> : <></>}
-    </div>{currentview === "Overview" ? <Overview currentview={currentview} />: <ZonePage currentview={currentview} />}</>;
+    </div>{currentview === "Overview" ? <Overview location={location} /> : <ZonePage currentview={currentview} location={location}/>}</>;
 }

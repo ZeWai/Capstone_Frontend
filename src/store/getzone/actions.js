@@ -17,7 +17,6 @@ export function GetClientZoneThunk (location) {
             },
         })
             .then((response) => {
-                console.log(response.data);
                 dispatch(GetClientZone(response.data));
             });
     }
