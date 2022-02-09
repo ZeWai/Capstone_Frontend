@@ -9,13 +9,13 @@ export const ClientsForm = () => {
     let sizeList = [];
     let zoneName = ["A", "B", "C", "D", "E", "F"];
     //state
-    const [Name, setName] = useState();
-    const [Username, setUsername] = useState();
-    const [Email, setEmail] = useState();
-    const [Password, setPassword] = useState();
+    const [Name, setName] = useState("");
+    const [Username, setUsername] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
     const [PostCode, setPostCode] = useState(852);
-    const [Telephone, setTelephone] = useState();
-    const [Address, setAddress] = useState();
+    const [Telephone, setTelephone] = useState("");
+    const [Address, setAddress] = useState("");
     const [Icon, setIcon] = useState(null);
     const [Image, setImage] = useState(null);
     const [ZoneQty, setZoneQty] = useState(0);
@@ -26,7 +26,7 @@ export const ClientsForm = () => {
     const [ZoneSizeD, setZoneSizeD] = useState(0);
     const [ZoneSizeE, setZoneSizeE] = useState(0);
     const [ZoneSizeF, setZoneSizeF] = useState(0);
-    const [errMsg, setErrMsg] = useState();
+    const [errMsg, setErrMsg] = useState("");
     //handler
     const valueChange = (event) => {
         if (event.target.id === "create-client-name") {
@@ -101,16 +101,16 @@ export const ClientsForm = () => {
     //clear client form state
     const clearClinetState = () => {
         //clear client form state
-        setName();
-        setUsername();
-        setEmail();
-        setPassword();
+        setName("");
+        setUsername("");
+        setEmail("");
+        setPassword("");
         setPostCode(852);
-        setTelephone();
-        setAddress();
+        setTelephone("");
+        setAddress("");
         setIcon(null);
         setImage(null);
-        setZoneQty();
+        setZoneQty("");
         setZoneList([]);
         setZoneSizeA(0);
         setZoneSizeB(0);
@@ -118,7 +118,7 @@ export const ClientsForm = () => {
         setZoneSizeD(0);
         setZoneSizeE(0);
         setZoneSizeF(0);
-        setErrMsg();
+        setErrMsg("");
     }
     const clientCreate = () => {
         sizeList = [ZoneSizeA, ZoneSizeB, ZoneSizeC, ZoneSizeD, ZoneSizeE, ZoneSizeF];
@@ -180,28 +180,28 @@ export const ClientsForm = () => {
             <div className="admin-form-upper-wrapper">
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Company Name</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter company name..." defaultValue={Name} onChange={valueChange} id="create-client-name"></input>
+                    <input className="admin-input-box col-8" placeholder="Please enter company name..." value={Name} onChange={valueChange} id="create-client-name"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Username</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..." defaultValue={Username} onChange={valueChange} id="create-client-username"></input>
+                    <input className="admin-input-box col-8" placeholder="Please enter at least 8 characters username..." value={Username} onChange={valueChange} id="create-client-username"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Email</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter your email..." defaultValue={Email} onChange={valueChange} id="create-client-email"></input>
+                    <input className="admin-input-box col-8" placeholder="Please enter your email..." value={Email} onChange={valueChange} id="create-client-email"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Password</p>
-                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..." defaultValue={Password} onChange={valueChange} id="create-client-password"></input>
+                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..." value={Password} onChange={valueChange} id="create-client-password"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-postCode col-2" type="number" placeholder="Please enter post code..." defaultValue={PostCode} onChange={valueChange} id="create-client-postcode"></input>
-                    <input className="admin-input-box-tel col-6" type="number" placeholder="Please enter your mobile number..." defaultValue={Telephone} onChange={valueChange} id="create-client-telephone"></input>
+                    <input className="admin-input-box-postCode col-2" type="number" placeholder="Please enter post code..." value={PostCode} onChange={valueChange} id="create-client-postcode"></input>
+                    <input className="admin-input-box-tel col-6" type="number" placeholder="Please enter your mobile number..." value={Telephone} onChange={valueChange} id="create-client-telephone"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Address</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter address..." defaultValue={Address} onChange={valueChange} id="create-client-address"></input>
+                    <input className="admin-input-box col-8" placeholder="Please enter address..." value={Address} onChange={valueChange} id="create-client-address"></input>
                 </div>
                 <div className="admin-input-wrapper row">
                     <p className="admin-input-title col-4">Company Logo</p>
@@ -215,8 +215,8 @@ export const ClientsForm = () => {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">No. of Zone</p>
-                    <select className="admin-input-select col-8" onChange={valueChange} id="create-client-zoneQty">
-                        <option selected="selected" selected disabled hidden>Please Select here</option>
+                    <select className="admin-input-select col-8" onChange={valueChange} id="create-client-zoneQty" defaultValue="default">
+                        <option hidden value="default">Please Select here</option>
                         {
                             octionList.map((qty) => {
                                 return (
@@ -241,9 +241,10 @@ export const ClientsForm = () => {
                         })
                     }
                 </ul>
-                {
-                    errMsg === undefined ? <p className="admin-form-errMsg">{errMsg}</p> : <p className="admin-form-errMsg">Error : {errMsg}</p>
-                }
+                <p className="admin-form-errMsg">
+                    {errMsg === "Signup success!" || errMsg === "" ? "" : "Error : "}
+                    {errMsg}
+                </p> 
                 <div className="admin-form-wrapper">
                     <button className="admin-client-create-btn" onClick={clientCreate}>Create</button>
                 </div>
