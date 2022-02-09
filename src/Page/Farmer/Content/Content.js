@@ -25,7 +25,7 @@ export default function Content() {
     const getlocation = ((e) => {
         setLocation(e.currentTarget.value);
         dispatch(GetClientZoneThunk(e.currentTarget.value))
-        console.log(e.currentTarget.value, "changed")
+        setCurrentview("Overview")
     })
 
     return<><div className='farmer_content'>
