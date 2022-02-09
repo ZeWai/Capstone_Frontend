@@ -11,7 +11,6 @@ export const Clientinfo = () => {
         console.log("on dispatch")
         dispatch(GetClientThunk())
     }, [dispatch])
-    
     return(
         <>
         <section className='intro my-2'>
@@ -19,7 +18,7 @@ export const Clientinfo = () => {
                 <div className='card mb-3'>
                     <div className='row g-0'>
                         <div className='col-md-6 col-lg-6 col-sm-12 intro_photo'>
-                            <img src={CinfoFromRedux.image} className="img-fluid rounded-start" alt="logo" />
+                            <img src={`http://localhost:8080/${CinfoFromRedux.image}`} className="img-fluid rounded-start" alt="logo" />
                         </div>
                         <div className='col-md-6 col-lg-6 col-sm-12'>
                             <div className='card-body farmInfo'>
