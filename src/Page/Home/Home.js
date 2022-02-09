@@ -11,10 +11,12 @@ export default function Home() {
     const [password, setPassword] = useState('')
     const auth = useSelector((state) => state.authStore.auth);
     const role = useSelector((state) => state.authStore.role);
+    const popMsg = useSelector((state) => state.authStore.Msg[0]);
     let dispatch = useDispatch();
     let navigate = useNavigate();
 
     useEffect(() => {
+
         if (auth) {
             if (role === 'client') {
                 navigate('/dashboard')
@@ -45,8 +47,9 @@ export default function Home() {
     }
     return (
         <div className='content'>
-
             <div className='loginbox'>
+                {popMsg==[]?
+                <p> </p>:<p>{popMsg}</p>}
                 <div className="heading1"><span>Rooftop Republic</span></div>
                 <div className="heading2"><span>Log In</span></div>
                 <div className="form">
