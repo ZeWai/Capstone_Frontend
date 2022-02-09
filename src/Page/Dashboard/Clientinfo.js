@@ -4,14 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { GetClientThunk } from '../../store/Farminfo/actions';
 export const Clientinfo = () => {
    
-    const CinfoFromRedux = useSelector((state) => state.FramStore.Cinfo[0]);
+    const CinfoFromRedux = useSelector((state) => state.FarmStore.Cinfo[0]);
     let dispatch = useDispatch();
 
     useEffect(()=>{
         console.log("on dispatch")
         dispatch(GetClientThunk())
     }, [dispatch])
-    
     
     return(
         <>
@@ -54,7 +53,7 @@ export const Clientinfo = () => {
                                 </span>
                                 </div>
                                 </div>
-                            </div>----------
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const ClientsForm = () => {
     //select
-    const octionList = [0, 1, 2, 3, 4, 5, 6];
+    const octionList = [1, 2, 3, 4, 5, 6];
     //array
     let zoneList = [];
     let sizeList = [];
@@ -215,7 +215,8 @@ export const ClientsForm = () => {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">No. of Zone</p>
-                    <select className="admin-input-select col-8" defaultValue={ZoneQty} onChange={valueChange} id="create-client-zoneQty">
+                    <select className="admin-input-select col-8" onChange={valueChange} id="create-client-zoneQty">
+                        <option selected="selected" selected disabled hidden>Please Select here</option>
                         {
                             octionList.map((qty) => {
                                 return (
