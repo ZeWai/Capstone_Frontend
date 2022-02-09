@@ -82,14 +82,14 @@ export const FarmoverV = () => {
                             <th>Date of Harvest</th>
                             <th>Contribution</th>
                             </tr>
-                            {PFromRedux.map((l, i) => (
+                            { PFromRedux && PFromRedux.length>=1 ? PFromRedux.map((l, i) => (
                             <tr key={i}>
                             <td>{l.name}</td>
                             <td>{l.yield}</td>
                             <td>{l.harvest_date}</td>
                             <td>{l.contribution}</td>
                             </tr>
-                            ))}
+                            )):null}
                             </tbody>
                             </table>
                             
