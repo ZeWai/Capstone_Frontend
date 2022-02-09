@@ -28,6 +28,7 @@ export const Progress = () => {
     console.log("hi")
     return (
         <>
+        {ProgressFromRedux.length>0 ?
         <section className="progress1 carousel slide" data-bs-ride="carousel">
             <div className="container">
                 <h1 className="pt-5">Progress of Crops</h1>
@@ -82,7 +83,7 @@ export const Progress = () => {
              </div>
              </div>
             </div>  
-        </section>
+        </section>: null}
         </> 
     )
 }
