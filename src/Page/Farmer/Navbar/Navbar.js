@@ -32,9 +32,9 @@ export default function NavBar() {
                         <div className='farmer_name'> Welcome <br />{username}</div>
                         <ul>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="/farmer"><li><span>Farmer Planner</span></li></Nav.Link>
-                                <Nav.Link href="/farmer/farm_log"><li><span>Farm log</span></li></Nav.Link>
-                                <Nav.Link href="/farmer/setting"><li><span>Setting</span></li></Nav.Link>
+                                <Nav.Link href="/farme_planner"><li><span>Farmer Planner</span></li></Nav.Link>
+                                <Nav.Link href="/farme_planner/farm_log"><li><span>Farm log</span></li></Nav.Link>
+                                <Nav.Link href="/farm_planner/setting"><li><span>Setting</span></li></Nav.Link>
                                 <Nav.Link href="/home"><li><span>Logout</span></li></Nav.Link>
                             </Nav></ul>
                     </Offcanvas.Body>

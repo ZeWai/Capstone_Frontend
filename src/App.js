@@ -4,7 +4,7 @@ import Home from "./Page/Home/Home";
 import { useSelector, useDispatch } from "react-redux";
 import Admin from './Page/Admin/Admin'
 import Dashboard from './Page/Dashboard/Dashboard';
-import Farmer from './Page/Farmer/Farmer';
+import FarmerPlanner from './Page/Farmer/FarmerPlanner/FarmerPlanner';
 import { logoutThunk } from './store/auth/action';
 
 
@@ -36,8 +36,10 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<ClientAuth><Dashboard /></ClientAuth>} />
           <Route path="/admin" element={<AdminAuth><Admin /></AdminAuth>} />
-          <Route path="/farm_planner" element={<FarmerAuth ><Farmer /></FarmerAuth>} />
-          <Route path="*" element={<Navigate to='/home' />} />
+          <Route path="/farm_planner" element={<FarmerAuth ><FarmerPlanner /></FarmerAuth>} ></Route>
+            <Route path="/farm_planner/setting" element={<FarmerAuth ><div >Setting</div></FarmerAuth>} />
+           
+          {/* <Route path="*" element={<Navigate to='/home' />} /> */}
         </Routes>
       </BrowserRouter>
     </>

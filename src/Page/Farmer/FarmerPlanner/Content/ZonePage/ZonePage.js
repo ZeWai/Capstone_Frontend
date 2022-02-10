@@ -1,7 +1,7 @@
 import './Zone.css'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetCropZoneThunk } from '../../../../store/Getcrop/actions'
+import { GetCropZoneThunk } from '../../../../../store/Getcrop/actions'
 
 export default function ZonePage(props) {
     const dispatch = useDispatch();

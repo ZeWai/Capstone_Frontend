@@ -1,7 +1,7 @@
 import './Overview.css'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {GetCropThunk} from '../../../../store/Getcrop/actions'
+import {GetCropThunk} from '../../../../../store/Getcrop/actions'
 
 export default function Overview(props) {
     const today = new Date();

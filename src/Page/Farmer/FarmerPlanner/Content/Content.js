@@ -1,8 +1,8 @@
 import './Content.css'
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GetClientNameThunk } from '../../../store/user/actions';
-import { GetClientZoneThunk } from '../../../store/getzone/actions'
+import { GetClientNameThunk } from '../../../../store/user/actions';
+import { GetClientZoneThunk } from '../../../../store/getzone/actions';
 import Overview from './Overview/Overview';
 import ZonePage from './ZonePage/ZonePage';
 
