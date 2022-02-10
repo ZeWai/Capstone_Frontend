@@ -38,7 +38,7 @@ function App() {
           <Route path="/admin" element={<AdminAuth><Admin /></AdminAuth>} />
           <Route path="/farm_planner" element={<FarmerAuth ><FarmerPlanner /></FarmerAuth>} ></Route>
             <Route path="/farm_planner/setting" element={<FarmerAuth ><div >Setting</div></FarmerAuth>} />
-           
+          
           {/* <Route path="*" element={<Navigate to='/home' />} /> */}
         </Routes>
       </BrowserRouter>
