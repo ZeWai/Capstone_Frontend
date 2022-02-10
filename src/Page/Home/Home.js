@@ -26,7 +26,7 @@ export default function Home() {
                 navigate('/farm_planner')
             }
         }
-    }, [auth, role, navigate]);
+    }, [auth, role]);
 
     const login = (e) => {
         e.preventDefault();

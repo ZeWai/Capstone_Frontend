@@ -1,7 +1,9 @@
-import { Navbar, Container, Offcanvas, Nav } from 'react-bootstrap'
-import { useState, useEffect } from "react";
+import { Navbar, Container, Offcanvas, Nav, Route} from 'react-bootstrap'
+import { useEffect } from "react";
+import { Link} from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { GetUserThunk } from '../../../store/user/actions';
+import { logoutThunk } from '../../../store/auth/action';
 import './NavBar.css'
 
 export default function NavBar() {
@@ -32,10 +34,10 @@ export default function NavBar() {
                         <div className='farmer_name'> Welcome <br />{username}</div>
                         <ul>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link href="/farme_planner"><li><span>Farmer Planner</span></li></Nav.Link>
-                                <Nav.Link href="/farme_planner/farm_log"><li><span>Farm log</span></li></Nav.Link>
-                                <Nav.Link href="/farm_planner/setting"><li><span>Setting</span></li></Nav.Link>
-                                <Nav.Link href="/home"><li><span>Logout</span></li></Nav.Link>
+                                <Link to="/farme_planner"><li>Farmer Planner</li></Link>
+                                <Link to="/farme_planner/farm_log"><li>Farm log</li></Link>
+                                <Link to="/farm_planner/setting"><li>Setting</li></Link>
+                                <li onClick={()=>(dispatch(logoutThunk()))}>Logout</li>
                             </Nav></ul>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
