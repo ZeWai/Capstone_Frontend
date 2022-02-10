@@ -27,6 +27,18 @@ export default function ZonePage(props) {
 
     return <>
         <div className='farmer-overview'>
-            <div className="farmer-zone-crop">{props.location} Zone {props.currentview}</div></div>
+            {zonestatus && Array.isArray(zonestatus) ? zonestatus.map((data) =>
+                <div key={ `${data.name} ${data.harvest_date} ${data.sowing_date}`}className="farmer-zone-crop">
+                <div className='farmer-zone-crop-left'>
+                    <p className='crop-name'>{type(`${data.type}`)} {data.name}</p>
+                        <p className='date'>Est. Harvest Date:{data.harvest_date.slice(8, 10)}/{data.harvest_date.slice(5, 7)}/{data.harvest_date.slice(0, 4)}</p>
+                        <p className='date'>Sow Date:{data.sowing_date.slice(8, 10)}/{data.sowing_date.slice(5, 7)}/{data.sowing_date.slice(0, 4)}</p>
+                </div>
+                    <div className='farmer-zone-crop-right'>
+                        <p>Status</p>
+                        <p className='display-zone'>Zone {data.area}</p>
+                    </div>
+                </div>) : <div className="farmer-zone-crop">No Crop</div>}</div>
+            
     </>;
 }

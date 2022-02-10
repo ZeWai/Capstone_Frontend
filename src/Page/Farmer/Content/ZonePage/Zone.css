@@ -1,4 +1,30 @@
 .farmer-zone-crop{
     background-color: white;
     border-radius:20px;
+    padding: 15px;
+    margin:10px 0;
+    height: auto;
+    display: flex;
+}
+
+.farmer-zone-crop-left {
+    width: 80%;
+}
+
+.farmer-zone-crop-left .crop-name{
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.farmer-zone-crop-left .date{
+    margin-bottom: 0;
+}
+.farmer-zone-crop-right {
+    width: 20%;
+    display: inline;
+}
+
+.farmer-zone-crop-right .display-zone{
+    margin-bottom: 0;
+    font-weight: 700;
 }
