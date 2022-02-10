@@ -79,9 +79,7 @@ a {
     color: black;
 }
 /* Navbar */
-.dashNav{
-    padding-bottom: 100px;
-}
+
 .dashNav .dashNav_part{
 
     display: flex;
@@ -107,7 +105,29 @@ a {
     width: 20px;
 }
 
+.dashNav .onthisBtn{
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid white;
+    font-weight: 700;
+    color: white;
+    box-shadow: none;
+}
+
+.dashNav .notonthisBtn{
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    color: rgb(128, 128, 128);
+    box-shadow: none;
+}
+
 /* Intro */
+.intro .container{
+    margin-top: 70px;
+}
 .intro .card-body{
     padding: 30px;
 }

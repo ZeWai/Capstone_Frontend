@@ -1,0 +1,66 @@
+.FarmP{
+    position: absolute;
+    height:100%;
+    width: 100%;
+    margin: 0;
+    background: url("../../image/background/Farm_background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+}
+.FarmP .FarmPcard{
+    width: 800px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;   
+    margin-top: 5vh;
+ 
+}
+
+.FarmPcard .FarmPheader{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 3vh;
+}
+.FarmPcard .FarmPheader div{
+    display: flex;
+    text-align: center;
+}
+
+.FarmPcard .FarmPtable{
+    font-size: 16px;
+    width: 60%;
+    margin: auto; 
+    
+}
+.FarmPtable .FramPcropT, .FramPcropN, .FramPsowD, .FramPirrD, .FramPCont{
+    width: 28vh;
+    border-radius: 30px;
+    border: none;
+    background: #ece8e8;
+}
+
+.FarmPtable td{
+padding-top: 3vh;
+
+}
+.FarmPcard .FramPzone{
+    width: 15vh;
+    border-radius: 30px;
+    border: none;
+    background: #ece8e8;
+}
+.FarmPcard .Frambtn{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding:3px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+.FarmPcard .Frambtn button{
+padding:10px 30px 10px 30px;
+border-radius: 30px;
+margin-bottom: 5vh;
+}
