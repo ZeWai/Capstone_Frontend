@@ -11,10 +11,10 @@ export default function Content() {
     const clientname = useSelector((state) => state.userStore.clientNames);
     const clientzone = useSelector((state) => state.zoneStore.clientZone);
     const dispatch = useDispatch();
-    const [location, setLocation] = useState("")
+    const [location, setLocation] = useState("Loading")
     const [currentview, setCurrentview] = useState("Overview")
 
-    if (clientname.length > 0 && location === "") {
+    if (clientname.length > 0 && location === "Loading") {
         setLocation(clientname[0].username);
         dispatch(GetClientZoneThunk(clientname[0].username))
     }
@@ -42,5 +42,5 @@ export default function Content() {
             {clientzone && clientzone.length > 0 ? clientzone.map((zone) =>
                 <button className="selectbtn" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div></> : <></>}
-    </div>{currentview === "Overview" ? <Overview location={location} /> : <ZonePage currentview={currentview} location={location}/>}</>;
+    </div>{currentview === "Overview" ? <Overview location={location} currentview={currentview}/> : <ZonePage currentview={currentview} location={location}/>}</>;
 }

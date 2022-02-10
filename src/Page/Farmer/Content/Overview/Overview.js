@@ -9,23 +9,20 @@ export default function Overview(props) {
     const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
     const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest)
 
-    console.log(props.location)
     useEffect(() => {
         dispatch(GetCropThunk(props.location))
-    }, [props.location]);
+    }, [props.location,props.currentview]);
 
-    const showharvest = [...readytoharvest]
     const harvest = [];
-    if(showharvest.length >=6){
+    if(readytoharvest.length >=6){
     for (let i = 0; i <= 5; i++){
-        harvest.push(showharvest[i])
+        harvest.push(readytoharvest[i])
         };
-    } else if (showharvest.length>1 && showharvest.length<=6){
-        for (let i = 0; i <= showharvest.length; i++) {
-            harvest.push(showharvest[i])
+    } else if (readytoharvest.length>1 && readytoharvest.length<5){
+        for (let i = 0; i <= readytoharvest.length; i++) {
+            harvest.push(readytoharvest[i])
         };
     }
-
     const type = ((type) => {
         if (type === "Fruit") {
             return "🍎";
