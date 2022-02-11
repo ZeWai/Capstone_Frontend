@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap");
+
+/* ====== General Info ====== */
+.test {
+  background-color: #42c1c6;
+}
+:root {
+  --color1: #f9f6ed;
+  --color2: #221f20;
+  --color3: #42c1c6;
+  --color4: #788985;
+}
+
+* {
+  font-family: "Barlow", sans-serif;
+}
+
+.farm-log {
+  max-height: 648px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+h6 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+/* Progress dot */
+#dot-container {
+  width: 90px;
+  display: flex;
+  justify-content: space-between;
+  margin: 12px auto;
+}
+
+#dot-container .dot {
+  height: 8px;
+  width: 8px;
+  background-color: rgba(120, 137, 133, 0.5);
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#dot-container .dot.active {
+  background-color: var(--color3);
+}
+
+/* Form Card */
+.main-body-container {
+  background-color: white;
+  width: 327px;
+  min-height: 488px;
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding-bottom: 20px;
+}
+
+/* Form Title  */
+.section-title {
+  text-align: center;
+  padding: 18px 0;
+}
+
+.section-content {
+  margin: 0 5%;
+}
+
+.q-box__question {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.q-box__question:not(:first-child) {
+  margin-top: 16px;
+}
+
+.question__input {
+  border-radius: 25px;
+  height: 34px;
+  border: none;
+  background-color: rgba(120, 137, 133, 0.1);
+  padding: 0 10px 0 15px;
+  margin-top: 7px;
+}
+
+/* q-box-btn */
+#q-box__buttons {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+}
+
+button#prev-btn {
+  position: relative;
+  width: 104px;
+  height: 28px;
+  background: transparent;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  text-align: center;
+  border: 0;
+  border-radius: 25px;
+  color: rgba(66, 193, 198, 0.75);
+  border: 1px solid rgba(66, 193, 198, 0.75);
+  font-size: 14px;
+}
+
+button#next-btn,
+button#submit-btn {
+  position: relative;
+  width: 104px;
+  height: 28px;
+  background: rgba(66, 193, 198, 0.75);
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: 0;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+/* tick & cross label */
+
+.question_label {
+  height: 140px;
+  width: 140px;
+  border-radius: 16px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color4);
+  text-align: center;
+}
+
+.input_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.question_label .fa-check {
+  font-size: 50px;
+  color: var(--color4);
+}
+
+.question_label .fa-times {
+  font-size: 60px;
+  color: var(--color4);
+}
+
+.question_input:checked + .question_label {
+  background-color: var(--color3);
+  color: white;
+}
+
+.question_input:checked + .question_label i,
+.question_label p {
+  color: white;
+}
+
+.question_input {
+  display: none;
+}
+
+/* Remarks */
+
+.question_remarks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.question_remarks .remarks,
+.question_remarksFollowup {
+  color: var(--color4);
+  font-size: 14px;
+}
+
+.question_remarks_textInput {
+  border: none;
+  outline: none;
+  padding-left: 5px;
+  border-bottom: 1px solid var(--color4);
+  width: -webkit-fill-available;
+}
+
+.question_remarksFollowup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+/* Dropdown */
+
+/* .question_others {
+  margin-bottom: 24px;
+  margin-top: 16px;
+} */
+
+/* .hide_other {
+  display: none;
+} */
+
+.question_dropdown {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.question_dropdown .custom-select {
+  font-size: 13px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  color: var(--color4);
+  text-align: center;
+  width: 100%;
+  height: 32px;
+  border: none;
+}
+
+.question_dropdown .options {
+  color: var(--color2);
+}
+
+/* .question_dropdown .btn-group:first-child {
+  margin-right: 7px;
+} */
+
+/* litres input */
+
+.litres_input {
+  height: 32px;
+  background: #f5f5f5;
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.litres_input_label {
+  color: var(--color2);
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.litres_input input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 110px;
+  color: var(--color2);
+  font-size: 14px;
+}
+
+/* S3 date input */
+.s3input {
+  border-radius: 25px;
+  height: 34px;
+  border: none;
+  background-color: rgba(120, 137, 133, 0.1);
+  width: 130px;
+  padding: 0 10px;
+}
+
+.s3question_others {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.s3question_others p {
+  padding: 0 3px;
+  font-size: 10px;
+}
+
+/* number input */
+
+.num_input {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.num_input p {
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 64px;
+  color: var(--color4);
+  margin: 0 24px;
+  background-color: transparent;
+}
+
+.num_input i {
+  font-size: 40px;
+  color: #f5f5f5;
+}
+
+.num_input i:hover {
+  font-size: 40px;
+  color: var(--color3);
+}
+
+#section7 textarea {
+  width: 90%;
+  height: 100px;
+  border: 1px solid rgba(120, 137, 133, 0.2);
+  border-radius: 15px;
+  padding: 5px 10px;
+  resize: none;
+}
+
+/* other issues - File upload button */
+.upload-input::file-selector-button {
+  border: 1px solid var(--color3);
+  box-sizing: border-box;
+  /* Mobile/ Button */
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+  border-radius: 16px;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: var(--color3);
+}
