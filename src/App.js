@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Admin from './Page/Admin/Admin'
 import Dashboard from './Page/Dashboard/Dashboard';
 import FarmerPlanner from './Page/Farmer/FarmerPlanner/FarmerPlanner';
+import { Fplanner } from './Page/ClientPlanner/Fplanner';
 import { logoutThunk } from './store/auth/action';
 import FarmerSetting from './Page/Farmer/FarmerSetting/FarmerSetting';
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Navigate to='/home' />} />
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<ClientAuth><Dashboard /></ClientAuth>} />
+          <Route path="/client_planner" element={<Fplanner/>} />
           <Route path="/admin" element={<AdminAuth><Admin /></AdminAuth>} />
           <Route path="/farm_planner" element={<FarmerAuth ><FarmerPlanner /></FarmerAuth>} />
           <Route path='/farm_planner/setting' element={<FarmerAuth><FarmerSetting /></FarmerAuth>}/>
