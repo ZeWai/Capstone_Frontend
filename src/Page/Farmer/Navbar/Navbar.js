@@ -1,6 +1,6 @@
 import { Navbar, Container, Offcanvas, Nav} from 'react-bootstrap'
 import { useEffect, useState } from "react";
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { GetUserThunk } from '../../../store/user/actions';
 import { logoutThunk } from '../../../store/auth/action';

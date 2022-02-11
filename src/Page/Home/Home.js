@@ -48,8 +48,6 @@ export default function Home() {
     return (
         <div className='content'>
             <div className='loginbox'>
-                {popMsg==[]?
-                <p> </p>:<p>{popMsg}</p>}
                 <div className="heading1"><span>Rooftop Republic</span></div>
                 <div className="heading2"><span>Log In</span></div>
                 <div className="form">
@@ -73,6 +71,9 @@ export default function Home() {
                         onChange={(e) => setPassword(e.currentTarget.value)}
                         onKeyPress={EnterPress}
                         /></div></div>
+                
+                {popMsg == [] ?
+                    <> </> : <><br /><p className="login-error">{popMsg}</p></>}
                 <div className="loginbtn"><button onClick={login}>Log In</button></div>
             </div>
         </div>
