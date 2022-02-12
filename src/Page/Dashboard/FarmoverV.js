@@ -14,9 +14,8 @@ export const FarmoverV = () => {
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log("on overdispatch")
         dispatch(GetOverThunk())
-    }, [dispatch])
+    }, [])
    
 
     return(

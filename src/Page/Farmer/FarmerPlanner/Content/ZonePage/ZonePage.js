@@ -21,6 +21,21 @@ export default function ZonePage(props) {
         }
         else { return "☘️" }
     })
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = `${yyyy}-${mm}-${dd}`;
+
+    const status = ((sowing, harvest,harvest_date,sowing_date) => {
+        if (sowing === true && harvest === false)
+        { return "Growing" }
+        else if (sowing === false && harvest === false) {
+            return "Sowing"
+        }
+    })
     useEffect(() => {
         dispatch(GetCropZoneThunk(props.location, props.currentview))
     }, [props.location, props.currentview]);
@@ -35,7 +50,7 @@ export default function ZonePage(props) {
                         <p className='date'>Sow Date:{data.sowing_date.slice(8, 10)}/{data.sowing_date.slice(5, 7)}/{data.sowing_date.slice(0, 4)}</p>
                 </div>
                     <div className='farmer-zone-crop-right'>
-                        <p>Status</p>
+                        <p>{status(`${data.sowing}`, ` ${data.harvest}`, `${data.harvest_date.slice(0, 10)}`, `${data.sowing_date.slice(0, 10)}`)}</p>
                         <p className='display-zone'>Zone {data.area}</p>
                     </div>
                 </div>) : <div className="farmer-zone-crop">No Crop</div>}</div>
