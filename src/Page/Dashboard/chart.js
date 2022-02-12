@@ -10,7 +10,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export function App3() {
     const OinfoFromRedux = useSelector((state) => state.OverStore.Oinfo);
     const data = {
-        labels: OinfoFromRedux,
+     
         datasets: [
           {
             label: 'testing',

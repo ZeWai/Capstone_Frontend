@@ -63,7 +63,9 @@ export const FarmoverV = () => {
                                 <div className='impact_group m-2 mt-2 soil-planted' >
                                     <img src={logo5} className="overview_icon m-3" alt="logo" />
                                     <div className='overview_info'>
-                                        <p>hi</p>
+                                        <h2 className="overview_title">Soil planted</h2>
+                                        <h3 className="overview_data">hi</h3>
+                                        <h3 className="overview_freq">sq.ft.</h3>
                                     </div>
                                 </div>
                             </div>

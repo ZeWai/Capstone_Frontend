@@ -1,8 +1,9 @@
-import { GET_HARVEST, GET_GROWING, GET_SOW, GET_PRODUCTIVITY  } from "./actions";
+import { GET_HARVEST, GET_GROWING, GET_SOW, GET_PRODUCTIVITY , GET_SIZE } from "./actions";
 
 const initialState = {
     Oinfo:[0,0,0],
-    Productivity: [{
+    Size:[0],
+    Productivity:[{
         name:'',
         yield:'',
         harvest_date:[],
@@ -19,6 +20,7 @@ export function OverviewReducer(state = initialState, action) {
                 data[0]= action.payload
             return {
                 Oinfo: data,
+                Size:state.Size,
                 Productivity:state.Productivity,
             };
         case GET_GROWING :
@@ -27,6 +29,7 @@ export function OverviewReducer(state = initialState, action) {
                 data2[1]= action.payload
                return {
                    Oinfo: data2,
+                   Size:state.Size,
                    Productivity:state.Productivity,
                };
         case GET_SOW :
@@ -35,12 +38,20 @@ export function OverviewReducer(state = initialState, action) {
             data3[2]= action.payload
             return {
                 Oinfo: data3,
+                Size:state.Size,
                 Productivity:state.Productivity,
             };
         case GET_PRODUCTIVITY :
         return {
             Oinfo: state.Oinfo,
-            Productivity:action.payload
+            Size:state.Size,
+            Productivity:action.payload,
+        };
+        case GET_SIZE :
+        return {
+            Oinfo: state.Oinfo,
+            Size:action.payload,
+            Productivity:state.Productivity,
         };
         default:
         return state;      

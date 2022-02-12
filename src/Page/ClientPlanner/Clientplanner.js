@@ -1,5 +1,8 @@
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
+import { useSelector, useDispatch } from "react-redux";
+import { GetZoneThunk } from "../../store/getzone/actions"
 
 
 
@@ -23,6 +26,20 @@ export const Clientplanner = () => {
         setFPContri("");
     }
 
+    const handleChange = (e) => {
+        console.log(e.target.value)
+        setFPzone(e.target.value);
+        
+      };
+
+    const GzoneFromRedux = useSelector((state) => state.zoneStore.clientZone);
+    let dispatch = useDispatch();
+
+    useEffect(()=>{
+        console.log("on dispatch")
+        dispatch(GetZoneThunk())
+    }, [dispatch])
+
     const plannerSubmit = () => {
         console.log("whatip")
         let PlannerForm =
@@ -35,12 +52,9 @@ export const Clientplanner = () => {
             yield: FPyield,
             Contri: FPContri,
         }
-        let token = localStorage.getItem("LoggedInToken");
-        console.log(token)
-        axios.post(`${process.env.REACT_APP_API_SERVER}/api/planner`,{
-            headers: {
-                Authorization: `Bearer ${token}`,
-              },
+        let id = jwt_decode(localStorage.getItem("LoggedInToken")).id
+ 
+        axios.post(`${process.env.REACT_APP_API_SERVER}/api/planner/${id}`,{
             PlannerForm
         })
         .then((res) => {
@@ -60,11 +74,16 @@ export const Clientplanner = () => {
                 <tr>
                     <td>Zone</td>
                     <td>
-                        <input 
+                  
+                    <select name={FPzone} onChange={handleChange} className="FramPzone">
+                    {GzoneFromRedux.length>0?GzoneFromRedux.map((zone) => (<option key={zone} value={zone.area}>{zone.area}</option>)):
+                       <option>Please contact admin</option>}
+                    </select>
+                        {/* <input 
                         type="text" 
                         value={FPzone}
                         onChange={(e) => setFPzone(e.currentTarget.value)}
-                        className="FramPzone" />
+                        className="FramPzone" /> */}
                     </td>
                 </tr>
                 <tr>
@@ -97,10 +116,10 @@ export const Clientplanner = () => {
                     </td>
                 </tr>
                 <tr>
-                    <td>Irrigation Date</td>
+                    <td>Irrigation Period</td>
                     <td>
                         <input 
-                        type="date" 
+                        type="number" 
                         value={FPIrriD}
                         onChange={(e) => setFPIrriD(e.currentTarget.value)}
                         className="FramPirrD" />
@@ -111,7 +130,7 @@ export const Clientplanner = () => {
                     <td>
                         <input 
                         type="date" 
-                        value={FPIrriD}
+                        value={FPSowD}
                         onChange={(e) => setFPIrriD(e.currentTarget.value)}
                         className="FramPirrD" />
                     </td>
