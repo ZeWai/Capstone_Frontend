@@ -24,6 +24,7 @@ export const Clientplanner = () => {
     }
 
     const plannerSubmit = () => {
+        console.log("whatip")
         let PlannerForm =
         {
             zone: FPzone,
@@ -35,10 +36,11 @@ export const Clientplanner = () => {
             Contri: FPContri,
         }
         let token = localStorage.getItem("LoggedInToken");
+        console.log(token)
         axios.post(`${process.env.REACT_APP_API_SERVER}/api/planner`,{
             headers: {
                 Authorization: `Bearer ${token}`,
-            },
+              },
             PlannerForm
         })
         .then((res) => {

@@ -21,8 +21,8 @@ return(
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="dashNav_part me-auto">
-        <Nav.Link href="/home"><li><span><button className={Onview==="onBtn"? "onthisBtn":""}>Dashboard</button></span></li></Nav.Link>
-        <Nav.Link href="/client_planner"><li><span><button className={Onview==="onthatBtn"? "onthisBtn":"notonthisBtn"}>Farmer Planner</button></span></li></Nav.Link>
+        <Link to="/dashboard"><li><span><button className={Onview==="onBtn"? "onthisBtn":"notonthisBtn"} onClick={() => setOnview("onBtn")}>Dashboard</button></span></li></Link>
+        <Link to="/client_planner"><li><span><button className={Onview==="onthatBtn"? "onthisBtn":"notonthisBtn"} onClick={() => setOnview("onthatBtn")}>Farmer Planner</button></span></li></Link>
         </Nav>
         <Nav>
         <div className='nav-icon justify-content-end'>
