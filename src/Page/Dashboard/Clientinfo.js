@@ -25,7 +25,7 @@ export const Clientinfo = () => {
                                 <div className="row intro_info">
 
                                 <div className="col-4 ms-4">
-                                <img src={logo} className="App-logo" alt="logo" />
+                                <img src={`${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}`} className="App-logo" alt="logo" />
                                 </div>
 
                                 <div className="col-6 ">

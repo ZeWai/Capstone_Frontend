@@ -20,7 +20,7 @@ export const Progress = () => {
 
 
     useEffect(()=>{
-        console.log("on dispatch",ProgressFromRedux)
+    
         dispatch(GetProgressThunk())
         
     }, [dispatch])
@@ -62,11 +62,13 @@ export const Progress = () => {
                             </div>
                             <div className="col-5">
                                 <span className="card-text">
-                                    status <br/>
+                                    {SFromRedux.grooming == true? "Ready to harvest": "Active growing"} <br/>
                                     {SFromRedux.type} <br/>
-                                    Zone A <br/>
-                                    {SFromRedux.sowing_date} <br/>
-                                    name
+                                    Zone {SFromRedux.area} <br/>
+                                    {SFromRedux.sowing_date}<br/>
+                                    {SFromRedux.harvest_date}
+                                    {/* {Array.isArray(SFromRedux.sowing_date.length) ? SFromRedux.sowing_date : SFromRedux.sowing_date.slice(0,10)}<br/>
+                                    {Array.isArray(SFromRedux.harvest_date.length) ? SFromRedux.harvest_date : SFromRedux.harvest_date.slice(0,10)} */}
                                 </span>
                             </div>
                         </div>

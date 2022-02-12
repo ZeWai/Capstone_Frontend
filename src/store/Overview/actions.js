@@ -4,6 +4,7 @@ export const GET_HARVEST= "GET_HARVEST";
 export const GET_GROWING= "GET_GROWING";
 export const GET_SOW= "GET_SOW";
 export const GET_PRODUCTIVITY= "GET_PRODUCTIVITY";
+export const GET_SIZE= "GET_SIZE";
 
 export function GetHarvest(info) {
     return {
@@ -25,7 +26,12 @@ export function GetSow(info) {
     payload: info,
   };
 }
-
+export function GetSize(info) {
+  return {
+    type: GET_SIZE,
+    payload: info,
+  };
+}
 export function GetProductivity(info) {
   return {
     type: GET_PRODUCTIVITY,
@@ -57,6 +63,7 @@ export function GetOverThunk(){
         console.log(response.data);
         dispatch(GetGrowing(response.data));
         });
+
 
         axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/sow`,{
         headers: {
