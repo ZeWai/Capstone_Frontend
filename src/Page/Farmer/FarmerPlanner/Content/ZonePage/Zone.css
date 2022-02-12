@@ -31,3 +31,13 @@
     margin-bottom: 0;
     font-weight: 700;
 }
+
+.farmer-crop-status{
+color: white;
+font-size: 14px;
+font-weight:300;
+width:100%;
+text-align: center;
+background-color: rgb(66, 193, 198);
+border-radius: 10px;
+}

@@ -29,12 +29,13 @@ export default function ZonePage(props) {
 
     today = `${yyyy}-${mm}-${dd}`;
 
-    const status = ((sowing, harvest,harvest_date,sowing_date) => {
-        if (sowing === true && harvest === false)
+    const status = ((sowing, harvest, harvest_date, sowing_date) => {
+        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date > today && sowing_date < today)
         { return "Growing" }
-        else if (sowing === false && harvest === false) {
-            return "Sowing"
-        }
+        else if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date <= today && sowing_date < today)
+        { return "Harvest" }
+        else if (sowing.trim() === "false" && harvest.trim() === "false" && sowing_date >= today)
+        { return "Sowing" }
     })
     useEffect(() => {
         dispatch(GetCropZoneThunk(props.location, props.currentview))
@@ -42,18 +43,18 @@ export default function ZonePage(props) {
 
     return <>
         <div className='farmer-overview'>
-            {zonestatus && Array.isArray(zonestatus) ? zonestatus.map((data) =>
-                <div key={ `${data.name} ${data.harvest_date} ${data.sowing_date}`}className="farmer-zone-crop">
-                <div className='farmer-zone-crop-left'>
-                    <p className='crop-name'>{type(`${data.type}`)} {data.name}</p>
+            {zonestatus && zonestatus[0]==="" ? zonestatus.map((data) =>
+                <div key={`${data.name} ${data.harvest_date} ${data.sowing_date}`} className="farmer-zone-crop">
+                    <div className='farmer-zone-crop-left'>
+                        <p className='crop-name'>{type(`${data.type}`)} {data.name}</p>
                         <p className='date'>Est. Harvest Date:{data.harvest_date.slice(8, 10)}/{data.harvest_date.slice(5, 7)}/{data.harvest_date.slice(0, 4)}</p>
                         <p className='date'>Sow Date:{data.sowing_date.slice(8, 10)}/{data.sowing_date.slice(5, 7)}/{data.sowing_date.slice(0, 4)}</p>
-                </div>
+                    </div>
                     <div className='farmer-zone-crop-right'>
-                        <p>{status(`${data.sowing}`, ` ${data.harvest}`, `${data.harvest_date.slice(0, 10)}`, `${data.sowing_date.slice(0, 10)}`)}</p>
+                        <p className='farmer-crop-status'>{status(`${data.sowing}`, ` ${data.harvest}`, `${data.harvest_date.slice(0, 10)}`, `${data.sowing_date.slice(0, 10)}`)}</p>
                         <p className='display-zone'>Zone {data.area}</p>
                     </div>
                 </div>) : <div className="farmer-zone-crop">No Crop</div>}</div>
-            
+
     </>;
 }
