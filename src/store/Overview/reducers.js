@@ -3,10 +3,10 @@ import { GET_HARVEST, GET_GROWING, GET_SOW, GET_PRODUCTIVITY  } from "./actions"
 const initialState = {
     Oinfo:[0,0,0],
     Productivity: [{
-        name:'hi',
-        yield:'hi',
-        harvest_date:2022,
-        contribution:'hi',
+        name:'',
+        yield:'',
+        harvest_date:'',
+        contribution:'',
     }],
 }
 
