@@ -5,6 +5,7 @@ import { GetClientNameThunk } from '../../../../store/user/actions';
 import { GetClientZoneThunk } from '../../../../store/getzone/actions';
 import Overview from './Overview/Overview';
 import ZonePage from './ZonePage/ZonePage';
+import Todolist from './Todolist/Todolist';
 
 export default function Content() {
 
@@ -42,5 +43,7 @@ export default function Content() {
             {clientzone && clientzone[0]!== "" ? clientzone.map((zone) =>
                 <button className="selectbtn" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div></> : <></>}
-    </div>{currentview === "Overview" ? <Overview location={location} currentview={currentview}/> : <ZonePage currentview={currentview} location={location}/>}</>;
+    </div>{currentview === "Overview" ? <Overview location={location} currentview={currentview} /> : <ZonePage currentview={currentview} location={location} />}
+        <Todolist location={location} currentview={currentview}/>
+    </>;
 }

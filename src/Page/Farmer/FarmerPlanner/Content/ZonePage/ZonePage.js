@@ -37,18 +37,20 @@ export default function ZonePage(props) {
         else if (sowing.trim() === "false" && harvest.trim() === "false" && sowing_date >= today)
         { return "Sowing" }
     })
+
     useEffect(() => {
         dispatch(GetCropZoneThunk(props.location, props.currentview))
     }, [props.location, props.currentview]);
 
+    console.log(zonestatus[0])
     return <>
         <div className='farmer-overview'>
-            {zonestatus && zonestatus[0]!=="" ? zonestatus.map((data) =>
+            {zonestatus && zonestatus[0] !== undefined ? zonestatus.map((data) =>
                 <div key={`${data.name} ${data.harvest_date} ${data.sowing_date}`} className="farmer-zone-crop">
                     <div className='farmer-zone-crop-left'>
                         <p className='crop-name'>{type(`${data.type}`)} {data.name}</p>
                         <p className='date'>Est. Harvest Date:{data.harvest_date.slice(8, 10)}/{data.harvest_date.slice(5, 7)}/{data.harvest_date.slice(0, 4)}</p>
-                        <p className='date'>Sow Date:{data.sowing_date.slice(8, 10)}/{data.sowing_date.slice(5, 7)}/{data.sowing_date.slice(0, 4)}</p>
+                    <p className='date'>Sow Date:{data.sowing_date.slice(8, 10)}/{data.sowing_date.slice(5, 7)}/{data.sowing_date.slice(0, 4)}</p>
                     </div>
                     <div className='farmer-zone-crop-right'>
                         <p className='farmer-crop-status'>{status(`${data.sowing}`, ` ${data.harvest}`, `${data.harvest_date.slice(0, 10)}`, `${data.sowing_date.slice(0, 10)}`)}</p>
