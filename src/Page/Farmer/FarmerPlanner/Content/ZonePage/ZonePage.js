@@ -42,7 +42,6 @@ export default function ZonePage(props) {
         dispatch(GetCropZoneThunk(props.location, props.currentview))
     }, [props.location, props.currentview]);
 
-    console.log(zonestatus[0])
     return <>
         <div className='farmer-overview'>
             {zonestatus && zonestatus[0] !== undefined ? zonestatus.map((data) =>
