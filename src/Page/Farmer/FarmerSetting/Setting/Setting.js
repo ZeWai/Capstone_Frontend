@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import './Setting.css'
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 
 export default function Setting() {
     const username = useSelector((state) => state.userStore.name);
-    const dispatch = useDispatch();
     const [show, setShow] = useState(false)
     const [oldpassword, setOldpassword] = useState("")
     const [newpassword, setNewpassword] = useState("")
