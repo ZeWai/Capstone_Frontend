@@ -5,7 +5,7 @@ const initialState = {
     Productivity: [{
         name:'',
         yield:'',
-        harvest_date:'',
+        harvest_date:[],
         contribution:'',
     }],
 }
