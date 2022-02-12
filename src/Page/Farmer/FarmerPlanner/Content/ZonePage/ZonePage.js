@@ -43,7 +43,7 @@ export default function ZonePage(props) {
 
     return <>
         <div className='farmer-overview'>
-            {zonestatus && zonestatus[0]==="" ? zonestatus.map((data) =>
+            {zonestatus && zonestatus[0]!=="" ? zonestatus.map((data) =>
                 <div key={`${data.name} ${data.harvest_date} ${data.sowing_date}`} className="farmer-zone-crop">
                     <div className='farmer-zone-crop-left'>
                         <p className='crop-name'>{type(`${data.type}`)} {data.name}</p>

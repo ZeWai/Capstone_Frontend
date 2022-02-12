@@ -44,7 +44,7 @@ export default function Overview(props) {
     <div className='farmer-overview'>
         <div className='schedule'>
             <p className='title'>Estimate Harvest Schedule </p>
-                {harvest && harvest[0]==="" ? harvest.map((data) =>
+                {harvest && harvest[0]!=="" ? harvest.map((data) =>
                 <div key={`${data.name} ${data.yield} ${data.area} ${data.harvest_date}`} className='farmer_schedule'>
                     <span>{data.harvest_date.slice(8, 10)}/{data.harvest_date.slice(5, 7)}</span>
                     <br/>

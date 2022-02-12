@@ -36,10 +36,10 @@ export default function Content() {
         <br />
         <div className="slidebtn">
             <button className={currentview === "Overview" ? "ActiveTab" : "Tab"} onClick={() => setCurrentview("Overview")}>Overview</button>
-            {clientzone && Array.isArray(clientzone)? clientzone.map((zone) =>
+            {clientzone && clientzone[0]!==""? clientzone.map((zone) =>
                 <button className={currentview === `${zone.area}` ? "ActiveTab" : "Tab"} key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div>{currentview === "Overview" ? <><div className='selectbtncontainer'>
-            {clientzone && Array.isArray(clientzone) ? clientzone.map((zone) =>
+            {clientzone && clientzone[0]!== "" ? clientzone.map((zone) =>
                 <button className="selectbtn" key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div></> : <></>}
     </div>{currentview === "Overview" ? <Overview location={location} currentview={currentview}/> : <ZonePage currentview={currentview} location={location}/>}</>;
