@@ -86,7 +86,7 @@ export const FarmoverV = () => {
                             { PFromRedux && PFromRedux.length>=1 ? PFromRedux.map((l, i) => (
                             <tr key={i}>
                             <td>{l.name}</td>
-                            <td>{l.yield}</td>
+                            <td>{l.yield}kg</td>
                             <td>{Array.isArray(l.harvest_date.length) ? l.harvest_date : l.harvest_date.slice(0, 10)}</td>
                             <td>{l.contribution}</td>
                             </tr>

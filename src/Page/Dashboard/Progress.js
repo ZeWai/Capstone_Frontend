@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetProgressThunk,GetProgressSThunk } from '../../store/Progress/actions';
-import logo from './assets/logo.svg';
+
 
 export const Progress = () => {
 
@@ -26,6 +26,7 @@ export const Progress = () => {
     }, [dispatch])
     
     console.log("hi")
+    console.log(SFromRedux.sowing_date) 
     return (
         <>
         {ProgressFromRedux.length>0 ?
@@ -62,13 +63,12 @@ export const Progress = () => {
                             </div>
                             <div className="col-5">
                                 <span className="card-text">
-                                    {SFromRedux.grooming == true? "Ready to harvest": "Active growing"} <br/>
+                                    {SFromRedux.grooming === true? "Ready to harvest": "Active growing"} <br/>
                                     {SFromRedux.type} <br/>
                                     Zone {SFromRedux.area} <br/>
-                                    {SFromRedux.sowing_date}<br/>
-                                    {SFromRedux.harvest_date}
-                                    {/* {Array.isArray(SFromRedux.sowing_date.length) ? SFromRedux.sowing_date : SFromRedux.sowing_date.slice(0,10)}<br/>
-                                    {Array.isArray(SFromRedux.harvest_date.length) ? SFromRedux.harvest_date : SFromRedux.harvest_date.slice(0,10)} */}
+                                   
+                                    {SFromRedux.sowing_date && SFromRedux.sowing_date[0] !==undefined ? SFromRedux.sowing_date.slice(0,10) : <></>}<br/>
+                                    {SFromRedux.harvest_date && SFromRedux.harvest_date[0] !==undefined ? SFromRedux.harvest_date.slice(0,10) : <></>}
                                 </span>
                             </div>
                         </div>
@@ -77,7 +77,7 @@ export const Progress = () => {
               
 
                 <div className="col-md-6 col-sm-12 d-flex justify-content-end crops_img">
-                    <img src={logo}
+                    <img src={`${process.env.REACT_APP_API_SERVER}/${SFromRedux.image}`}
                         className="img-fluid rounded-start" alt="chili" />
                     <span className="crops_date">05/01/2021</span>
                 </div>
