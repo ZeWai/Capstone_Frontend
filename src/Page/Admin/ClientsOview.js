@@ -26,7 +26,8 @@ export const ClientsOview = () => {
                     {clients.map((client, index) => {
                         <>
                             <div className="admin-client-overview-wrapper">
-                                {
+                                {(index % 2 === 0)
+                                    ?
                                     <div className="admin-list row" style={{ backgroundColor: "#FFFFFF" }}>
                                         <p className="admin-list-item-user col-6">{client.username}</p>
                                         <lable className="admin-list-item-label col-3">123</lable>
@@ -35,7 +36,15 @@ export const ClientsOview = () => {
                                             <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
                                         </div>
                                     </div>
-
+                                    :
+                                    <div className="admin-list row" style={{ backgroundColor: "#F5F5F5" }}>
+                                        <p className="admin-list-item-user col-6">{client.username}</p>
+                                        <lable className="admin-list-item-label col-3">123</lable>
+                                        <div className="admin-list-farmer-edit-wrapper col-3">
+                                            <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                            <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         </>
