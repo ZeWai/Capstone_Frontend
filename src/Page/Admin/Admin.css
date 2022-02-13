@@ -133,7 +133,6 @@
   font-size: 20px;
   line-height: 24px;
 }
-
 .admin-logo-name {
   margin-top: 8px;
   font-size: 15px;
@@ -177,7 +176,8 @@
 }
 /*list wrapper*/
 .admin-list-wrapper {
-  background-color: #f5f5f5;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 .admin-list-item-name {
   font-weight: 700;
@@ -241,15 +241,8 @@
   font-weight: 700;
   padding-left: 40px;
 }
-/*client success*/
-.admin-client-form-success-wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.admin-client-form-success-text{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
+/*client overview*/
+.admin-client-overview-wrapper{
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
