@@ -16,7 +16,6 @@ export const FarmerForm = () => {
         setClientList(clients);
     }, [clients]);
     //state
-
     const [FarmerName, setFarmerName] = useState("");
     const [FarmerUsername, setFarmerUsername] = useState("");
     const [FarmerEmail, setFarmerEmail] = useState("");
@@ -149,8 +148,8 @@ export const FarmerForm = () => {
                                         return (
                                             <div key={"client_" + client.username} className="admin-input-checkbox-li col-6">
                                                 <div className="admin-input-checkbox-linner row">
-                                                    <label className="admin-input-checkbox-label col-6">{client.username}</label>
-                                                    <input className="admin-input-checkbox-box col-6" type="checkbox" onChange={(e) => {
+                                                    <p className="admin-input-checkbox-label col-lg-6 col-8">{client.username}</p>
+                                                    <input className="admin-input-checkbox-box col-lg-6 col-4" type="checkbox" onChange={(e) => {
                                                         // clone the clientlist to a new array
                                                         let list = [...clientList];
                                                         // find out the index of the client by filtering username

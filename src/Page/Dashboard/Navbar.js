@@ -8,35 +8,33 @@ import { useState } from "react";
 import { Container, Navbar, NavItem, Nav, NavDropdown } from "react-bootstrap";
 
 export function DashNavbar() {
-const Logout = () => {
-    const dispatch = useDispatch()
-    dispatch(logoutThunk());
-}
-const [Onview, setOnview] = useState("onBtn")
-return(
-<div className='dashNav'>
-<Navbar bg="black" >
-  <Container>
-    <Navbar.Brand href="#home"><img src={navlogo} /></Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="dashNav_part me-auto">
-        <Link to="/dashboard"><li><span><button className={Onview==="onBtn"? "onthisBtn":"notonthisBtn"} onClick={() => setOnview("onBtn")}>Dashboard</button></span></li></Link>
-        <Link to="/client_planner"><li><span><button className={Onview==="onthatBtn"? "onthisBtn":"notonthisBtn"} onClick={() => setOnview("onthatBtn")}>Farmer Planner</button></span></li></Link>
-        </Nav>
-        <Nav>
-        <div className='nav-icon justify-content-end'>
-       
-        <img className="nav-icon-link" src={navlogo2} />
-  
-        <Link to="/home" onClick={Logout}>
-        <img className="nav-icon-link" src={navlogo3}/>
-        </Link>
-        </div>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-</div>
-)
+  const dispatch = useDispatch()
+
+  const [Onview, setOnview] = useState("onBtn")
+  return (
+    <div className='dashNav'>
+      <Navbar bg="black" >
+        <Container>
+          <Navbar.Brand href="#home"><img src={navlogo} /></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="dashNav_part me-auto">
+              <Link to="/dashboard"><li><span><button className={Onview === "onBtn" ? "onthisBtn" : "notonthisBtn"} onClick={() => setOnview("onBtn")}>Dashboard</button></span></li></Link>
+              <Link to="/client_planner"><li><span><button className={Onview === "onthatBtn" ? "onthisBtn" : "notonthisBtn"} onClick={() => setOnview("onthatBtn")}>Farmer Planner</button></span></li></Link>
+            </Nav>
+            <Nav>
+              <div className='nav-icon justify-content-end'>
+
+                <img className="nav-icon-link" src={navlogo2} />
+
+                <button onClick={() => (dispatch(logoutThunk()))}>
+                  <img className="nav-icon-link" src={navlogo3} />
+                </button>
+              </div>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
+  )
 }

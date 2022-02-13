@@ -6,7 +6,7 @@ import { FarminfoReducer } from "./Farminfo/reducers";
 import { ProgressReducer } from "./Progress/reducers";
 import { zoneReducer } from "./getzone/reducers";
 import { cropReducer } from "./Getcrop/reducers";
-import { clientListReducer } from './Client/reducers';
+import { clientListReducer, farmerListReducer } from './Client/reducers';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
     zoneStore: zoneReducer,
     cropStore: cropReducer,
     clientStore: clientListReducer,
+    farmerStore: farmerListReducer,
 })
 
 export const store = createStore(

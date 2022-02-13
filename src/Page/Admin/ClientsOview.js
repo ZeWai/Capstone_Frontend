@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetClientListThunk } from "../../store/Client/actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,11 +8,13 @@ export const ClientsOview = () => {
     //fetch client list for reduers
     const dispatch = useDispatch();
     const clients = useSelector((state) => state.clientStore.ClientList);
+    const [FarmerList, setFarmerList] = useState([]);
     useEffect(() => {
         dispatch(GetClientListThunk())
     }, []);
-    console.log(clients)
-    console.log(clients[0].username)
+    useEffect(() => {
+        setFarmerList(clients);
+    }, [clients]);
     return (
         <>
             <div className="admin-list-wrapper">
@@ -21,38 +23,21 @@ export const ClientsOview = () => {
                     <p className="admin-list-item-name col-6">no. of farmer assigned</p>
                 </div>
             </div>
-            {clients[0] !== "" ?
-                <>
-                    {clients.map((client, index) => {
-                        <>
-                            <div className="admin-client-overview-wrapper">
-                                {(index % 2 === 0)
-                                    ?
-                                    <div className="admin-list row" style={{ backgroundColor: "#FFFFFF" }}>
-                                        <p className="admin-list-item-user col-6">{client.username}</p>
-                                        <lable className="admin-list-item-label col-3">123</lable>
-                                        <div className="admin-list-farmer-edit-wrapper col-3">
-                                            <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
-                                            <button style={{ backgroundColor: "#FFFFFF" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
-                                        </div>
-                                    </div>
-                                    :
-                                    <div className="admin-list row" style={{ backgroundColor: "#F5F5F5" }}>
-                                        <p className="admin-list-item-user col-6">{client.username}</p>
-                                        <lable className="admin-list-item-label col-3">123</lable>
-                                        <div className="admin-list-farmer-edit-wrapper col-3">
-                                            <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
-                                            <button style={{ backgroundColor: "#F5F5F5" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
-                                        </div>
-                                    </div>
-                                }
+            {FarmerList && FarmerList[0] !== undefined ? FarmerList.map((Farmer, index) =>
+                <div key={Farmer.id}>
+                    <div className="admin-client-overview-wrapper">
+                        <div className="admin-list row" style={index % 2 === 0 ? { backgroundColor: "#FFFFFF" } : { backgroundColor: "#f5f5f5" }}>
+                            <p className="admin-list-item-user col-6">{Farmer.username}</p>
+                            <p className="admin-list-item-label col-3">{Farmer.farmer.length}</p>
+                            <div className="admin-list-farmer-edit-wrapper col-3">
+                                <button style={index % 2 === 0 ? { backgroundColor: "#FFFFFF" } : { backgroundColor: "#f5f5f5" }} className="admin-list-farmer-edit-btn"><FontAwesomeIcon icon={faEdit} /></button>
+                                <button style={index % 2 === 0 ? { backgroundColor: "#FFFFFF" } : { backgroundColor: "#f5f5f5" }} className="admin-list-farmer-del-btn"><FontAwesomeIcon icon={faTrash} /></button>
                             </div>
-                        </>
-                    }
-                    )}
-                </>
+                        </div>
+                    </div>
+                </div>)
                 : <>
-
+                    No Client here
                 </>
             }
         </>
