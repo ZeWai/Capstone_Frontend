@@ -100,7 +100,6 @@ export const ClientsForm = () => {
     }
     //clear client form state
     const clearClinetState = () => {
-        //clear client form state
         setName("");
         setUsername("");
         setEmail("");
@@ -140,7 +139,7 @@ export const ClientsForm = () => {
         }
         //check email valid
         const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g
-        //        //check input
+        //check input
         if (clientForm.name === undefined || clientForm.name.length < 1) {
             return setErrMsg("Company name is empty!");
         } else if (clientForm.username === undefined || clientForm.username.length < 8) {
@@ -169,10 +168,12 @@ export const ClientsForm = () => {
             }
             axios.post('http://localhost:8080/api/signup', formData, config)
                 .then((res) => {
+                    if (res.data === "Signup success!") {
+                        //clear client form state
+                        clearClinetState();
+                    }
                     return setErrMsg(res.data);
                 })
-            //clear client form state
-            clearClinetState();
         }
     }
     return (
@@ -244,7 +245,7 @@ export const ClientsForm = () => {
                 <p className="admin-form-errMsg">
                     {errMsg === "Signup success!" || errMsg === "" ? "" : "Error : "}
                     {errMsg}
-                </p> 
+                </p>
                 <div className="admin-form-wrapper">
                     <button className="admin-client-create-btn" onClick={clientCreate}>Create</button>
                 </div>

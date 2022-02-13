@@ -1,11 +1,12 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux'
-import { authReducer } from './auth/reducer'
-import { userReducer } from './user/reducer'
-import { OverviewReducer } from "./Overview/reducers"
+import { authReducer } from './auth/reducer';
+import { userReducer } from './user/reducer';
+import { OverviewReducer } from "./Overview/reducers";
 import { FarminfoReducer } from "./Farminfo/reducers";
-import { ProgressReducer } from "./Progress/reducers"
-import { zoneReducer } from "./getzone/reducers"
-import {cropReducer} from "./Getcrop/reducers"
+import { ProgressReducer } from "./Progress/reducers";
+import { zoneReducer } from "./getzone/reducers";
+import { cropReducer } from "./Getcrop/reducers";
+import { clientListReducer } from './Client/reducers';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     ProgressStore: ProgressReducer,
     zoneStore: zoneReducer,
     cropStore: cropReducer,
+    clientStore: clientListReducer,
 })
 
 export const store = createStore(
