@@ -5,6 +5,7 @@ import { OverviewReducer } from "./Overview/reducers"
 import { FarminfoReducer } from "./Farminfo/reducers";
 import { ProgressReducer } from "./Progress/reducers"
 import { zoneReducer } from "./getzone/reducers"
+import { ScheduledReducer } from "./Scheduled/reducers"
 import {cropReducer} from "./Getcrop/reducers"
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
     ProgressStore: ProgressReducer,
     zoneStore: zoneReducer,
     cropStore: cropReducer,
+    ScheduledStore: ScheduledReducer,
 })
 
 export const store = createStore(

@@ -13,6 +13,7 @@ export const Clientplanner = () => {
     const [FPcropN, setFPcropN] = useState("");
     const [FPSowD, setFPSowD] = useState("");
     const [FPIrriD, setFPIrriD] = useState("");
+    const [FPHarD, setFPHarD] = useState("");
     const [FPyield, setFPyield] = useState("");
     const [FPContri, setFPContri] = useState("");
 
@@ -22,6 +23,7 @@ export const Clientplanner = () => {
         setFPcropN("");
         setFPSowD("");
         setFPIrriD("");
+        setFPHarD("");
         setFPyield("");
         setFPContri("");
     }
@@ -49,6 +51,7 @@ export const Clientplanner = () => {
             cropN: FPcropN,
             SowD: FPSowD,
             IrriD: FPIrriD,
+            HarD:FPHarD,
             yield: FPyield,
             Contri: FPContri,
         }
@@ -130,8 +133,8 @@ export const Clientplanner = () => {
                     <td>
                         <input 
                         type="date" 
-                        value={FPSowD}
-                        onChange={(e) => setFPIrriD(e.currentTarget.value)}
+                        value={FPHarD}
+                        onChange={(e) => setFPHarD(e.currentTarget.value)}
                         className="FramPirrD" />
                     </td>
                 </tr>

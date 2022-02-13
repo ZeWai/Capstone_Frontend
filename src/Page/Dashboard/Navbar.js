@@ -8,11 +8,12 @@ import { useState } from "react";
 import { Container, Navbar, NavItem, Nav, NavDropdown } from "react-bootstrap";
 
 export function DashNavbar() {
+  const [Onview, setOnview] = useState("onBtn")
 const Logout = () => {
     const dispatch = useDispatch()
     dispatch(logoutThunk());
 }
-const [Onview, setOnview] = useState("onBtn")
+
 return(
 <div className='dashNav'>
 <Navbar bg="black" >
