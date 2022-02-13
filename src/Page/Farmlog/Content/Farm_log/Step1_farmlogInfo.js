@@ -1,21 +1,18 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { React, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import AddFarmlog from "../../../../store/Farmlog/actions";
-// import farmlogCurrentView from "../../../../store/Farmlog/actions";
-import Step2 from "./Step2_sectionSelect";
+import { AddFarmlog } from "../../../../store/Farmlog/actions";
 
-// import AddFarmlogThunk from "../store/farmlog/actions";
-
-export default function Step1() {
+export default function Step1(props) {
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  let [farmlogInfo, setfarmlogInfo] = useState();
+  const { register } = useForm();
+
+  let [farmlogInfo, setfarmlogInfo] = useState({
+    time: undefined || "",
+    date: "",
+    weather: null,
+    temp: 0,
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -25,14 +22,14 @@ export default function Step1() {
     }));
   }
 
-  const onSubmit = (data) => {
-    dispatch(AddFarmlog(data));
-    // dispatch(farmlogCurrentView("Step2"));
-    console.log(data);
+  const onNext = () => {
+    console.log(farmlogInfo);
+    dispatch(AddFarmlog(farmlogInfo));
+    props.setStep(props.Step + 1);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot active"></span>
@@ -59,6 +56,8 @@ export default function Step1() {
                   className="question__input time-input"
                   type="time"
                   value={farmlogInfo.time}
+                  {...register("time", { required: true })}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className="q-box__question">
@@ -72,7 +71,8 @@ export default function Step1() {
                   className="question__input date-input"
                   type="date"
                   {...register("date", { required: true })}
-                  value={farmlogInfo.date}
+                  value={farmlogInfo.date || ""}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className="q-box__question">
@@ -85,8 +85,8 @@ export default function Step1() {
                 <select
                   className="question__input"
                   {...register("weather", { required: true })}
-                  defaultValue="Weather"
-                  value={farmlogInfo.weather}
+                  value={farmlogInfo.weather || "NoInput"}
+                  onChange={(e) => handleChange(e)}
                 >
                   <option hidden value="Weather">
                     Weather
@@ -109,16 +109,18 @@ export default function Step1() {
                   id="s1q5"
                   name="s1q5"
                   type="number"
-                  defaultValue="25"
                   {...register("temp", { required: true })}
-                  value={farmlogInfo.temp}
+                  value={farmlogInfo.temp || 25}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button type="submit">Next</button>
-    </form>
+      <button className="next_btn" onClick={() => onNext()}>
+        Next
+      </button>
+    </>
   );
 }

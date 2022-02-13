@@ -1,22 +1,34 @@
 // Harvest page
-
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { AddHarvest } from "../../../../store/Farmlog/actions";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { chooseSauce } from "./rootSlice";
-
-export default function Step6() {
+export default function Step6(props) {
   const dispatch = useDispatch();
-  const sauce = useSelector((state) => state.sauce);
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
+  let [harvestInfo, setharvestInfo] = useState({
+    s5q1: null,
+    s5q2: null,
+    s5q3: null,
+  });
 
-  const onSubmit = (data) => {
-    // dispatch(chooseSauce(data.sauce));
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setharvestInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  const onNext = () => {
+    console.log(harvestInfo);
+    dispatch(AddHarvest(harvestInfo));
+    props.setStep(7);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot "></span>
@@ -38,7 +50,13 @@ export default function Step6() {
               <div>
                 <p>Crop Type</p>
                 <div className="question_dropdown">
-                  <select className="custom-select" name="s5q1" id="s5q1">
+                  <select
+                    className="custom-select"
+                    name="s5q1"
+                    id="s5q1"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s5q1")}
+                  >
                     <option selected>Please select</option>
                     <option className="options" value="Beet">
                       Beet
@@ -62,6 +80,8 @@ export default function Step6() {
                       placeholder="2.13"
                       id="s5q2"
                       name="s5q2"
+                      onChange={(e) => handleChange(e)}
+                      {...register("s5q2")}
                     />
                     <div>
                       <p className="litres_input_label" id="basic-addon2">
@@ -77,7 +97,13 @@ export default function Step6() {
               <div>
                 <p>Status</p>
                 <div className="question_dropdown">
-                  <select className="custom-select" name="s5q3" id="s5q3">
+                  <select
+                    className="custom-select"
+                    name="s5q3"
+                    id="s5q3"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s5q3")}
+                  >
                     <option selected>Please select</option>
                     <option className="options" value="end-cycle">
                       End Cycle
@@ -92,7 +118,15 @@ export default function Step6() {
           </div>
         </div>
       </div>
-      <button>Next</button>
-    </form>
+      <button
+        className="prev_btn"
+        onClick={() => props.setStep(props.Step - 4)}
+      >
+        Previous
+      </button>
+      <button className="next_btn" onClick={() => onNext()}>
+        Next
+      </button>
+    </>
   );
 }

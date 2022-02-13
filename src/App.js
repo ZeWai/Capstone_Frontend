@@ -60,7 +60,7 @@ function App() {
             }
           />
           <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/farmlog" element={<Farmlog />} />
+          <Route path="/farmlog/" element={<Farmlog />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,22 +1,40 @@
 // Irrigation page
-
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { AddIrrigation } from "../../../../store/Farmlog/actions";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { chooseSauce } from "./rootSlice";
-
-export default function Step4() {
+export default function Step4(props) {
   const dispatch = useDispatch();
-  const sauce = useSelector((state) => state.sauce);
-  const { register, handleSubmit } = useForm({ defaultValues: { sauce } });
+  const { register } = useForm();
+  let [irrigationInfo, setirrigationInfo] = useState({
+    s3q1: null,
+    s3q1_remarks: null,
+    s3q2: null,
+    s3q2_date_start: null,
+    s3q2_date_end: null,
+    s3q2_time_start: null,
+    s3q2_time_end: null,
+    s3q2_frequency: null,
+    s3q3: null,
+  });
 
-  const onSubmit = (data) => {
-    // dispatch(chooseSauce(data.sauce));
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setirrigationInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  const onNext = () => {
+    console.log(irrigationInfo);
+    dispatch(AddIrrigation(irrigationInfo));
+    props.setStep(7);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot "></span>
@@ -44,7 +62,8 @@ export default function Step4() {
                     name="s3q1"
                     type="radio"
                     defaultValue="Yes"
-                    {...register("s3q1_yes")}
+                    onChange={(e) => handleChange(e)}
+                    {...register("s3q1")}
                   />
                   <label className="question_label" htmlFor="s3q1_yes">
                     <i className="fas fa-check"></i> Yes, state below
@@ -57,7 +76,8 @@ export default function Step4() {
                     name="s3q1"
                     type="radio"
                     defaultValue="No"
-                    {...register("s3q1_no")}
+                    onChange={(e) => handleChange(e)}
+                    {...register("s3q1")}
                   />
                   <label className="question_label" htmlFor="s3q1_no">
                     <i className="fas fa-times"></i> No special issues
@@ -73,6 +93,8 @@ export default function Step4() {
                   id="s3q1_remarks"
                   name="s3q1_remarks"
                   type="text"
+                  onChange={(e) => handleChange(e)}
+                  {...register("s3q1_remarks")}
                 />
               </div>
             </div>
@@ -87,7 +109,8 @@ export default function Step4() {
                     name="s3q2"
                     type="radio"
                     defaultValue="Yes"
-                    {...register("s3q2_yes")}
+                    onChange={(e) => handleChange(e)}
+                    {...register("s3q2")}
                   />
                   <label className="question_label" htmlFor="s3q2_yes">
                     <i className="fas fa-check"></i> Yes, state below
@@ -100,7 +123,8 @@ export default function Step4() {
                     name="s3q2"
                     type="radio"
                     defaultValue="No"
-                    {...register("s3q2_no")}
+                    onChange={(e) => handleChange(e)}
+                    {...register("s3q2")}
                   />
                   <label className="question_label" htmlFor="s3q2_no">
                     <i className="fas fa-times"></i> No new update
@@ -113,6 +137,7 @@ export default function Step4() {
                   id="s3q2"
                   name="s3q2_date_start"
                   type="date"
+                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_date_start")}
                 />
                 <p>TO</p>
@@ -121,6 +146,7 @@ export default function Step4() {
                   id="s3q2"
                   name="s3q2_date_end"
                   type="date"
+                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_date_end")}
                 />
               </div>
@@ -130,6 +156,7 @@ export default function Step4() {
                   id="s3q2"
                   name="s3q2_date_start"
                   type="time"
+                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_time_start")}
                 />
                 <p>TO</p>
@@ -138,11 +165,17 @@ export default function Step4() {
                   id="s3q2"
                   name="s3q2_date_end"
                   type="time"
+                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_time_end")}
                 />
               </div>
               <div className="question_dropdown">
-                <select className="custom-select" name="s2q2_fertiliser">
+                <select
+                  className="custom-select"
+                  name="s3q2_frequency"
+                  onChange={(e) => handleChange(e)}
+                  {...register("s3q2_frequency")}
+                >
                   <option defaultValue>Frequency</option>
                   <option className="options" defaultValue="1">
                     1
@@ -173,6 +206,8 @@ export default function Step4() {
                     placeholder="12345678"
                     id="s3q3"
                     name="s3q3"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s3q3")}
                   />
                   <p className="litres_input_label">litres</p>
                 </div>
@@ -182,7 +217,15 @@ export default function Step4() {
         </div>
       </div>
 
-      <button>Next</button>
-    </form>
+      <button
+        className="prev_btn"
+        onClick={() => props.setStep(props.Step - 2)}
+      >
+        Previous
+      </button>
+      <button className="next_btn" onClick={() => onNext()}>
+        Next
+      </button>
+    </>
   );
 }

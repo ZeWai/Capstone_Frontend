@@ -1,22 +1,40 @@
 // Garden Management page
-
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { AddGardenMan } from "../../../../store/Farmlog/actions";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { chooseSauce } from "./rootSlice";
-
-export default function Step7() {
+export default function Step7(props) {
   const dispatch = useDispatch();
-  const sauce = useSelector((state) => state.sauce);
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
+  let [gardenManInfo, setgardenManInfo] = useState({
+    s6q1: null,
+    s6q1_remarks: null,
+    s6q2: null,
+    s6q3: null,
+    s6q3_fertiliser: null,
+    s6q3_quantity: null,
+    s6q3_remarks: null,
+    s6q4: null,
+    s6q4_remarks: null,
+  });
 
-  const onSubmit = (data) => {
-    // dispatch(chooseSauce(data.sauce));
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setgardenManInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  const onNext = () => {
+    console.log(gardenManInfo);
+    dispatch(AddGardenMan(gardenManInfo));
+    props.setStep(7);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot "></span>
@@ -44,6 +62,8 @@ export default function Step7() {
                     name="s6q1"
                     type="radio"
                     value="Yes"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q1")}
                   />
                   <label
                     className="form-check-label question_label"
@@ -59,6 +79,8 @@ export default function Step7() {
                     name="s6q1"
                     type="radio"
                     value="No"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q1")}
                   />
                   <label
                     className="form-check-label question_label"
@@ -78,6 +100,8 @@ export default function Step7() {
                     id="s6q1_remarks"
                     name="s6q1_remarks"
                     type="text"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q1_remarks")}
                   />
                 </div>
               </div>
@@ -104,6 +128,8 @@ export default function Step7() {
                     name="s6q3"
                     type="radio"
                     value="Yes"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q3")}
                   />
                   <label
                     className="form-check-label question_label"
@@ -119,6 +145,8 @@ export default function Step7() {
                     name="s6q3"
                     type="radio"
                     value="No"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q3")}
                   />
                   <label
                     className="form-check-label question_label"
@@ -130,7 +158,12 @@ export default function Step7() {
               </div>
               <div className="question_others hide_other">
                 <div className="question_dropdown">
-                  <select className="custom-select" name="s6q3_item">
+                  <select
+                    className="custom-select"
+                    name="s6q3_fertiliser"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q3_fertiliser")}
+                  >
                     <option defaultValue>Fertiliser</option>
                     <option className="options" defaultValue="Lime">
                       Lime
@@ -145,7 +178,12 @@ export default function Step7() {
                       poultry litter
                     </option>
                   </select>
-                  <select className="custom-select" name="s6q3_quantity">
+                  <select
+                    className="custom-select"
+                    name="s6q3_quantity"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q3_quantity")}
+                  >
                     <option selected>Quantity</option>
                     <option className="options" value="1">
                       1
@@ -188,6 +226,8 @@ export default function Step7() {
                     id="s6q3_remarks"
                     name="s6q3_remarks"
                     type="text"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q3_remarks")}
                   />
                 </div>
               </div>
@@ -203,6 +243,8 @@ export default function Step7() {
                     name="s6q4"
                     type="radio"
                     value="Yes"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q4")}
                   />
                   <label
                     className="form-check-label question_label"
@@ -218,6 +260,8 @@ export default function Step7() {
                     name="s6q4"
                     type="radio"
                     value="No"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q4")}
                   />
                   <label
                     className="form-check-label question_label"
@@ -237,6 +281,8 @@ export default function Step7() {
                     id="s6q4_remarks"
                     name="s6q4_remarks"
                     type="text"
+                    onChange={(e) => handleChange(e)}
+                    {...register("s6q4_remarks")}
                   />
                 </div>
               </div>
@@ -244,7 +290,15 @@ export default function Step7() {
           </div>
         </div>
       </div>
-      <button>Next</button>
-    </form>
+      <button
+        className="prev_btn"
+        onClick={() => props.setStep(props.Step - 1)}
+      >
+        Previous
+      </button>
+      <button className="next_btn" onClick={() => onNext()}>
+        Next
+      </button>
+    </>
   );
 }

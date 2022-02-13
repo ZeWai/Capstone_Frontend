@@ -1,23 +1,42 @@
 // Planting page
 
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { AddPlanting } from "../../../../store/Farmlog/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { chooseCheese } from "./rootSlice";
-
-export default function Step3() {
+export default function Step3(props) {
   const dispatch = useDispatch();
-  // const cheese = useSelector((state) => state.cheese);
-  const { register, handleSubmit, watch } = useForm();
+  const { register } = useForm();
+  let [plantingInfo, setplantingInfo] = useState({
+    s2q1: null,
+    s2q1_remarks: null,
+    s2q2: null,
+    s2q2_fertiliser: null,
+    s2q2_remarks: null,
+    s2q3: null,
+    s2q3_remarks: null,
+    s2q4: null,
+    s2q4_remarks: null,
+  });
 
-  const onSubmit = (data) => {
-    // dispatch(chooseCheese(data.cheese));
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setplantingInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  const onNext = () => {
+    console.log(plantingInfo);
+    dispatch(AddPlanting(plantingInfo));
+    props.setStep(7);
   };
-  const watchShowDropdown = watch("s2q2_yes", false); // you can supply default value as second argument
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot "></span>
@@ -43,7 +62,9 @@ export default function Step3() {
                     id="s2q1_yes"
                     name="s2q1"
                     type="radio"
-                    defaultValue="Yes"
+                    value="Yes"
+                    {...register("s2q1")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s2q1_yes">
                     <i className="fas fa-check"></i> Yes, state below
@@ -56,6 +77,8 @@ export default function Step3() {
                     name="s2q1"
                     type="radio"
                     defaultValue="No"
+                    {...register("s2q1")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q1_no">
                     <i className="fas fa-times"></i> No special issues
@@ -71,6 +94,8 @@ export default function Step3() {
                   id="s2q1_remarks"
                   name="s2q1_remarks"
                   type="text"
+                  {...register("s2q1_remarks")}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
@@ -85,16 +110,10 @@ export default function Step3() {
                     name="s2q2"
                     type="radio"
                     defaultValue="Yes"
-                    {...register("s2q2_yes")}
+                    {...register("s2q2")}
+                    onChange={(e) => handleChange(e)}
                   />
-                  {watchShowDropdown && (
-                    <>
-                      <label>Age</label>
-                      <input type="number" {...register("age", { min: 50 })} />
-                    </>
-                  )}
-
-                  <label className=" question_label" htmlFor="s2q2_yes">
+                  <label className="question_label" htmlFor="s2q2_yes">
                     <i className="fas fa-check"></i> Yes, state below
                   </label>
                 </div>
@@ -105,6 +124,8 @@ export default function Step3() {
                     name="s2q2"
                     type="radio"
                     defaultValue="No"
+                    {...register("s2q2")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q2_no">
                     <i className="fas fa-times"></i> No ploughing has been done
@@ -113,7 +134,12 @@ export default function Step3() {
               </div>
               <div className="question_others hide_other">
                 <div className="question_dropdown">
-                  <select className="custom-select" name="s2q2_fertiliser">
+                  <select
+                    className="custom-select"
+                    name="s2q2_fertiliser"
+                    {...register("s2q2_fertiliser")}
+                    onChange={(e) => handleChange(e)}
+                  >
                     <option defaultValue>Fertiliser Type</option>
                     <option className="options" defaultValue="Lime">
                       Lime
@@ -138,6 +164,8 @@ export default function Step3() {
                     id="s2q2_remarks"
                     name="s2q2_remarks"
                     type="text"
+                    {...register("s2q2_remarks")}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -153,6 +181,8 @@ export default function Step3() {
                     name="s2q3"
                     type="radio"
                     defaultValue="Yes"
+                    {...register("s2q3")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q3_yes">
                     <i className="fas fa-check"></i> Yes, state below
@@ -165,6 +195,8 @@ export default function Step3() {
                     name="s2q3"
                     type="radio"
                     defaultValue="No"
+                    {...register("s2q3")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q3_no">
                     <i className="fas fa-times"></i> No seeds were sowed
@@ -181,6 +213,8 @@ export default function Step3() {
                     id="s2q3_remarks"
                     name="s2q3_remarks"
                     type="text"
+                    {...register("s2q3_remarks")}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -196,8 +230,10 @@ export default function Step3() {
                     name="s2q4"
                     type="radio"
                     defaultValue="Yes"
+                    {...register("s2q4")}
+                    onChange={(e) => handleChange(e)}
                   />
-                  <label className=" question_label" htmlFor="s2q4_yes">
+                  <label className="question_label" htmlFor="s2q4_yes">
                     <i className="fas fa-check"></i> Fertilisers applied on all
                     planters
                   </label>
@@ -209,8 +245,10 @@ export default function Step3() {
                     name="s2q4"
                     type="radio"
                     defaultValue="No"
+                    {...register("s2q4")}
+                    onChange={(e) => handleChange(e)}
                   />
-                  <label className=" question_label" htmlFor="s2q4_no">
+                  <label className="question_label" htmlFor="s2q4_no">
                     <i className="fas fa-times"></i> No fertilising was done
                   </label>
                 </div>
@@ -224,13 +262,23 @@ export default function Step3() {
                   id="s2q4_remarks"
                   name="s2q4_remarks"
                   type="text"
+                  onChange={(e) => handleChange(e)}
+                  {...register("s2q4_remarks")}
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button>Next</button>
-    </form>
+      <button
+        className="prev_btn"
+        onClick={() => props.setStep(props.Step - 1)}
+      >
+        Previous
+      </button>
+      <button className="next_btn" onClick={() => onNext()}>
+        Next
+      </button>
+    </>
   );
 }

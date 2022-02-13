@@ -1,23 +1,33 @@
 // Other issues page
-
-import React from "react";
+import { React, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { AddOtherIssues } from "../../../../store/Farmlog/actions";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { chooseSauce } from "./rootSlice";
-
-export default function Step8() {
+export default function Step8(props) {
   const dispatch = useDispatch();
-  const sauce = useSelector((state) => state.sauce);
-  const { register, handleSubmit } = useForm();
+  const { register } = useForm();
+  let [otherIssuesInfo, setotherIssuesInfo] = useState({
+    s7q1: null,
+    s7q2_album: null,
+    s7q3_image: null,
+  });
 
-  const onSubmit = (data) => {
-    // dispatch(chooseSauce(data.sauce));
-    // history.push("./result");
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setotherIssuesInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  const onSubmit = () => {
+    console.log(otherIssuesInfo);
+    dispatch(AddOtherIssues(otherIssuesInfo));
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot "></span>
@@ -27,15 +37,19 @@ export default function Step8() {
         <span className="dot active"></span>
       </div>
       {/* <!-- page7 --> */}
-      <div class="step">
-        <div class="main-body-container" id="section7">
+      <div className="step">
+        <div className="main-body-container" id="section7">
           <div>
             <h1 className="section-title">Other Issues</h1>
           </div>
-          <div class="section-content">
+          <div className="section-content">
             <div className="s7q1">
               <p>1. Please write down other issues below if any.</p>
-              <textarea name="s7q1"></textarea>
+              <textarea
+                name="s7q1"
+                onChange={(e) => handleChange(e)}
+                {...register("s7q1")}
+              ></textarea>
             </div>
             <div className="s7q2_album">
               <p>2. Album</p>
@@ -43,19 +57,32 @@ export default function Step8() {
                 Please upload images to record the zone condition. (You can
                 upload multiple images each time)
               </p>
-              <input className="upload-input" type="file" />
+              <input
+                className="upload-input"
+                type="file"
+                onChange={(e) => handleChange(e)}
+                {...register("s7q2_album")}
+              />
             </div>
-            <div className="s7q2_album">
+            <div className="s7q2_image">
               <p>3. Image Recognition</p>
               <p>
                 Please upload images to check the crop condition. (You can
                 upload one image each time)
               </p>
-              <input className="upload-input" type="file" />
+              <input
+                className="upload-input"
+                type="file"
+                onChange={(e) => handleChange(e)}
+                {...register("s7q2_image")}
+              />
             </div>
           </div>
         </div>
       </div>
-    </form>
+      <button className="submit_btn" onClick={() => onSubmit()}>
+        Submit
+      </button>
+    </>
   );
 }
