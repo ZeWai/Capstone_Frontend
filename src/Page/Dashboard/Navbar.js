@@ -10,7 +10,7 @@ import { Container, Navbar, Nav} from "react-bootstrap";
 
 export function DashNavbar(props) {
   const dispatch = useDispatch()
-  const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(false);
   const [Opassword, setOpassword] = useState("");
   const [Npassword, setNpassword] = useState([]);
   const [Cpassword, setCpassword] = useState("");
