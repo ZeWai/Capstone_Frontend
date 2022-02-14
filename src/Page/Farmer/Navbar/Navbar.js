@@ -9,7 +9,7 @@ import './NavBar.css'
 export default function NavBar() {
     const username = useSelector((state) => state.userStore.name);
     const dispatch = useDispatch();
-    const [navbarTitle,setNavbarTitle]=useState("")
+    const [navbarTitle, setNavbarTitle] = useState("")
 
     useEffect(() => {
         dispatch(GetUserThunk());
