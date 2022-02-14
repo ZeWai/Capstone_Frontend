@@ -4,8 +4,10 @@ import Home from "./Page/Home/Home";
 import { useSelector, useDispatch } from "react-redux";
 import Admin from "./Page/Admin/Admin";
 import Dashboard from "./Page/Dashboard/Dashboard";
-import Farmer from "./Page/Farmer/Farmer";
-import Farmlog from "./Page/Farmlog/Farmlog.js";
+import FarmerPlanner from "./Page/Farmer/FarmerPlanner/FarmerPlanner";
+import { Fplanner } from "./Page/ClientPlanner/Fplanner";
+import { logoutThunk } from "./store/auth/action";
+import FarmerSetting from "./Page/Farmer/FarmerSetting/FarmerSetting";
 
 import { logoutThunk } from "./store/auth/action";
 
@@ -44,6 +46,14 @@ function App() {
             }
           />
           <Route
+            path="/client_planner"
+            element={
+              <ClientAuth>
+                <Fplanner />
+              </ClientAuth>
+            }
+          />
+          <Route
             path="/admin"
             element={
               <AdminAuth>
@@ -55,12 +65,19 @@ function App() {
             path="/farm_planner"
             element={
               <FarmerAuth>
-                <Farmer />
+                <FarmerPlanner />
+              </FarmerAuth>
+            }
+          />
+          <Route
+            path="/farm_planner/setting"
+            element={
+              <FarmerAuth>
+                <FarmerSetting />
               </FarmerAuth>
             }
           />
           <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/farmlog/" element={<Farmlog />} />
         </Routes>
       </BrowserRouter>
     </>

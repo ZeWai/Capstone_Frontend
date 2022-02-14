@@ -1,8 +1,8 @@
 import { GET_CROP, GET_CROP_ZONE } from "./actions";
 
 const initialState = {
-    ReadyToHarvest: [""],
-    CropStatus:[""]
+    ReadyToHarvest: "",
+    CropStatus:""
 }
 
 export function cropReducer(state = initialState, action) {

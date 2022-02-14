@@ -1,7 +1,7 @@
 import './Overview.css'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {GetCropThunk} from '../../../../store/Getcrop/actions'
+import {GetCropThunk} from '../../../../../store/Getcrop/actions'
 
 export default function Overview(props) {
     const today = new Date();
@@ -9,23 +9,20 @@ export default function Overview(props) {
     const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
     const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest)
 
-    console.log(props.location)
     useEffect(() => {
         dispatch(GetCropThunk(props.location))
-    }, [props.location]);
+    }, [props.location,props.currentview]);
 
-    const showharvest = [...readytoharvest]
     const harvest = [];
-    if(showharvest.length >=6){
+    if(readytoharvest.length >=6){
     for (let i = 0; i <= 5; i++){
-        harvest.push(showharvest[i])
+        harvest.push(readytoharvest[i])
         };
-    } else if (showharvest.length>1 && showharvest.length<=6){
-        for (let i = 0; i <= showharvest.length; i++) {
-            harvest.push(showharvest[i])
+    } else if (readytoharvest.length>1 && readytoharvest.length<5){
+        for (let i = 0; i <= readytoharvest.length; i++) {
+            harvest.push(readytoharvest[i])
         };
     }
-
     const type = ((type) => {
         if (type === "Fruit") {
             return "🍎";
@@ -43,11 +40,11 @@ export default function Overview(props) {
         
     })
 
-    return<>
+    return <>
     <div className='farmer-overview'>
         <div className='schedule'>
             <p className='title'>Estimate Harvest Schedule </p>
-            {harvest && harvest.length > 0 ? harvest.map((data) =>
+                {harvest && harvest[0] !== undefined ? harvest.map((data) =>
                 <div key={`${data.name} ${data.yield} ${data.area} ${data.harvest_date}`} className='farmer_schedule'>
                     <span>{data.harvest_date.slice(8, 10)}/{data.harvest_date.slice(5, 7)}</span>
                     <br/>

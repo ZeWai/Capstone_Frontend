@@ -1,7 +1,7 @@
 import { GET_CLIENT_ZONE } from "./actions";
 
 const initialState = {
-    clientZone: []
+    clientZone: ""
 }
 
 export function zoneReducer(state = initialState, action) {

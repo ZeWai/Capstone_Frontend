@@ -7,6 +7,8 @@ import { ProgressReducer } from "./Progress/reducers";
 import { zoneReducer } from "./getzone/reducers";
 import { cropReducer } from "./Getcrop/reducers";
 import { farmlogReducer } from "./Farmlog/reducers";
+import { ScheduledReducer } from "./Scheduled/reducers";
+import { clientListReducer, farmerListReducer } from "./Client/reducers";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
@@ -20,6 +22,9 @@ const rootReducer = combineReducers({
   ProgressStore: ProgressReducer,
   zoneStore: zoneReducer,
   cropStore: cropReducer,
+  clientStore: clientListReducer,
+  farmerStore: farmerListReducer,
+  ScheduledStore: ScheduledReducer,
   farmlogStore: farmlogReducer,
 });
 

@@ -14,9 +14,8 @@ export const FarmoverV = () => {
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log("on overdispatch")
         dispatch(GetOverThunk())
-    }, [dispatch])
+    }, [])
    
 
     return(
@@ -64,7 +63,9 @@ export const FarmoverV = () => {
                                 <div className='impact_group m-2 mt-2 soil-planted' >
                                     <img src={logo5} className="overview_icon m-3" alt="logo" />
                                     <div className='overview_info'>
-                                        <p>hi</p>
+                                        <h2 className="overview_title">Soil planted</h2>
+                                        <h3 className="overview_data">hi</h3>
+                                        <h3 className="overview_freq">sq.ft.</h3>
                                     </div>
                                 </div>
                             </div>
@@ -85,8 +86,8 @@ export const FarmoverV = () => {
                             { PFromRedux && PFromRedux.length>=1 ? PFromRedux.map((l, i) => (
                             <tr key={i}>
                             <td>{l.name}</td>
-                            <td>{l.yield}</td>
-                            <td>{l.harvest_date}</td>
+                            <td>{l.yield}kg</td>
+                            <td>{Array.isArray(l.harvest_date.length) ? l.harvest_date : l.harvest_date.slice(0, 10)}</td>
                             <td>{l.contribution}</td>
                             </tr>
                             )):null}

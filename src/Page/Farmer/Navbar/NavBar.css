@@ -50,8 +50,11 @@
 .Offcanvas li {
   color: white;
   list-style-type: disc;
+  cursor: pointer;
 }
-
+.Offcanvas li:hover{
+  color: black;
+}
 .farmer_name {
   color: white;
   text-align: center;

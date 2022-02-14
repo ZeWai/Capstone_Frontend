@@ -10,10 +10,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export function App3() {
     const OinfoFromRedux = useSelector((state) => state.OverStore.Oinfo);
     const data = {
-        labels: OinfoFromRedux,
+     
         datasets: [
           {
-            label: '# of Votes',
+            label: 'testing',
             data: OinfoFromRedux,
             backgroundColor: ["#C4D878","#FDCE40","#B3DBCD"],
             borderColor: [
@@ -24,10 +24,10 @@ export function App3() {
             ],
             borderWidth: 1,
           },
-        ],
+      ],
+      labels: false
       };
-    
-    console.log("chart", OinfoFromRedux)
-    return <Doughnut data={data} />;
+  const config = {}
+  return <Doughnut data={data}/>;
   }
   

@@ -108,3 +108,10 @@
 .loginbox .loginbtn button:hover{
   filter: brightness(1.2);
 }
+
+.loginbox .login-error{
+  color: red;
+  font-weight: 500;
+  margin-bottom: 0;
+  font-size: 0.8em;
+}

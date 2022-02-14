@@ -6,7 +6,7 @@ import {
 const initialState = {
     id: localStorage.getItem("LoggedInToken") != null,
     name: '',
-    clientNames: []
+    clientNames: ""
 };
 
 export function userReducer(state = initialState, action) {
