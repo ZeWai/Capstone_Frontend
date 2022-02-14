@@ -214,8 +214,9 @@ button.submit_btn {
   color: white;
 }
 
-.question_input:checked + .question_label i,
-.question_label p {
+.question_input:checked + .question_label .fa-check,
+.question_input:checked + .question_label .fa-times,
+.question_input:checked + .question_label p {
   color: white;
 }
 

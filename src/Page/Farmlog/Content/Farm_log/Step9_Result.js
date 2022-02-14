@@ -299,7 +299,7 @@ export default function Step9(props) {
                   <p className="step9_Question">
                     2. No. of garden waste bag(s) collected
                   </p>
-                  <p className="step9_Answer">{s6.s6q2 || "-"} bag</p>
+                  <p className="step9_Answer">{s6.s6q2_num || "-"} bag</p>
                   {/* Garden Management Q3 */}
                   <p className="step9_Question">
                     3. Farm supplies require any refill?
