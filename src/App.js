@@ -4,6 +4,7 @@ import Home from "./Page/Home/Home";
 import { useSelector, useDispatch } from "react-redux";
 import Admin from './Page/Admin/Admin'
 import Dashboard from './Page/Dashboard/Dashboard';
+import { ChangePw } from './Page/ClientPlanner/ChangePw';
 import FarmerPlanner from './Page/Farmer/FarmerPlanner/FarmerPlanner';
 import { Fplanner } from './Page/ClientPlanner/Fplanner';
 import { logoutThunk } from './store/auth/action';

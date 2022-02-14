@@ -75,6 +75,16 @@ export function GetOverThunk(){
         dispatch(GetSow(response.data));
         });
 
+        axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/size`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          })
+          .then((response) => {
+          console.log(response.data);
+          dispatch(GetSize(response.data));
+          });
+
         axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/productivity`,{
           headers: {
             Authorization: `Bearer ${token}`,

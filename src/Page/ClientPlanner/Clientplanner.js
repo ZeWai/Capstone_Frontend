@@ -79,7 +79,7 @@ export const Clientplanner = () => {
                     <td>
                   
                     <select name={FPzone} onChange={handleChange} className="FramPzone">
-                    {GzoneFromRedux.length>0?GzoneFromRedux.map((zone) => (<option key={zone} value={zone.area}>{zone.area}</option>)):
+                    {GzoneFromRedux.length>0?GzoneFromRedux.map((zone) => (<option key={zone.area} value={zone.area}>{zone.area}</option>)):
                        <option>Please contact admin</option>}
                     </select>
                         {/* <input 
