@@ -3,7 +3,7 @@
 import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { AddPlanting } from "../../../../store/Farmlog/actions";
+import { AddPlanting } from "../../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -149,7 +149,7 @@ export default function Step3(props) {
                     {...register("s2q2_fertiliser")}
                     onChange={(e) => handleChange(e)}
                   >
-                    <option hidden defaultvalue>
+                    <option hidden defaultValue>
                       Fertiliser Type
                     </option>
                     <option className="options" value="Lime">

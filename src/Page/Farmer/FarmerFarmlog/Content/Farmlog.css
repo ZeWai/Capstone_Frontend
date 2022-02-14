@@ -453,6 +453,7 @@ button.submit_btn {
 .step9_Remarks {
   color: var(--color4);
   margin-left: 15px;
+  overflow-wrap: anywhere;
 }
 
 .step9_row {

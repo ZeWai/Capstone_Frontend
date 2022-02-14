@@ -1,10 +1,10 @@
 // choose which section of farmlog
 
 import React from "react";
-import plantingImg from "../../../../image/farmlog/planting.png";
-import irrigationImg from "../../../../image/farmlog/water.png";
-import groomingImg from "../../../../image/farmlog/grooming.png";
-import harvestImg from "../../../../image/farmlog/harvest.png";
+import plantingImg from "../../../../../image/farmlog/planting.png";
+import irrigationImg from "../../../../../image/farmlog/water.png";
+import groomingImg from "../../../../../image/farmlog/grooming.png";
+import harvestImg from "../../../../../image/farmlog/harvest.png";
 
 export default function Step2(props) {
   return (

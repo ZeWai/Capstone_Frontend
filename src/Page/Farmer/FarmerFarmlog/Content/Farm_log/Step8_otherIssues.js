@@ -2,7 +2,7 @@
 import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { AddOtherIssues } from "../../../../store/Farmlog/actions";
+import { AddOtherIssues } from "../../../../../store/Farmlog/actions";
 
 export default function Step8(props) {
   const dispatch = useDispatch();

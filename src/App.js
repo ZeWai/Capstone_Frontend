@@ -8,8 +8,7 @@ import FarmerPlanner from "./Page/Farmer/FarmerPlanner/FarmerPlanner";
 import { Fplanner } from "./Page/ClientPlanner/Fplanner";
 import { logoutThunk } from "./store/auth/action";
 import FarmerSetting from "./Page/Farmer/FarmerSetting/FarmerSetting";
-
-import { logoutThunk } from "./store/auth/action";
+import Farmlog from "./Page/Farmer/FarmerFarmlog/Farmlog";
 
 function ClientAuth({ children }) {
   let auth = useSelector((state) => state.authStore.auth);
@@ -77,6 +76,15 @@ function App() {
               </FarmerAuth>
             }
           />
+          <Route
+            path="/farm_planner/farm_log"
+            element={
+              <FarmerAuth>
+                <Farmlog />
+              </FarmerAuth>
+            }
+          />
+
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </BrowserRouter>
