@@ -45,8 +45,9 @@ export const Progress = () => {
            
             <div className="carousel-inner">
             <div className="crops carousel-item active">
-            <div className="card mb-3">
+            <div className='card mb-3'>
             <div className="row g-0">
+                
                 <div className="col-md-6">
                     <div className="card-body">
                         <h5 className="card-title">{SFromRedux.name}</h5>
@@ -77,7 +78,7 @@ export const Progress = () => {
               
 
                 <div className="col-md-6 col-sm-12 d-flex justify-content-end crops_img">
-                    <img src={`${process.env.REACT_APP_API_SERVER}/${SFromRedux.image}`}
+                    <img src={SFromRedux.image !== undefined ?` ${process.env.REACT_APP_API_SERVER}/${SFromRedux.image}`:``}
                         className="img-fluid rounded-start" alt="chili" />
                     <span className="crops_date">05/01/2021</span>
                 </div>
