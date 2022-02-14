@@ -49,6 +49,7 @@ export default function Step4(props) {
         <span className="dot active"></span>
         <span className="dot"></span>
         <span className="dot"></span>
+        <span className="dot"></span>
       </div>
       {/* <!-- page3 --> */}
       <div className="step">

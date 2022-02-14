@@ -56,7 +56,7 @@ p {
 }
 /* Progress dot */
 #dot-container {
-  width: 90px;
+  width: 100px;
   display: flex;
   justify-content: space-between;
   margin: 12px auto;
@@ -159,6 +159,21 @@ button.submit_btn {
 
 .toRightBtn {
   justify-content: flex-end;
+}
+
+button.submit_btn {
+  position: relative;
+  width: 104px;
+  height: 28px;
+  background: rgba(66, 193, 198, 0.75);
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: 0;
+  border-radius: 25px;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 /* tick & cross label */
@@ -375,6 +390,13 @@ button.submit_btn {
   cursor: pointer;
 }
 
+.image_review {
+  max-width: 100px;
+  max-height: 100px;
+  border: 1px solid var(--color2);
+  margin: 10px 0;
+}
+
 /* Section Select */
 #section2 {
   display: flex;
@@ -406,6 +428,7 @@ button.submit_btn {
   border-top: 1px solid var(--color4);
   padding-top: 10px;
   padding-bottom: 10px;
+  font-size: 25px;
 }
 
 .step9_arrow {
@@ -438,5 +461,17 @@ button.submit_btn {
 }
 
 .step9_Dropbox {
-  margin: 0 15px;
+  margin: 0 15px 15px 15px;
+}
+
+#step10 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.fa-circle-check {
+  font-size: 50px;
+  color: var(--color3);
 }

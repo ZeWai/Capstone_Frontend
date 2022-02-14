@@ -16,6 +16,7 @@ export default function Step2(props) {
         <span className="dot "></span>
         <span className="dot"></span>
         <span className="dot"></span>
+        <span className="dot"></span>
       </div>
       <div id="steps-container">
         {/* ######page1#######  */}

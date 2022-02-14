@@ -1,13 +1,11 @@
 import { React, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AddFarmlogThunk } from "../../../../store/Farmlog/actions";
+import { useSelector } from "react-redux";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function Step9(props) {
-  const dispatch = useDispatch();
-
   let [shows1, setshows1] = useState(false);
   let [shows2, setshows2] = useState(false);
   let [shows3, setshows3] = useState(false);
@@ -23,7 +21,9 @@ export default function Step9(props) {
   let s5 = useSelector((state) => state.farmlogStore.harvestInfo);
   let s6 = useSelector((state) => state.farmlogStore.gardenManInfo);
   let s7 = useSelector((state) => state.farmlogStore.otherIssuesInfo);
+
   let allFarmlogInfo = [s1, s2, s3, s4, s5, s6, s7];
+  console.log("allFarmlogInfo", allFarmlogInfo);
 
   let ArrowDownIcon = (
     <FontAwesomeIcon icon={faAngleDown} className="fa-angle-down" />
@@ -32,16 +32,45 @@ export default function Step9(props) {
     <FontAwesomeIcon icon={faAngleUp} className="fa-angle-up" />
   );
 
-  function onSubmit() {
-    dispatch(AddFarmlogThunk(allFarmlogInfo));
+  function onSubmit(allFarmlogInfo) {
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s1`,
+      allFarmlogInfo[0]
+    );
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s2`,
+      allFarmlogInfo[1]
+    );
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s3`,
+      allFarmlogInfo[2]
+    );
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s4`,
+      allFarmlogInfo[3]
+    );
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s5`,
+      allFarmlogInfo[4]
+    );
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s6`,
+      allFarmlogInfo[5]
+    );
+    axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s7`,
+      allFarmlogInfo[6]
+    );
+
     props.setStep(10);
   }
   return (
     <>
       <div id="dot-container">
-        <span className="dot "></span>
         <span className="dot"></span>
-        <span className="dot "></span>
+        <span className="dot"></span>
+        <span className="dot"></span>
+        <span className="dot"></span>
         <span className="dot"></span>
         <span className="dot active"></span>
       </div>
@@ -342,7 +371,10 @@ export default function Step9(props) {
             >
               Previous
             </button>
-            <button className="next_btn" onClick={() => onSubmit()}>
+            <button
+              className="next_btn"
+              onClick={() => onSubmit(allFarmlogInfo)}
+            >
               Submit
             </button>
           </div>

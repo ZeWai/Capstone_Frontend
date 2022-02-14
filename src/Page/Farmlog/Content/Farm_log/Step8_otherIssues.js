@@ -12,6 +12,8 @@ export default function Step8(props) {
     s7q2_album: null,
     s7q3_image: null,
   });
+  let [album, setAlbum] = useState(null);
+  let [image, setImage] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -19,6 +21,25 @@ export default function Step8(props) {
       ...prevValue,
       [name]: value,
     }));
+  }
+
+  // For display album preview
+  function handleAlbumChange(e) {
+    const { name, value } = e.target;
+    setotherIssuesInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+    setAlbum(e.target.files[0]);
+  }
+  // For display Image preview
+  function handleImageChange(e) {
+    const { name, value } = e.target;
+    setotherIssuesInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+    setImage(e.target.files[0]);
   }
 
   function onNext() {
@@ -36,6 +57,7 @@ export default function Step8(props) {
         <span className="dot "></span>
         <span className="dot"></span>
         <span className="dot active"></span>
+        <span className="dot"></span>
       </div>
       {/* <!-- page7 --> */}
       <div className="step">
@@ -62,8 +84,15 @@ export default function Step8(props) {
                 className="upload-input"
                 type="file"
                 {...register("s7q2_album")}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleAlbumChange(e)}
               />
+              {album && (
+                <img
+                  className="image_review"
+                  alt={album.name}
+                  src={URL.createObjectURL(album)}
+                />
+              )}
             </div>
             <div className="s7q2_image">
               <p>3. Image Recognition</p>
@@ -74,9 +103,16 @@ export default function Step8(props) {
               <input
                 className="upload-input"
                 type="file"
-                {...register("s7q2_image")}
-                onChange={(e) => handleChange(e)}
+                {...register("s7q3_image")}
+                onChange={(e) => handleImageChange(e)}
               />
+              {image && (
+                <img
+                  className="image_review"
+                  alt={image.name}
+                  src={URL.createObjectURL(image)}
+                />
+              )}
             </div>
           </div>
         </div>
