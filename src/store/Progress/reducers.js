@@ -1,6 +1,8 @@
-import { GET_PROGRESS, GET_SINGLE_PROGRESS  } from "./actions";
+import { GET_PROGRESS, GET_SINGLE_PROGRESS , GET_CROPSTORE ,GET_CROPINFO} from "./actions";
 
 const initialState = {
+    CropStore:[],
+    CropInfo:[{}],
     Progress: [],
     Single:[{
         // id: 1,
@@ -16,13 +18,31 @@ export function ProgressReducer(state = initialState, action) {
     switch(action.type){
         case GET_PROGRESS:
             return {
+                CropStore: state.CropStore,
+                CropInfo: state.CropInfo,
                 Progress:action.payload,
                 Single:state.Single,
             };
         case GET_SINGLE_PROGRESS:
             return {
+                CropStore: state.CropStore,
+                CropInfo: state.CropInfo,
                 Progress:state.Progress,
                 Single:action.payload,
+            };
+        case GET_CROPSTORE:
+            return {
+                CropStore:action.payload,
+                CropInfo: state.CropInfo,
+                Progress:state.Progress,
+                Single:state.Single,
+            };
+        case GET_CROPINFO:
+            return {
+                CropStore:state.CropStore,
+                CropInfo:action.payload,
+                Progress:state.Progress,
+                Single:state.Single,
             };
         default:
         return state;      

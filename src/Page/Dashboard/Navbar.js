@@ -5,25 +5,40 @@ import { logoutThunk } from '../../store/auth/action';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
+import axios from 'axios';
+import jwt_decode from "jwt-decode";
 import { useState } from "react";
 import { Container, Navbar, Nav} from "react-bootstrap";
 
 export function DashNavbar(props) {
   const dispatch = useDispatch()
   const [modal, setModal] = useState(false);
-  const [Opassword, setOpassword] = useState("");
-  const [Npassword, setNpassword] = useState([]);
+  const [oldpassword, setOpassword] = useState("");
+  const [newpassword, setNpassword] = useState([]);
   const [Cpassword, setCpassword] = useState("");
+  const [errmessage, setErrmessage] = useState("")
+  let id = jwt_decode(localStorage.getItem("LoggedInToken")).id
 
-  const addLink = () => {
-    console.log("child labor");
-    props.onAddLinkProps(Opassword, Npassword, Cpassword);
-    setModal(false);
-    setOpassword("");
-    setNpassword("");
-    setCpassword([]);
+  const ChangePassword = () => {
+    if (newpassword === Cpassword && newpassword !== "" && newpassword !== "") {
+      axios.post(`${process.env.REACT_APP_API_SERVER}/api/users/${id}/passwordchange`, { oldpassword, newpassword })
+          .then((res) => setErrmessage(res.data));
+          if (errmessage=="Password changed"){
+            setModal(!modal)
+          }
+  } else if (oldpassword === "") {
+      setErrmessage("Please enter your old password")
+  } else if (newpassword === "" || newpassword.length < 6) {
+      setErrmessage("Please enter at least 6 characters for your new password")
+  } else if (Cpassword === "" || newpassword !== Cpassword) {
+      setErrmessage("Please confirm your new password")
+  }
+  setOpassword("")
+  setNpassword("")
+  setCpassword("")
   };
-
+  
+  
   
 
   // const [Onview, setOnview] = useState("onBtn")
@@ -40,10 +55,10 @@ export function DashNavbar(props) {
             </Nav>
             <Nav>
               <div className='nav-icon justify-content-end'>
-              <button className="btn" onClick={() => (dispatch(logoutThunk()))}>
+              <button className="btn" onClick={() => setModal(!modal)}>
               <img className="nav-icon-link" src={navlogo2} />
               </button>
-                <button className="btn" onClick={() => setModal(!modal)}>
+                <button className="btn" onClick={() => (dispatch(logoutThunk()))}>
                   <img className="nav-icon-link" src={navlogo3} />
                 </button>
               </div>
@@ -52,40 +67,43 @@ export function DashNavbar(props) {
         </Container>
       </Navbar>
       <Modal show={modal}>
-        <Modal.Header>Add Link Form</Modal.Header>
+        <Modal.Header>
+          <h1>Change Password</h1>
+          </Modal.Header>
         <Modal.Body>
           <label>Old Password:</label>
           <br />
           <input
-            type="text"
-            value={Opassword}
+            type="password"
+            value={oldpassword}
             onChange={(e) => setOpassword(e.currentTarget.value)}
           />
           <br />
           <label>New Password:</label>
           <br />
           <input
-            type="text"
-            value={Npassword}
+            type="password"
+            value={newpassword}
             onChange={(e) => setNpassword(e.currentTarget.value)}
           />
           <br />
           <label>Confirm Password:</label>
           <br />
           <input
-            type="text"
+            type="password"
             value={Cpassword}
             onChange={(e) => setCpassword(e.currentTarget.value)}
           />
           
           <br />
+          <h3 className='PWerrormsg'>{errmessage} </h3>
           
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={addLink}>
+          <Button className='ChangePwBtn' onClick={ChangePassword}>
             Submit
           </Button>
-          <Button color="danger" onClick={() => setModal(!modal)}>
+          <Button className='ChangePwBtn' onClick={() => setModal(!modal)}>
             Cancel
           </Button>
         </Modal.Footer>

@@ -2,21 +2,26 @@ import { useState, useEffect} from "react";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
-import { GetZoneThunk } from "../../store/getzone/actions"
+import { GetZoneThunk } from "../../store/getzone/actions";
+import { GetCropstoreThunk ,GetCropinfoThunk} from "../../store/Progress/actions"
 
 
 
 
 export const Clientplanner = () => {
-    const [FPzone, setFPzone] = useState("hi");
+    const [FPzone, setFPzone] = useState("A");
     const [FPcropT, setFPcropT] = useState("");
     const [FPcropN, setFPcropN] = useState("");
     const [FPSowD, setFPSowD] = useState("");
     const [FPIrriD, setFPIrriD] = useState("");
     const [FPHarD, setFPHarD] = useState("");
     const [FPyield, setFPyield] = useState("");
-    const [FPContri, setFPContri] = useState("");
+    const [FPContri, setFPContri] = useState("Event");
 
+
+    const CropFromRedux = useSelector((state) => state.ProgressStore.CropStore);
+    const CropinfoFromRedux = useSelector((state) => state.ProgressStore.CropInfo[0]);
+    
     const clearPlannerState = () => {
         setFPzone("");
         setFPcropT("");
@@ -28,18 +33,31 @@ export const Clientplanner = () => {
         setFPContri("");
     }
 
-    const handleChange = (e) => {
+    const handleZoneChange = (e) => {
         console.log(e.target.value)
         setFPzone(e.target.value);
-        
       };
+    
+    const handleNameChange = (e) => {
+    console.log(e.target.value)
+    setFPcropN(e.target.value);
+    dispatch(GetCropinfoThunk(e.target.value))
+    setFPcropT(CropinfoFromRedux.type);
+    setFPIrriD(CropinfoFromRedux.Irr_Period);
+    };
+
+    const handleContriChange = (e) => {
+    console.log(e.target.value)
+    setFPContri(e.target.value);
+    };
 
     const GzoneFromRedux = useSelector((state) => state.zoneStore.clientZone);
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log("on dispatch")
         dispatch(GetZoneThunk())
+        dispatch(GetCropstoreThunk())
+        
     }, [dispatch])
 
     const plannerSubmit = () => {
@@ -54,6 +72,7 @@ export const Clientplanner = () => {
             HarD:FPHarD,
             yield: FPyield,
             Contri: FPContri,
+            image:CropinfoFromRedux.image,
         }
         let id = jwt_decode(localStorage.getItem("LoggedInToken")).id
  
@@ -78,34 +97,31 @@ export const Clientplanner = () => {
                     <td>Zone</td>
                     <td>
                   
-                    <select name={FPzone} onChange={handleChange} className="FramPzone">
+                    <select name={FPzone} onChange={handleZoneChange} className="FramPzone">
+                        
                     {GzoneFromRedux.length>0?GzoneFromRedux.map((zone) => (<option key={zone.area} value={zone.area}>{zone.area}</option>)):
                        <option>Please contact admin</option>}
                     </select>
-                        {/* <input 
-                        type="text" 
-                        value={FPzone}
-                        onChange={(e) => setFPzone(e.currentTarget.value)}
-                        className="FramPzone" /> */}
-                    </td>
-                </tr>
-                <tr>
-                    <td>Crop Type</td>
-                    <td><input 
-                    type="text" 
-                    value={FPcropT} 
-                    onChange={(e) => setFPcropT(e.currentTarget.value)}
-                    className="FramPcropT" />
                     </td>
                 </tr>
                 <tr>
                     <td>Crop Name</td>
                     <td>
+                    <select name={FPcropN} onChange={handleNameChange} className="FramPcropN">
+                    <option>Please select the crop</option>
+                    {CropFromRedux.length>0?CropFromRedux.map((l) => (<option key={l.id} value={l.name}>{l.name}</option>)):
+                       <option>Please contact admin</option>}
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Crop Type</td>
+                    <td>
                         <input 
                         type="text" 
-                        value={FPcropN}
-                        onChange={(e) => setFPcropN(e.currentTarget.value)}
-                        className="FramPcropN" />
+                        value={FPcropT}
+                        onChange={(e) => setFPcropT(e.currentTarget.value)}
+                        className="FramPcropT" />
                     </td>
                 </tr>
                 <tr>
@@ -151,11 +167,11 @@ export const Clientplanner = () => {
                 <tr>
                     <td>Contribution</td>
                     <td>
-                        <input 
-                        type="text" 
-                        value={FPContri}
-                        onChange={(e) => setFPContri(e.currentTarget.value)}
-                        className="FramPCont" />
+                        <select name={FPContri}  onChange={handleContriChange} className="FramPCont">
+                            <option value="Event">Event</option>
+                            <option value="Donation">Donation</option>
+                        </select>
+                        
                     </td>
                 </tr>
                 </tbody>

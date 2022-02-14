@@ -359,3 +359,23 @@ a:hover {
 }
 
 
+/* Change Pw*/
+.ChangePwBtn{
+    background-color: black;
+    font-size: 20px;
+    border: none;
+}
+
+.PWerrormsg{
+    color: red;
+}
+
+/* footer*/
+.page-footer {
+    background-color: #788085;
+    color: white;
+}
+.footerlogo{
+    width: 15vh;
+    height: 8vh;
+}
