@@ -22,30 +22,32 @@ export default function Step2(props) {
         <div className="step">
           <div className="main-body-container" id="section2">
             <button className="section_btn" onClick={() => props.setStep(3)}>
-              <img className="section_img" src={plantingImg} />
+              <img className="section_img" src={plantingImg} alt="" />
               Planting
             </button>
             <button className="section_btn" onClick={() => props.setStep(4)}>
-              <img className="section_img" src={irrigationImg} />
+              <img className="section_img" src={irrigationImg} alt="" />
               Irrigation
             </button>
             <button className="section_btn" onClick={() => props.setStep(5)}>
-              <img className="section_img" src={groomingImg} />
+              <img className="section_img" src={groomingImg} alt="" />
               Grooming
             </button>
             <button className="section_btn" onClick={() => props.setStep(6)}>
-              <img className="section_img" src={harvestImg} />
+              <img className="section_img" src={harvestImg} alt="" />
               Harvest
             </button>
           </div>
         </div>
+        <div className="q-box__buttons">
+          <button
+            className="prev_btn"
+            onClick={() => props.setStep(props.Step - 1)}
+          >
+            Previous
+          </button>
+        </div>
       </div>
-      <button
-        className="prev_btn"
-        onClick={() => props.setStep(props.Step - 1)}
-      >
-        Previous
-      </button>
     </>
   );
 }

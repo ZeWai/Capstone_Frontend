@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import { AddFarmlogThunk } from "../../../store/Farmlog/actions";
-import AddFarmlog from "../../../store/Farmlog/actions";
+import { useState } from "react";
 import Step1 from "./Farm_log/Step1_farmlogInfo";
 import Step2 from "./Farm_log/Step2_sectionSelect";
 import Step3 from "./Farm_log/Step3_planting";
@@ -10,6 +7,8 @@ import Step5 from "./Farm_log/Step5_grooming";
 import Step6 from "./Farm_log/Step6_harvest";
 import Step7 from "./Farm_log/Step7_gardenManagement";
 import Step8 from "./Farm_log/Step8_otherIssues";
+import Step9 from "./Farm_log/Step9_Result";
+import Step10 from "./Farm_log/Step10_Success";
 import "./Farmlog.css";
 
 export default function Content() {
@@ -54,6 +53,16 @@ export default function Content() {
       )}
       {farmlogCurrentView === 8 ? (
         <Step8 Step={farmlogCurrentView} setStep={setfarmlogCurrentView} />
+      ) : (
+        <></>
+      )}
+      {farmlogCurrentView === 9 ? (
+        <Step9 Step={farmlogCurrentView} setStep={setfarmlogCurrentView} />
+      ) : (
+        <></>
+      )}
+      {farmlogCurrentView === 10 ? (
+        <Step10 Step={farmlogCurrentView} setStep={setfarmlogCurrentView} />
       ) : (
         <></>
       )}

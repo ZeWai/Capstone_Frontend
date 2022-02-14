@@ -21,10 +21,11 @@ export default function Step8(props) {
     }));
   }
 
-  const onSubmit = () => {
+  function onNext() {
     console.log(otherIssuesInfo);
     dispatch(AddOtherIssues(otherIssuesInfo));
-  };
+    props.setStep(9);
+  }
 
   return (
     <>
@@ -47,8 +48,8 @@ export default function Step8(props) {
               <p>1. Please write down other issues below if any.</p>
               <textarea
                 name="s7q1"
-                onChange={(e) => handleChange(e)}
                 {...register("s7q1")}
+                onChange={(e) => handleChange(e)}
               ></textarea>
             </div>
             <div className="s7q2_album">
@@ -60,8 +61,8 @@ export default function Step8(props) {
               <input
                 className="upload-input"
                 type="file"
-                onChange={(e) => handleChange(e)}
                 {...register("s7q2_album")}
+                onChange={(e) => handleChange(e)}
               />
             </div>
             <div className="s7q2_image">
@@ -73,16 +74,24 @@ export default function Step8(props) {
               <input
                 className="upload-input"
                 type="file"
-                onChange={(e) => handleChange(e)}
                 {...register("s7q2_image")}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
         </div>
+        <div className="q-box__buttons ">
+          <button
+            className="prev_btn"
+            onClick={() => props.setStep(props.Step - 1)}
+          >
+            Previous
+          </button>
+          <button className="next_btn" onClick={() => onNext()}>
+            Next
+          </button>
+        </div>
       </div>
-      <button className="submit_btn" onClick={() => onSubmit()}>
-        Submit
-      </button>
     </>
   );
 }

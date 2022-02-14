@@ -7,6 +7,7 @@ export const ADD_GROOMING = "ADD_GROOMING";
 export const ADD_HARVEST = "ADD_HARVEST ";
 export const ADD_GARDENMAN = "ADD_GARDENMAN";
 export const ADD_OTHERISSIUES = "ADD_OTHERISSIUES";
+export const ADD_ALL_INFO = "ADD_ALL_INFO";
 
 export function AddFarmlog(farmlogInfo) {
   return {
@@ -54,8 +55,8 @@ export function AddOtherIssues(otherIssuesInfo) {
   };
 }
 
-export function AddFarmlogThunk(farmlogInfo) {
-  console.log("add farmlogInfo thunk:", farmlogInfo);
+export function AddFarmlogThunk(allFarmlogInfo) {
+  console.log("add farmlogInfo thunk:", allFarmlogInfo);
 
   return (dispatch) => {
     console.log("Adding farmlogInfo");
@@ -63,7 +64,7 @@ export function AddFarmlogThunk(farmlogInfo) {
     axios
       .post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog`,
-        { items: farmlogInfo.items },
+        { items: allFarmlogInfo.items },
         {
           headers: {
             Authorization: `Bearer ${token}`,

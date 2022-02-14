@@ -49,6 +49,11 @@ p {
   line-height: 16px;
 }
 
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* Progress dot */
 #dot-container {
   width: 90px;
@@ -112,13 +117,15 @@ p {
 }
 
 /* q-box-btn */
-#q-box__buttons {
+
+.q-box__buttons {
   display: flex;
-  justify-content: center;
-  margin: 1.5em 0;
+  justify-content: space-between;
+  width: 327px;
+  margin: 1.5em auto;
 }
 
-button#prev-btn {
+button.prev_btn {
   position: relative;
   width: 104px;
   height: 28px;
@@ -134,8 +141,8 @@ button#prev-btn {
   font-size: 14px;
 }
 
-button#next-btn,
-button#submit-btn {
+button.next_btn,
+button.submit_btn {
   position: relative;
   width: 104px;
   height: 28px;
@@ -148,6 +155,10 @@ button#submit-btn {
   border: 0;
   border-radius: 25px;
   font-size: 14px;
+}
+
+.toRightBtn {
+  justify-content: flex-end;
 }
 
 /* tick & cross label */
@@ -320,6 +331,7 @@ button#submit-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16px;
 }
 
 .num_input p {
@@ -331,12 +343,14 @@ button#submit-btn {
   background-color: transparent;
 }
 
-.num_input i {
+.num_input #s6q2-minus,
+.num_input #s6q2-plus {
   font-size: 40px;
-  color: #f5f5f5;
+  color: #eaeaea;
 }
 
-.num_input i:hover {
+.num_input #s6q2-minus:hover,
+.num_input #s6q2-plus:hover {
   font-size: 40px;
   color: var(--color3);
 }
@@ -354,12 +368,11 @@ button#submit-btn {
 .upload-input::file-selector-button {
   border: 1px solid var(--color3);
   box-sizing: border-box;
-  /* Mobile/ Button */
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
   border-radius: 16px;
   padding: 5px 10px;
   background-color: transparent;
   color: var(--color3);
+  cursor: pointer;
 }
 
 /* Section Select */
@@ -386,4 +399,44 @@ button#submit-btn {
   height: 25px;
   width: 25px;
   margin-right: 10px;
+}
+
+/* Step9 - Confirm page */
+.breakLine {
+  border-top: 1px solid var(--color4);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.step9_arrow {
+  text-align: center;
+}
+
+.step9_arrow button {
+  border: none;
+  background-color: transparent;
+  font-size: 25px;
+}
+
+.step9_Question {
+  font-weight: 700;
+}
+
+.step9_Answer {
+  margin-left: 15px;
+}
+
+.step9_Remarks {
+  color: var(--color4);
+  margin-left: 15px;
+}
+
+.step9_row {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 15px 15px 15px;
+}
+
+.step9_Dropbox {
+  margin: 0 15px;
 }

@@ -3,6 +3,9 @@ import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddIrrigation } from "../../../../store/Farmlog/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Step4(props) {
   const dispatch = useDispatch();
@@ -18,6 +21,10 @@ export default function Step4(props) {
     s3q2_frequency: null,
     s3q3: null,
   });
+
+  let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
+
+  let crossIcon = <FontAwesomeIcon icon={faTimes} className="fa-times" />;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -62,11 +69,11 @@ export default function Step4(props) {
                     name="s3q1"
                     type="radio"
                     defaultValue="Yes"
-                    onChange={(e) => handleChange(e)}
                     {...register("s3q1")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s3q1_yes">
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -76,11 +83,11 @@ export default function Step4(props) {
                     name="s3q1"
                     type="radio"
                     defaultValue="No"
-                    onChange={(e) => handleChange(e)}
                     {...register("s3q1")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s3q1_no">
-                    <i className="fas fa-times"></i> No special issues
+                    {crossIcon}No special issues
                   </label>
                 </div>
               </div>
@@ -93,8 +100,8 @@ export default function Step4(props) {
                   id="s3q1_remarks"
                   name="s3q1_remarks"
                   type="text"
-                  onChange={(e) => handleChange(e)}
                   {...register("s3q1_remarks")}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>
@@ -109,11 +116,11 @@ export default function Step4(props) {
                     name="s3q2"
                     type="radio"
                     defaultValue="Yes"
-                    onChange={(e) => handleChange(e)}
                     {...register("s3q2")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s3q2_yes">
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -123,11 +130,11 @@ export default function Step4(props) {
                     name="s3q2"
                     type="radio"
                     defaultValue="No"
-                    onChange={(e) => handleChange(e)}
                     {...register("s3q2")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s3q2_no">
-                    <i className="fas fa-times"></i> No new update
+                    {crossIcon}No new update
                   </label>
                 </div>
               </div>
@@ -137,8 +144,8 @@ export default function Step4(props) {
                   id="s3q2"
                   name="s3q2_date_start"
                   type="date"
-                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_date_start")}
+                  onChange={(e) => handleChange(e)}
                 />
                 <p>TO</p>
                 <input
@@ -146,8 +153,8 @@ export default function Step4(props) {
                   id="s3q2"
                   name="s3q2_date_end"
                   type="date"
-                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_date_end")}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className="s3question_others">
@@ -156,8 +163,8 @@ export default function Step4(props) {
                   id="s3q2"
                   name="s3q2_date_start"
                   type="time"
-                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_time_start")}
+                  onChange={(e) => handleChange(e)}
                 />
                 <p>TO</p>
                 <input
@@ -165,16 +172,16 @@ export default function Step4(props) {
                   id="s3q2"
                   name="s3q2_date_end"
                   type="time"
-                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_time_end")}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
               <div className="question_dropdown">
                 <select
                   className="custom-select"
                   name="s3q2_frequency"
-                  onChange={(e) => handleChange(e)}
                   {...register("s3q2_frequency")}
+                  onChange={(e) => handleChange(e)}
                 >
                   <option defaultValue>Frequency</option>
                   <option className="options" defaultValue="1">
@@ -206,8 +213,8 @@ export default function Step4(props) {
                     placeholder="12345678"
                     id="s3q3"
                     name="s3q3"
-                    onChange={(e) => handleChange(e)}
                     {...register("s3q3")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <p className="litres_input_label">litres</p>
                 </div>
@@ -215,17 +222,15 @@ export default function Step4(props) {
             </div>
           </div>
         </div>
+        <div className="q-box__buttons">
+          <button className="prev_btn" onClick={() => props.setStep(2)}>
+            Previous
+          </button>
+          <button className="next_btn" onClick={() => onNext()}>
+            Next
+          </button>
+        </div>
       </div>
-
-      <button
-        className="prev_btn"
-        onClick={() => props.setStep(props.Step - 2)}
-      >
-        Previous
-      </button>
-      <button className="next_btn" onClick={() => onNext()}>
-        Next
-      </button>
     </>
   );
 }

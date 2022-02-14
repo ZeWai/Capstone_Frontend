@@ -8,9 +8,9 @@ export default function Step6(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
   let [harvestInfo, setharvestInfo] = useState({
-    s5q1: null,
-    s5q2: null,
-    s5q3: null,
+    s5q1: "",
+    s5q2: "",
+    s5q3: "",
   });
 
   function handleChange(e) {
@@ -52,12 +52,13 @@ export default function Step6(props) {
                 <div className="question_dropdown">
                   <select
                     className="custom-select"
-                    name="s5q1"
                     id="s5q1"
-                    onChange={(e) => handleChange(e)}
                     {...register("s5q1")}
+                    onChange={(e) => handleChange(e)}
                   >
-                    <option selected>Please select</option>
+                    <option hidden defaultValue>
+                      Please select
+                    </option>
                     <option className="options" value="Beet">
                       Beet
                     </option>
@@ -78,10 +79,9 @@ export default function Step6(props) {
                     <input
                       type="text"
                       placeholder="2.13"
-                      id="s5q2"
                       name="s5q2"
-                      onChange={(e) => handleChange(e)}
                       {...register("s5q2")}
+                      onChange={(e) => handleChange(e)}
                     />
                     <div>
                       <p className="litres_input_label" id="basic-addon2">
@@ -101,10 +101,12 @@ export default function Step6(props) {
                     className="custom-select"
                     name="s5q3"
                     id="s5q3"
-                    onChange={(e) => handleChange(e)}
                     {...register("s5q3")}
+                    onChange={(e) => handleChange(e)}
                   >
-                    <option selected>Please select</option>
+                    <option hidden defaultValue>
+                      Please select
+                    </option>
                     <option className="options" value="end-cycle">
                       End Cycle
                     </option>
@@ -117,16 +119,15 @@ export default function Step6(props) {
             </div>
           </div>
         </div>
+        <div className="q-box__buttons">
+          <button className="prev_btn" onClick={() => props.setStep(2)}>
+            Previous
+          </button>
+          <button className="next_btn" onClick={() => onNext()}>
+            Next
+          </button>
+        </div>
       </div>
-      <button
-        className="prev_btn"
-        onClick={() => props.setStep(props.Step - 4)}
-      >
-        Previous
-      </button>
-      <button className="next_btn" onClick={() => onNext()}>
-        Next
-      </button>
     </>
   );
 }

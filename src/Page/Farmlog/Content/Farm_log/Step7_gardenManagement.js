@@ -3,10 +3,16 @@ import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddGardenMan } from "../../../../store/Farmlog/actions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Step7(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
+  let [count, setCount] = useState(0);
   let [gardenManInfo, setgardenManInfo] = useState({
     s6q1: null,
     s6q1_remarks: null,
@@ -30,8 +36,12 @@ export default function Step7(props) {
   const onNext = () => {
     console.log(gardenManInfo);
     dispatch(AddGardenMan(gardenManInfo));
-    props.setStep(7);
+    props.setStep(8);
   };
+
+  let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
+
+  let crossIcon = <FontAwesomeIcon icon={faTimes} className="fa-times" />;
 
   return (
     <>
@@ -62,14 +72,14 @@ export default function Step7(props) {
                     name="s6q1"
                     type="radio"
                     value="Yes"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q1")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label
                     className="form-check-label question_label"
                     htmlFor="s6q1_yes"
                   >
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -79,14 +89,14 @@ export default function Step7(props) {
                     name="s6q1"
                     type="radio"
                     value="No"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q1")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label
                     className="form-check-label question_label"
                     htmlFor="s6q1_no"
                   >
-                    <i className="fas fa-times"></i> No special issues
+                    {crossIcon} No special issues
                   </label>
                 </div>
               </div>
@@ -100,8 +110,8 @@ export default function Step7(props) {
                     id="s6q1_remarks"
                     name="s6q1_remarks"
                     type="text"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q1_remarks")}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -111,9 +121,19 @@ export default function Step7(props) {
               <div className="question_others">
                 <p>2. No. of garden waste bag(s) collected </p>
                 <div className="num_input">
-                  <i className="fas fa-minus-circle" id="s6q2-minus"></i>
-                  <p id="s6q2_num">0</p>
-                  <i className="fas fa-plus-circle" id="s6q2-add"></i>
+                  <FontAwesomeIcon
+                    icon={faMinusCircle}
+                    id="s6q2-minus"
+                    onClick={() => setCount(count - 1)}
+                  />
+                  <p id="s6q2_num" {...register("s6q2_num")}>
+                    {count}
+                  </p>
+                  <FontAwesomeIcon
+                    icon={faPlusCircle}
+                    id="s6q2-plus"
+                    onClick={() => setCount(count + 1)}
+                  />
                 </div>
               </div>
             </div>
@@ -128,14 +148,14 @@ export default function Step7(props) {
                     name="s6q3"
                     type="radio"
                     value="Yes"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q3")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label
                     className="form-check-label question_label"
                     htmlFor="s6q3_yes"
                   >
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -145,14 +165,14 @@ export default function Step7(props) {
                     name="s6q3"
                     type="radio"
                     value="No"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q3")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label
                     className="form-check-label question_label"
                     htmlFor="s6q3_no"
                   >
-                    <i className="fas fa-times"></i> No refill needed
+                    {crossIcon} No refill needed
                   </label>
                 </div>
               </div>
@@ -161,10 +181,12 @@ export default function Step7(props) {
                   <select
                     className="custom-select"
                     name="s6q3_fertiliser"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q3_fertiliser")}
+                    onChange={(e) => handleChange(e)}
                   >
-                    <option defaultValue>Fertiliser</option>
+                    <option hidden defaultValue>
+                      Fertiliser
+                    </option>
                     <option className="options" defaultValue="Lime">
                       Lime
                     </option>
@@ -181,10 +203,10 @@ export default function Step7(props) {
                   <select
                     className="custom-select"
                     name="s6q3_quantity"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q3_quantity")}
+                    onChange={(e) => handleChange(e)}
                   >
-                    <option selected>Quantity</option>
+                    <option hidden>Quantity</option>
                     <option className="options" value="1">
                       1
                     </option>
@@ -226,8 +248,8 @@ export default function Step7(props) {
                     id="s6q3_remarks"
                     name="s6q3_remarks"
                     type="text"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q3_remarks")}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -243,14 +265,14 @@ export default function Step7(props) {
                     name="s6q4"
                     type="radio"
                     value="Yes"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q4")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label
                     className="form-check-label question_label"
                     htmlFor="s6q4_yes"
                   >
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -260,14 +282,14 @@ export default function Step7(props) {
                     name="s6q4"
                     type="radio"
                     value="No"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q4")}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label
                     className="form-check-label question_label"
                     htmlFor="s6q4_no"
                   >
-                    <i className="fas fa-times"></i> No special issues
+                    {crossIcon} No special issues
                   </label>
                 </div>
               </div>
@@ -281,24 +303,23 @@ export default function Step7(props) {
                     id="s6q4_remarks"
                     name="s6q4_remarks"
                     type="text"
-                    onChange={(e) => handleChange(e)}
                     {...register("s6q4_remarks")}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div className="q-box__buttons">
+          <button className="prev_btn" onClick={() => props.setStep(2)}>
+            Previous
+          </button>
+          <button className="next_btn" onClick={() => onNext()}>
+            Next
+          </button>
+        </div>
       </div>
-      <button
-        className="prev_btn"
-        onClick={() => props.setStep(props.Step - 1)}
-      >
-        Previous
-      </button>
-      <button className="next_btn" onClick={() => onNext()}>
-        Next
-      </button>
     </>
   );
 }

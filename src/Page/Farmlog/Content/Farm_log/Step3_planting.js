@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddPlanting } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Step3(props) {
   const dispatch = useDispatch();
@@ -20,6 +22,10 @@ export default function Step3(props) {
     s2q4: null,
     s2q4_remarks: null,
   });
+
+  let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
+
+  let crossIcon = <FontAwesomeIcon icon={faTimes} className="fa-times" />;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -67,7 +73,8 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s2q1_yes">
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon}
+                    Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -81,7 +88,8 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q1_no">
-                    <i className="fas fa-times"></i> No special issues
+                    {crossIcon}
+                    No special issues
                   </label>
                 </div>
               </div>
@@ -114,7 +122,7 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s2q2_yes">
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -128,7 +136,7 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q2_no">
-                    <i className="fas fa-times"></i> No ploughing has been done
+                    {crossIcon} No ploughing has been done
                   </label>
                 </div>
               </div>
@@ -140,17 +148,19 @@ export default function Step3(props) {
                     {...register("s2q2_fertiliser")}
                     onChange={(e) => handleChange(e)}
                   >
-                    <option defaultValue>Fertiliser Type</option>
-                    <option className="options" defaultValue="Lime">
+                    <option hidden defaultvalue>
+                      Fertiliser Type
+                    </option>
+                    <option className="options" value="Lime">
                       Lime
                     </option>
-                    <option className="options" defaultValue="White Lime">
+                    <option className="options" value="White Lime">
                       White Lime
                     </option>
-                    <option className="options" defaultValue="Bone Meal">
+                    <option className="options" value="Bone Meal">
                       Bone Meal
                     </option>
-                    <option className="options" defaultValue="poultry litter">
+                    <option className="options" value="poultry litter">
                       poultry litter
                     </option>
                   </select>
@@ -185,7 +195,7 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q3_yes">
-                    <i className="fas fa-check"></i> Yes, state below
+                    {checkIcon} Yes, state below
                   </label>
                 </div>
                 <div className="each_question">
@@ -199,7 +209,7 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className=" question_label" htmlFor="s2q3_no">
-                    <i className="fas fa-times"></i> No seeds were sowed
+                    {crossIcon} No seeds were sowed
                   </label>
                 </div>
               </div>
@@ -234,8 +244,7 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s2q4_yes">
-                    <i className="fas fa-check"></i> Fertilisers applied on all
-                    planters
+                    {checkIcon} Fertilisers applied on all planters
                   </label>
                 </div>
                 <div className="each_question">
@@ -249,7 +258,7 @@ export default function Step3(props) {
                     onChange={(e) => handleChange(e)}
                   />
                   <label className="question_label" htmlFor="s2q4_no">
-                    <i className="fas fa-times"></i> No fertilising was done
+                    {crossIcon} No fertilising was done
                   </label>
                 </div>
               </div>
@@ -269,16 +278,15 @@ export default function Step3(props) {
             </div>
           </div>
         </div>
+        <div className="q-box__buttons">
+          <button className="prev_btn" onClick={() => props.setStep(2)}>
+            Previous
+          </button>
+          <button className="next_btn" onClick={() => onNext()}>
+            Next
+          </button>
+        </div>
       </div>
-      <button
-        className="prev_btn"
-        onClick={() => props.setStep(props.Step - 1)}
-      >
-        Previous
-      </button>
-      <button className="next_btn" onClick={() => onNext()}>
-        Next
-      </button>
     </>
   );
 }
