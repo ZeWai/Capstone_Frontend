@@ -20,7 +20,7 @@ export default function Todolist(props) {
     if (sowing === "false")
       return "Sow 🌱"
     else if (harvest === "false" && harvest_date > today) {
-      if ((today - sowing_date) % irrigate == 0) {
+      if ((today - sowing_date) % irrigate === 0) {
         return "Irrigate 💧"
       }     }
     else if (harvest === "false" && harvest_date <= today) {

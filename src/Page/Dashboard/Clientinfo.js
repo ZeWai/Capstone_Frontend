@@ -9,7 +9,7 @@ export const Clientinfo = () => {
     useEffect(() => {
         console.log("on dispatch")
         dispatch(GetClientThunk())
-    }, [])
+    }, [dispatch])
     return (
         <>
             <section className='intro my-2'>
