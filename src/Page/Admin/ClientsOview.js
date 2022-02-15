@@ -88,7 +88,7 @@ export const ClientsOview = () => {
                 </div>
             </div>
             {FarmerListByClient && FarmerListByClient[0] !== undefined ? FarmerListByClient.map((Farmer, index) =>
-                <div key={Farmer.id}>
+                <div key={"overview-wrapper-" + Farmer.id}>
                     <div className="admin-client-overview-wrapper">
                         <div className="admin-list row" style={index % 2 === 0 ? { backgroundColor: "#FFFFFF" } : { backgroundColor: "#f5f5f5" }}>
                             <p className="admin-list-item-user col-6">{Farmer.name}</p>
@@ -114,26 +114,28 @@ export const ClientsOview = () => {
                 <Modal.Header className="admin-popup-header">
                     <h1 className="admin-popup-header-title">Assign Farmer</h1>
                 </Modal.Header>
-                <Modal.Body className="admin-popup-body row">
+                <Modal.Body>
                     {
                         Farmers && Farmers[0] !== undefined ?
                             Farmers.map((farmer) => {
                                 return (
                                     <>
-                                        <div className="admin-popup-list-name-wrapper col-6">
-                                            <div className="admin-popup-list-name-inner-wrapper row">
-                                                <p className="admin-popup-list-name col-12">{farmer.name}</p>
+                                        < div className="admin-popup-body row" key={"admin-popup-list-li-" + farmer.name} >
+                                            <div className="admin-popup-list-name-wrapper col-6">
+                                                <div className="admin-popup-list-name-inner-wrapper row">
+                                                    <p className="admin-popup-list-name col-12">{farmer.name}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="admin-popup-list-btn-wrapper col-6">
-                                            <div className="admin-popup-list-btn-inner-wrapper row">
-                                                {
-                                                    CurrentFarmerList.indexOf(farmer.id) !== -1
-                                                        ?
-                                                        <Button key={"farmer-" + farmer.id + "-minus"} className="admin-popup-list-minus-btn" id="admin-popup-list-minus-btn" onClick={assignFarmer} name={farmer.id}>-</Button>
-                                                        :
-                                                        <Button key={"farmer-" + farmer.id + "-add"} className="admin-popup-list-add-btn" id="admin-popup-list-add-btn" onClick={assignFarmer} name={farmer.id}>+</Button>
-                                                }
+                                            <div className="admin-popup-list-btn-wrapper col-6">
+                                                <div className="admin-popup-list-btn-inner-wrapper row">
+                                                    {
+                                                        CurrentFarmerList.indexOf(farmer.id) !== -1
+                                                            ?
+                                                            <Button key={"farmer-" + farmer.id + "-minus"} className="admin-popup-list-minus-btn" id="admin-popup-list-minus-btn" onClick={assignFarmer} name={farmer.id}>-</Button>
+                                                            :
+                                                            <Button key={"farmer-" + farmer.id + "-add"} className="admin-popup-list-add-btn" id="admin-popup-list-add-btn" onClick={assignFarmer} name={farmer.id}>+</Button>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </>

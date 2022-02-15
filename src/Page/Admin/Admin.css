@@ -160,7 +160,8 @@
   border: 2px solid black;
 }
 .admin-client-create-btn,
-.admin-farmer-create-btn {
+.admin-farmer-create-btn,
+.admin-create-btn{
   background: #f5f5f5;
   margin-top: 20px;
   width: 143px;

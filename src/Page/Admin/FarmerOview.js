@@ -115,26 +115,28 @@ export const FarmerOview = () => {
                 <Modal.Header className="admin-popup-header">
                     <h1 className="admin-popup-header-title">Assign Farmer</h1>
                 </Modal.Header>
-                <Modal.Body className="admin-popup-body row">
+                <Modal.Body>
                     {
                         Clients && Clients[0] !== undefined ?
                             Clients.map((clients) => {
                                 return (
                                     <>
-                                        <div className="admin-popup-list-name-wrapper col-6">
-                                            <div className="admin-popup-list-name-inner-wrapper row">
-                                                <p className="admin-popup-list-name col-12">{clients.name}</p>
+                                        <div className="admin-popup-body row" key={"admin-popup-list-li-" + clients.name}>
+                                            <div className="admin-popup-list-name-wrapper col-6">
+                                                <div className="admin-popup-list-name-inner-wrapper row">
+                                                    <p className="admin-popup-list-name col-12">{clients.name}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="admin-popup-list-btn-wrapper col-6">
-                                            <div className="admin-popup-list-btn-inner-wrapper row">
-                                                {
-                                                    CurrentClientList.indexOf(clients.id) !== -1
-                                                        ?
-                                                        <Button key={"client-" + clients.id + "-minus"} className="admin-popup-list-minus-btn" id="admin-popup-list-minus-btn" onClick={assignPlace} name={clients.id}>-</Button>
-                                                        :
-                                                        <Button key={"client-" + clients.id + "-add"} className="admin-popup-list-add-btn" id="admin-popup-list-add-btn" onClick={assignPlace} name={clients.id}>+</Button>
-                                                }
+                                            <div className="admin-popup-list-btn-wrapper col-6">
+                                                <div className="admin-popup-list-btn-inner-wrapper row">
+                                                    {
+                                                        CurrentClientList.indexOf(clients.id) !== -1
+                                                            ?
+                                                            <Button key={"client-" + clients.id + "-minus"} className="admin-popup-list-minus-btn" id="admin-popup-list-minus-btn" onClick={assignPlace} name={clients.id}>-</Button>
+                                                            :
+                                                            <Button key={"client-" + clients.id + "-add"} className="admin-popup-list-add-btn" id="admin-popup-list-add-btn" onClick={assignPlace} name={clients.id}>+</Button>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </>
