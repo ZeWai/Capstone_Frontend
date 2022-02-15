@@ -9,6 +9,7 @@ import { cropReducer } from "./Getcrop/reducers";
 import { farmlogReducer } from "./Farmlog/reducers";
 import { ScheduledReducer } from "./Scheduled/reducers";
 import { clientListReducer, farmerListReducer } from "./Client/reducers";
+import { Todoeducer } from "./Todo/reducers";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   farmerStore: farmerListReducer,
   ScheduledStore: ScheduledReducer,
   farmlogStore: farmlogReducer,
+  TodoStore:Todoeducer
 });
 
 export const store = createStore(

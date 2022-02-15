@@ -1,0 +1,51 @@
+.todolist{
+    border-top: 5px solid rgb(249, 246, 237);
+background-color: rgb(66, 193, 198);
+padding-bottom:10%;
+}
+
+.todo-title{
+    text-align: center;
+    font-weight: 700;
+    font-size: 2em;
+    color: white;
+    margin-bottom: 4%;
+}
+
+.todolist-card{
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 5% 5% 5%;
+    display: flex;
+    padding:3% 0;
+}
+
+.todo-zone{
+    font-weight: 700;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    height:auto;
+    width: 30%;
+    border-right: 2px solid rgb(66, 193, 198);
+}
+
+.todo-detail{
+    padding-left: 5%;
+    width: 60%;
+    float: right;
+}
+
+.noworkcard{
+    margin: 0 5%;
+    padding: 10%;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.noworkcard span{
+    font-weight: 700;
+}

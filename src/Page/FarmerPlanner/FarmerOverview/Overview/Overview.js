@@ -24,13 +24,13 @@ export default function Overview(props) {
     
     const type = ((type) => {
         if (type === "Fruit") {
-            return "🍎";
+            return "🍒";
         } else if (type === "Herb") {
             return '🌿';
         } else if (type ==="Flower") {
             return "🌸"
         } else if (type === "Root/Stem") {
-            return "🌱"
+            return "🥔"
         } else if (type === "Leafy Green") {
             return "🥬"
         }
