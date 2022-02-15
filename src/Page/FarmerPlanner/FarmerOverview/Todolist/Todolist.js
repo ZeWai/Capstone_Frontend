@@ -23,8 +23,6 @@ export default function Todolist(props) {
     if (harvest === "false" && harvest_date <= today) return "Harvest 🎑"
   }
 
-
-
   return (
     < div className="todolist"><div className='todo-title'>{props.currentview === "Overview" ? `Todo ${props.currentview}` : `Zone ${props.currentview} Todo `} </div>
       {todo && todo[0] !== undefined ? todo.map((data) => <div key={data.area.name} className="todolist-card">
