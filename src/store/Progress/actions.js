@@ -35,8 +35,6 @@ export function GetCropInfo(info) {
 
 export function GetProgressThunk() {
   return (dispatch) => {
-    console.log("on thunk")
-
     let token = localStorage.getItem("LoggedInToken");
     axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/progress`, {
       headers: {
@@ -55,12 +53,9 @@ export function GetProgressThunk() {
 
 export function GetProgressSThunk(id) {
   return (dispatch) => {
-    console.log("on thunk", id)
-
     axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/progressS/${id}`)
 
       .then((response) => {
-        console.log(response.data);
         dispatch(GetProgressS(response.data));
       });
   }
@@ -70,18 +65,15 @@ export function GetCropstoreThunk() {
   return (dispatch) => {
     axios.get(`http://localhost:8080/api/planner/getcropstore`)
       .then((response) => {
-        console.log(response.data);
         dispatch(GetCropStore(response.data));
       });
   }
 }
 
 export function GetCropinfoThunk(crop) {
-  console.log("AT", crop)
   return (dispatch) => {
     axios.get(`http://localhost:8080/api/planner/getcropinfo/${crop}`)
       .then((response) => {
-        console.log(response.data);
         dispatch(GetCropInfo(response.data));
       });
   }

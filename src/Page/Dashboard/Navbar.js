@@ -46,9 +46,7 @@ export function DashNavbar(props) {
     <div className="dashNav">
       <Navbar bg="black">
         <Container>
-          <Navbar.Brand href="#home">
-            <img src={navlogo} alt="rooftop-logo" />
-          </Navbar.Brand>
+          <Navbar.Brand ><img src={navlogo} alt="rooftop-logo"/></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="dashNav_part me-auto">
@@ -84,19 +82,19 @@ export function DashNavbar(props) {
               </Link>
             </Nav>
             <Nav>
-              <div className="nav-icon justify-content-end">
-                <button className="btn" onClick={() => setModal(!modal)}>
-                  <img className="nav-icon-link" src={navlogo2} alt="setting" />
-                </button>
-                <button className="btn" onClick={() => dispatch(logoutThunk())}>
-                  <img className="nav-icon-link" src={navlogo3} alt="logout" />
+              <div className='nav-icon justify-content-end'>
+              <button className="navbtn" onClick={() => setModal(!modal)}>
+              <img className="nav-icon-link" src={navlogo2} alt="setting"/>
+              </button>
+                <button className="navbtn" onClick={() => (dispatch(logoutThunk()))}>
+                  <img className="nav-icon-link" src={navlogo3} alt="logout"/>
                 </button>
               </div>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Modal show={modal}>
+      <Modal show={modal} className='ChangePwModal'>
         <Modal.Header>
           <h1>Change Password</h1>
         </Modal.Header>

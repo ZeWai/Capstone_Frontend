@@ -34,11 +34,12 @@
     margin: auto; 
     
 }
-.FarmPtable .FramPcropT, .FramPcropN, .FramPsowD, .FramPirrD, .FramPCont{
+.FarmPtable .FramPcropT, .FramPcropN, .FramPsowD, .FramPirrD, .FramPCont {
     width: 28vh;
     border-radius: 30px;
     border: none;
     background: #ece8e8;
+    padding-left:8px;
 }
 
 .FarmPtable td{
@@ -50,6 +51,7 @@ padding-top: 3vh;
     border-radius: 30px;
     border: none;
     background: #ece8e8;
+    padding-left:8px;
 }
 .FarmPcard .Frambtn{
     display: flex;

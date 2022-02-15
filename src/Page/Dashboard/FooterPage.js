@@ -5,6 +5,7 @@ import { Col, Container, Row, Footer } from 'mdbreact';
 
 export const FooterPage = () => {
   return (
+      <div className="Foter">
     <Footer color="stylish-color-dark" className="page-footer font-small pt-4 mt-4">
                 <Container className="text-left">
                     <Row>
@@ -13,12 +14,12 @@ export const FooterPage = () => {
                             
                         </Col>
                         <hr className="clearfix w-100 d-md-none" />
-                        <Col md="3">
+                        <Col className="About" md="3">
                             <h5>About Us</h5>
-                            <h3>We envision a future of sustainable cities and communities powered by urban farming</h3>
-                            <h3>We build and manage urban farms to transform under-utilised areas into vibrant natural spaces, create sources of nutritious organic food, and engage and empower communities to lead a sustainable lifestyle.</h3>
+                            <p>We envision a future of sustainable cities and communities powered by urban farming</p>
+                            <p>We build and manage urban farms to transform under-utilised areas into vibrant natural spaces, create sources of nutritious organic food, and engage and empower communities to lead a sustainable lifestyle.</p>
                         </Col>
-                        <Col md="3">
+                        <Col md="2">
                             
                         </Col>
                         <Col md="3">
@@ -52,6 +53,7 @@ export const FooterPage = () => {
                     </Container>
                 </div>
             </Footer>
+            </div>
   );
 }
 
