@@ -1,61 +1,95 @@
-import navlogo from './assets/white-logo.png';
-import navlogo2 from './assets/setting-icon.png';
-import navlogo3 from './assets/exit-icon.png';
-import { logoutThunk } from '../../store/auth/action';
+import navlogo from "./assets/white-logo.png";
+import navlogo2 from "./assets/setting-icon.png";
+import navlogo3 from "./assets/exit-icon.png";
+import { logoutThunk } from "../../store/auth/action";
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { Button, Modal } from "react-bootstrap";
-import axios from 'axios';
+import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useState } from "react";
-import { Container, Navbar, Nav} from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 
 export function DashNavbar(props) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [oldpassword, setOpassword] = useState("");
   const [newpassword, setNpassword] = useState([]);
   const [Cpassword, setCpassword] = useState("");
-  const [errmessage, setErrmessage] = useState("")
-  let id = jwt_decode(localStorage.getItem("LoggedInToken")).id
+  const [errmessage, setErrmessage] = useState("");
+  let id = jwt_decode(localStorage.getItem("LoggedInToken")).id;
 
   const ChangePassword = () => {
     if (newpassword === Cpassword && newpassword !== "" && newpassword !== "") {
-      axios.post(`${process.env.REACT_APP_API_SERVER}/api/users/${id}/passwordchange`, { oldpassword, newpassword })
-          .then((res) => setErrmessage(res.data));
-          if (errmessage==="Password changed"){
-            setModal(!modal)
-          }
-  } else if (oldpassword === "") {
-      setErrmessage("Please enter your old password")
-  } else if (newpassword === "" || newpassword.length < 6) {
-      setErrmessage("Please enter at least 6 characters for your new password")
-  } else if (Cpassword === "" || newpassword !== Cpassword) {
-      setErrmessage("Please confirm your new password")
-  }
-  setOpassword("")
-  setNpassword("")
-  setCpassword("")
+      axios
+        .post(
+          `${process.env.REACT_APP_API_SERVER}/api/users/${id}/passwordchange`,
+          { oldpassword, newpassword }
+        )
+        .then((res) => setErrmessage(res.data));
+      if (errmessage === "Password changed") {
+        setModal(!modal);
+      }
+    } else if (oldpassword === "") {
+      setErrmessage("Please enter your old password");
+    } else if (newpassword === "" || newpassword.length < 6) {
+      setErrmessage("Please enter at least 6 characters for your new password");
+    } else if (Cpassword === "" || newpassword !== Cpassword) {
+      setErrmessage("Please confirm your new password");
+    }
+    setOpassword("");
+    setNpassword("");
+    setCpassword("");
   };
-  
+
   return (
-    <div className='dashNav'>
-      <Navbar bg="black" >
+    <div className="dashNav">
+      <Navbar bg="black">
         <Container>
-          <Navbar.Brand href="#home"><img src={navlogo} alt="rooftop-logo"/></Navbar.Brand>
+          <Navbar.Brand href="#home">
+            <img src={navlogo} alt="rooftop-logo" />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="dashNav_part me-auto">
-              <Link to="/dashboard"><li><span><button className={props.Onview === "dashboard" ? "onthisBtn" : "notonthisBtn"} >Dashboard</button></span></li></Link>
-              <Link to="/client_planner"><li><span><button className={props.Onview === "scheduled" ? "onthisBtn" : "notonthisBtn"} >Farmer Planner</button></span></li></Link>
+              <Link to="/dashboard">
+                <li>
+                  <span>
+                    <button
+                      className={
+                        props.Onview === "dashboard"
+                          ? "onthisBtn"
+                          : "notonthisBtn"
+                      }
+                    >
+                      Dashboard
+                    </button>
+                  </span>
+                </li>
+              </Link>
+              <Link to="/client_planner">
+                <li>
+                  <span>
+                    <button
+                      className={
+                        props.Onview === "scheduled"
+                          ? "onthisBtn"
+                          : "notonthisBtn"
+                      }
+                    >
+                      Farm Planner
+                    </button>
+                  </span>
+                </li>
+              </Link>
             </Nav>
             <Nav>
-              <div className='nav-icon justify-content-end'>
-              <button className="btn" onClick={() => setModal(!modal)}>
-              <img className="nav-icon-link" src={navlogo2} alt="setting"/>
-              </button>
-                <button className="btn" onClick={() => (dispatch(logoutThunk()))}>
-                  <img className="nav-icon-link" src={navlogo3} alt="logout"/>
+              <div className="nav-icon justify-content-end">
+                <button className="btn" onClick={() => setModal(!modal)}>
+                  <img className="nav-icon-link" src={navlogo2} alt="setting" />
+                </button>
+                <button className="btn" onClick={() => dispatch(logoutThunk())}>
+                  <img className="nav-icon-link" src={navlogo3} alt="logout" />
                 </button>
               </div>
             </Nav>
@@ -65,7 +99,7 @@ export function DashNavbar(props) {
       <Modal show={modal}>
         <Modal.Header>
           <h1>Change Password</h1>
-          </Modal.Header>
+        </Modal.Header>
         <Modal.Body>
           <label>Old Password:</label>
           <br />
@@ -90,20 +124,19 @@ export function DashNavbar(props) {
             value={Cpassword}
             onChange={(e) => setCpassword(e.currentTarget.value)}
           />
-          
+
           <br />
-          <h3 className='PWerrormsg'>{errmessage} </h3>
-          
+          <h3 className="PWerrormsg">{errmessage} </h3>
         </Modal.Body>
         <Modal.Footer>
-          <Button className='ChangePwBtn' onClick={ChangePassword}>
+          <Button className="ChangePwBtn" onClick={ChangePassword}>
             Submit
           </Button>
-          <Button className='ChangePwBtn' onClick={() => setModal(!modal)}>
+          <Button className="ChangePwBtn" onClick={() => setModal(!modal)}>
             Cancel
           </Button>
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  );
 }
