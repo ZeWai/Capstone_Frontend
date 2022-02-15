@@ -235,6 +235,13 @@
   margin-left: 23px;
 }
 /*error msg*/
+.admin-client-overview-wrapper .admin-form-errMsg{
+  padding-top: 20px;
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .admin-form-errMsg{
   color: red;
   font-weight: 700;

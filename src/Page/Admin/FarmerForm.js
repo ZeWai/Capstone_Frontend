@@ -98,7 +98,7 @@ export const FarmerForm = () => {
             for (let field in farmerForm) {
                 formData.append(field, farmerForm[field]);
             }
-            axios.post('http://localhost:8080/api/signupFarmer', formData, config)
+            axios.post(`${process.env.REACT_APP_API_SERVER}/api/signupFarmer`, formData, config)
                 .then((res) => {
                     if (res.data === "Signup success!") {
                         //clear Farmer form state

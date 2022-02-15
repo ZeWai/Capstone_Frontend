@@ -166,7 +166,7 @@ export const ClientsForm = () => {
             for (let field in clientForm) {
                 formData.append(field, clientForm[field]);
             }
-            axios.post('http://localhost:8080/api/signup', formData, config)
+            axios.post(`${process.env.REACT_APP_API_SERVER}/api/signup`, formData, config)
                 .then((res) => {
                     if (res.data === "Signup success!") {
                         //clear client form state
