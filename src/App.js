@@ -4,11 +4,9 @@ import Home from "./Page/Home/Home";
 import { useSelector, useDispatch } from "react-redux";
 import Admin from "./Page/Admin/Admin";
 import Dashboard from "./Page/Dashboard/Dashboard";
-import FarmerPlanner from "./Page/Farmer/FarmerPlanner/FarmerPlanner";
+import FarmerPlanner from "./Page/FarmerPlanner/FarmerPlanner";
 import { Fplanner } from "./Page/ClientPlanner/Fplanner";
 import { logoutThunk } from "./store/auth/action";
-import FarmerSetting from "./Page/Farmer/FarmerSetting/FarmerSetting";
-import Farmlog from "./Page/Farmer/FarmerFarmlog/Farmlog";
 
 function ClientAuth({ children }) {
   let auth = useSelector((state) => state.authStore.auth);
@@ -36,14 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ClientAuth>
-                <Dashboard />
-              </ClientAuth>
-            }
-          />
+          <Route path="/dashboard" element={<ClientAuth><Dashboard /></ClientAuth>}/>
           <Route
             path="/client_planner"
             element={
@@ -60,30 +51,23 @@ function App() {
               </AdminAuth>
             }
           />
-          <Route
-            path="/farm_planner"
-            element={
-              <FarmerAuth>
-                <FarmerPlanner />
-              </FarmerAuth>
-            }
-          />
-          <Route
+          <Route path="/farm_planner" element={<FarmerAuth> <FarmerPlanner /> </FarmerAuth>}/>
+{/*           <Route
             path="/farm_planner/setting"
             element={
               <FarmerAuth>
                 <FarmerSetting />
               </FarmerAuth>
             }
-          />
-          <Route
+          /> */}
+{/*           <Route
             path="/farm_planner/farm_log"
             element={
               <FarmerAuth>
                 <Farmlog />
               </FarmerAuth>
             }
-          />
+          /> */}
 
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>

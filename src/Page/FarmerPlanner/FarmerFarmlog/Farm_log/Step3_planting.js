@@ -3,7 +3,7 @@
 import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { AddPlanting } from "../../../../../store/Farmlog/actions";
+import { AddPlanting } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";

@@ -2,7 +2,7 @@
 import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { AddGardenMan } from "../../../../../store/Farmlog/actions";
+import { AddGardenMan } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";

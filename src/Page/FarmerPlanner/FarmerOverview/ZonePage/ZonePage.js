@@ -1,7 +1,7 @@
 import './Zone.css'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { GetCropZoneThunk } from '../../../../../store/Getcrop/actions'
+import { GetCropZoneThunk } from '../../../../store/Getcrop/actions'
 
 export default function ZonePage(props) {
     const dispatch = useDispatch();
@@ -26,7 +26,6 @@ export default function ZonePage(props) {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-
     today = `${yyyy}-${mm}-${dd}`;
 
     const status = ((sowing, harvest, harvest_date, sowing_date) => {
