@@ -33,6 +33,14 @@ export default function Step7(props) {
     }));
   }
 
+  function minusCount(e) {
+    if ((e = 0)) {
+      return e;
+    } else {
+      return e;
+    }
+  }
+
   const onNext = () => {
     console.log(gardenManInfo);
     dispatch(AddGardenMan(gardenManInfo));
@@ -125,7 +133,7 @@ export default function Step7(props) {
                   <FontAwesomeIcon
                     icon={faMinusCircle}
                     id="s6q2-minus"
-                    onClick={() => setCount(count - 1)}
+                    onClick={() => setCount(minusCount(count))}
                   />
                   <p id="s6q2_num" {...register("s6q2_num")}>
                     {count}
@@ -177,82 +185,86 @@ export default function Step7(props) {
                   </label>
                 </div>
               </div>
-              <div className="question_others hide_other">
-                <div className="question_dropdown">
-                  <select
-                    className="custom-select"
-                    name="s6q3_fertiliser"
-                    {...register("s6q3_fertiliser")}
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option hidden defaultValue>
-                      Fertiliser
-                    </option>
-                    <option className="options" defaultValue="Lime">
-                      Lime
-                    </option>
-                    <option className="options" defaultValue="White Lime">
-                      White Lime
-                    </option>
-                    <option className="options" defaultValue="Bone Meal">
-                      Bone Meal
-                    </option>
-                    <option className="options" defaultValue="poultry litter">
-                      poultry litter
-                    </option>
-                  </select>
-                  <select
-                    className="custom-select"
-                    name="s6q3_quantity"
-                    {...register("s6q3_quantity")}
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option hidden>Quantity</option>
-                    <option className="options" value="1">
-                      1
-                    </option>
-                    <option className="options" value="2">
-                      2
-                    </option>
-                    <option className="options" value="3">
-                      3
-                    </option>
-                    <option className="options" value="4">
-                      4
-                    </option>
-                    <option className="options" value="5">
-                      5
-                    </option>
-                    <option className="options" value="6">
-                      6
-                    </option>
-                    <option className="options" value="7">
-                      7
-                    </option>
-                    <option className="options" value="8">
-                      8
-                    </option>
-                    <option className="options" value="9">
-                      9
-                    </option>
-                    <option className="options" value="10">
-                      10
-                    </option>
-                  </select>
+              {gardenManInfo.s6q3 === "Yes" ? (
+                <div className="question_others hide_other">
+                  <div className="question_dropdown">
+                    <select
+                      className="custom-select"
+                      name="s6q3_fertiliser"
+                      {...register("s6q3_fertiliser")}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      <option hidden defaultValue>
+                        Fertiliser
+                      </option>
+                      <option className="options" defaultValue="Lime">
+                        Lime
+                      </option>
+                      <option className="options" defaultValue="White Lime">
+                        White Lime
+                      </option>
+                      <option className="options" defaultValue="Bone Meal">
+                        Bone Meal
+                      </option>
+                      <option className="options" defaultValue="poultry litter">
+                        poultry litter
+                      </option>
+                    </select>
+                    <select
+                      className="custom-select"
+                      name="s6q3_quantity"
+                      {...register("s6q3_quantity")}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      <option hidden>Quantity</option>
+                      <option className="options" value="1">
+                        1
+                      </option>
+                      <option className="options" value="2">
+                        2
+                      </option>
+                      <option className="options" value="3">
+                        3
+                      </option>
+                      <option className="options" value="4">
+                        4
+                      </option>
+                      <option className="options" value="5">
+                        5
+                      </option>
+                      <option className="options" value="6">
+                        6
+                      </option>
+                      <option className="options" value="7">
+                        7
+                      </option>
+                      <option className="options" value="8">
+                        8
+                      </option>
+                      <option className="options" value="9">
+                        9
+                      </option>
+                      <option className="options" value="10">
+                        10
+                      </option>
+                    </select>
+                  </div>
                 </div>
-                <div className="question_remarks">
-                  <label className="remarks" htmlFor="s6q3_remarks">
-                    Remarks:
-                  </label>
-                  <input
-                    className="question_remarks_textInput"
-                    id="s6q3_remarks"
-                    name="s6q3_remarks"
-                    type="text"
-                    {...register("s6q3_remarks")}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
+              ) : (
+                <></>
+              )}
+              <div className="question_remarks">
+                <label className="remarks" htmlFor="s6q3_remarks">
+                  Remarks:
+                </label>
+                <input
+                  className="question_remarks_textInput"
+                  id="s6q3_remarks"
+                  name="s6q3_remarks"
+                  type="text"
+                  {...register("s6q3_remarks")}
+                  onChange={(e) => handleChange(e)}
+                />
               </div>
             </div>
             {/* <!-- S6 - Garden Management : Q4 --> */}

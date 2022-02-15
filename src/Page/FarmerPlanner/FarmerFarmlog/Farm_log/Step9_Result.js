@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
@@ -32,37 +33,37 @@ export default function Step9(props) {
     <FontAwesomeIcon icon={faAngleUp} className="fa-angle-up" />
   );
 
-  function onSubmit(allFarmlogInfo) {
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s1`,
-      allFarmlogInfo[0]
+  async function onSubmit(s1, s2, s3, s4, s5, s6, s7) {
+    let id = jwt_decode(localStorage.getItem("LoggedInToken")).id;
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s1`,
+      s1
     );
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s2`,
-      allFarmlogInfo[1]
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s2`,
+      s2
     );
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s3`,
-      allFarmlogInfo[2]
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s3`,
+      s3
     );
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s4`,
-      allFarmlogInfo[3]
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s4`,
+      s4
     );
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s5`,
-      allFarmlogInfo[4]
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s5`,
+      s5
     );
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s6`,
-      allFarmlogInfo[5]
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s6`,
+      s6
     );
-    axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/s7`,
-      allFarmlogInfo[6]
+    await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s7`,
+      s7
     );
-
-    props.setStep(10);
+    await props.setStep(10);
   }
   return (
     <>
@@ -84,6 +85,10 @@ export default function Step9(props) {
               <h1 className="section-title breakLine">Basic Information</h1>
               {shows1 ? (
                 <>
+                  <p className="step9_Question">Location</p>
+                  <p className="step9_Answer">{s1.users_id || "-"}</p>
+                  <p className="step9_Question">Zone</p>
+                  <p className="step9_Answer">{s1.zone_id || "-"}</p>
                   <p className="step9_Question">Time</p>
                   <p className="step9_Answer">{s1.time || "-"}</p>
                   <p className="step9_Question">Date</p>
@@ -261,7 +266,7 @@ export default function Step9(props) {
               {shows5 ? (
                 <>
                   {/* Harvest Q1 */}
-                  <p className="step9_Question">Crop Type</p>
+                  <p className="step9_Question">Crop Name</p>
                   <p className="step9_Answer">{s5.s5q1 || "-"}</p>
                   {/* Harvest Q2 */}
                   <p className="step9_Question">Weight</p>

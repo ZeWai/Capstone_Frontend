@@ -1,12 +1,45 @@
 // Harvest page
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { AddHarvest } from "../../../../store/Farmlog/actions";
+import { GetCropThunk } from "../../../../store/Getcrop/actions";
 
 export default function Step6(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
+
+  const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest);
+  const clientSelected = useSelector(
+    (state) => state.farmlogStore.farmlogInfo.users_id
+  );
+  const zoneSelected = useSelector(
+    (state) => state.farmlogStore.farmlogInfo.zone_id
+  );
+
+  useEffect(() => {
+    dispatch(GetCropThunk(clientSelected));
+  }, [dispatch, clientSelected, zoneSelected]);
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+  today = parseInt(`${yyyy}${mm}${dd}`);
+
+  const harvest = [];
+  checkharvest(readytoharvest);
+
+  function checkharvest(readytoharvest) {
+    for (let i = 0; i < readytoharvest.length; i++) {
+      if (readytoharvest[i].harvest_date < today) {
+        harvest.push(readytoharvest[i]);
+      }
+    }
+    return harvest;
+  }
+  console.log(`harvest`, harvest);
+
   let [harvestInfo, setharvestInfo] = useState({
     s5q1: "",
     s5q2: "",
@@ -49,7 +82,7 @@ export default function Step6(props) {
             {/* <!-- S5 - Harvest : Q1 --> */}
             <div className="question_others question_harvest_row s5q1">
               <div>
-                <p>Crop Type</p>
+                <p>Crop Name</p>
                 <div className="question_dropdown">
                   <select
                     className="custom-select"
@@ -60,15 +93,15 @@ export default function Step6(props) {
                     <option hidden defaultValue>
                       Please select
                     </option>
-                    <option className="options" value="Beet">
-                      Beet
-                    </option>
-                    <option className="options" value="Bak Choi">
-                      Bak Choi
-                    </option>
-                    <option className="options" value="Choi Sum">
-                      Choi Sum
-                    </option>
+                    {harvest && harvest[0] !== undefined ? (
+                      harvest.map((data) => (
+                        <option key={data.name} value={data.name}>
+                          {data.name}
+                        </option>
+                      ))
+                    ) : (
+                      <option>No Harvest Crop</option>
+                    )}
                   </select>
                 </div>
               </div>
@@ -79,7 +112,7 @@ export default function Step6(props) {
                   <div className="input-group mb-3 litres_input s5q2">
                     <input
                       type="text"
-                      placeholder="2.13"
+                      placeholder="0"
                       name="s5q2"
                       {...register("s5q2")}
                       onChange={(e) => handleChange(e)}

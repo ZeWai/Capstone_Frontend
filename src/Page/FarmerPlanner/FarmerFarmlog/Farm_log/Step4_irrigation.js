@@ -23,7 +23,6 @@ export default function Step4(props) {
   });
 
   let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
-
   let crossIcon = <FontAwesomeIcon icon={faTimes} className="fa-times" />;
 
   function handleChange(e) {
@@ -92,19 +91,23 @@ export default function Step4(props) {
                   </label>
                 </div>
               </div>
-              <div className="question_remarksFollowup">
-                <label className="remarks" htmlFor="s3q1_remarks">
-                  Remarks and follow-up:
-                </label>
-                <input
-                  className="question_remarks_textInput"
-                  id="s3q1_remarks"
-                  name="s3q1_remarks"
-                  type="text"
-                  {...register("s3q1_remarks")}
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
+              {irrigationInfo.s3q1 === "Yes" ? (
+                <div className="question_remarksFollowup">
+                  <label className="remarks" htmlFor="s3q1_remarks">
+                    Remarks and follow-up:
+                  </label>
+                  <input
+                    className="question_remarks_textInput"
+                    id="s3q1_remarks"
+                    name="s3q1_remarks"
+                    type="text"
+                    {...register("s3q1_remarks")}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
             {/* <!-- S3 - Irrigation : Q2 --> */}
             <div className="s3q2">
@@ -139,69 +142,75 @@ export default function Step4(props) {
                   </label>
                 </div>
               </div>
-              <div className="s3question_others">
-                <input
-                  className="s3input"
-                  id="s3q2"
-                  name="s3q2_date_start"
-                  type="date"
-                  {...register("s3q2_date_start")}
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>TO</p>
-                <input
-                  className="s3input"
-                  id="s3q2"
-                  name="s3q2_date_end"
-                  type="date"
-                  {...register("s3q2_date_end")}
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
-              <div className="s3question_others">
-                <input
-                  className="s3input"
-                  id="s3q2"
-                  name="s3q2_date_start"
-                  type="time"
-                  {...register("s3q2_time_start")}
-                  onChange={(e) => handleChange(e)}
-                />
-                <p>TO</p>
-                <input
-                  className="s3input"
-                  id="s3q2"
-                  name="s3q2_date_end"
-                  type="time"
-                  {...register("s3q2_time_end")}
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
-              <div className="question_dropdown">
-                <select
-                  className="custom-select"
-                  name="s3q2_frequency"
-                  {...register("s3q2_frequency")}
-                  onChange={(e) => handleChange(e)}
-                >
-                  <option defaultValue>Frequency</option>
-                  <option className="options" defaultValue="1">
-                    1
-                  </option>
-                  <option className="options" defaultValue="2">
-                    2
-                  </option>
-                  <option className="options" defaultValue="3">
-                    3
-                  </option>
-                  <option className="options" defaultValue="4">
-                    4
-                  </option>
-                  <option className="options" defaultValue="5">
-                    5
-                  </option>
-                </select>
-              </div>
+              {irrigationInfo.s3q2 === "Yes" ? (
+                <>
+                  <div className="s3question_others">
+                    <input
+                      className="s3input"
+                      id="s3q2"
+                      name="s3q2_date_start"
+                      type="date"
+                      {...register("s3q2_date_start")}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <p>TO</p>
+                    <input
+                      className="s3input"
+                      id="s3q2"
+                      name="s3q2_date_end"
+                      type="date"
+                      {...register("s3q2_date_end")}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="s3question_others">
+                    <input
+                      className="s3input"
+                      id="s3q2"
+                      name="s3q2_date_start"
+                      type="time"
+                      {...register("s3q2_time_start")}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <p>TO</p>
+                    <input
+                      className="s3input"
+                      id="s3q2"
+                      name="s3q2_date_end"
+                      type="time"
+                      {...register("s3q2_time_end")}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div className="question_dropdown">
+                    <select
+                      className="custom-select"
+                      name="s3q2_frequency"
+                      {...register("s3q2_frequency")}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      <option defaultValue>Frequency</option>
+                      <option className="options" defaultValue="1">
+                        1
+                      </option>
+                      <option className="options" defaultValue="2">
+                        2
+                      </option>
+                      <option className="options" defaultValue="3">
+                        3
+                      </option>
+                      <option className="options" defaultValue="4">
+                        4
+                      </option>
+                      <option className="options" defaultValue="5">
+                        5
+                      </option>
+                    </select>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
 
             {/* <!-- S3 - Irrigation : Q3 --> */}

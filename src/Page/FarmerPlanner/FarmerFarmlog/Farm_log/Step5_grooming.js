@@ -23,7 +23,6 @@ export default function Step5(props) {
   });
 
   let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
-
   let crossIcon = <FontAwesomeIcon icon={faTimes} className="fa-times" />;
 
   function handleChange(e) {
@@ -98,61 +97,67 @@ export default function Step5(props) {
                   </label>
                 </div>
               </div>
-              <div className="question_others hide_other">
-                <div className="question_dropdown">
-                  <select
-                    className="custom-select"
-                    name="s4q1_pest"
-                    value={groomingInfo.s4q1_pest || "NoInput"}
-                    {...register("s4q1_pest")}
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option hidden defaultValue>
-                      Pest Control Type
-                    </option>
-                    <option className="options" value="Disinfectants">
-                      Disinfectants
-                    </option>
-                    <option className="options" value="Fungicides">
-                      Fungicides
-                    </option>
-                    <option className="options" value="Herbicides">
-                      Herbicides
-                    </option>
-                    <option className="options" value="Insecticides">
-                      Insecticides
-                    </option>
-                    <option className="options" value="Miticides">
-                      Miticides
-                    </option>
-                    <option className="options" value="Ovicides">
-                      Ovicides
-                    </option>
-                    <option className="options" value="Repellents">
-                      Repellents
-                    </option>
-                    <option className="options" value="Rodenticides">
-                      Rodenticides
-                    </option>
-                  </select>
-                  <select
-                    className="custom-select"
-                    name="s4q1_dosage"
-                    {...register("s4q1_dosage")}
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option hidden defaultValue>
-                      Dosage
-                    </option>
-                    <option className="options" value="normal">
-                      Normal
-                    </option>
-                    <option className="options" value="strong">
-                      Strong
-                    </option>
-                  </select>
-                </div>
-              </div>
+              {groomingInfo.s4q1 === "Yes" ? (
+                <>
+                  <div className="question_others hide_other">
+                    <div className="question_dropdown">
+                      <select
+                        className="custom-select"
+                        name="s4q1_pest"
+                        value={groomingInfo.s4q1_pest || "NoInput"}
+                        {...register("s4q1_pest")}
+                        onChange={(e) => handleChange(e)}
+                      >
+                        <option hidden defaultValue>
+                          Pest Control Type
+                        </option>
+                        <option className="options" value="Disinfectants">
+                          Disinfectants
+                        </option>
+                        <option className="options" value="Fungicides">
+                          Fungicides
+                        </option>
+                        <option className="options" value="Herbicides">
+                          Herbicides
+                        </option>
+                        <option className="options" value="Insecticides">
+                          Insecticides
+                        </option>
+                        <option className="options" value="Miticides">
+                          Miticides
+                        </option>
+                        <option className="options" value="Ovicides">
+                          Ovicides
+                        </option>
+                        <option className="options" value="Repellents">
+                          Repellents
+                        </option>
+                        <option className="options" value="Rodenticides">
+                          Rodenticides
+                        </option>
+                      </select>
+                      <select
+                        className="custom-select"
+                        name="s4q1_dosage"
+                        {...register("s4q1_dosage")}
+                        onChange={(e) => handleChange(e)}
+                      >
+                        <option hidden defaultValue>
+                          Dosage
+                        </option>
+                        <option className="options" value="normal">
+                          Normal
+                        </option>
+                        <option className="options" value="strong">
+                          Strong
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
               <div className="question_remarks">
                 <label className="remarks" htmlFor="s4q1_remarks">
                   Remarks:

@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { AddFarmlog } from "../../../../store/Farmlog/actions";
 
@@ -7,7 +7,12 @@ export default function Step1(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
 
+  let client = useSelector((state) => state.userStore.clientNames);
+  let zone = useSelector((state) => state.zoneStore.clientZone);
+
   let [farmlogInfo, setfarmlogInfo] = useState({
+    users_id: null,
+    zone_id: null,
     time: undefined || "",
     date: "",
     weather: null,
@@ -45,6 +50,64 @@ export default function Step1(props) {
         <div className="main-body-container" id="section1">
           <h1 className="section-title">Basic Information</h1>
           <div className="section-content">
+            {/* Render Client */}
+            <div className="q-box__question">
+              <label
+                className="form-select-label question__label"
+                htmlFor="users_id"
+              >
+                Location
+              </label>
+              <select
+                className="question__input"
+                value={farmlogInfo.users_id || "NoInput"}
+                {...register("users_id", { required: true })}
+                onChange={(e) => handleChange(e)}
+              >
+                <option hidden value="Please select">
+                  Please select
+                </option>
+                {client && client[0] !== undefined ? (
+                  client.map((client) => (
+                    <option key={client.username} value={client.username}>
+                      {client.username}
+                    </option>
+                  ))
+                ) : (
+                  <option>No Location</option>
+                )}
+              </select>
+            </div>
+            {/* Render Zone */}
+            <div className="q-box__question">
+              <label
+                className="form-select-label question__label"
+                htmlFor="zone_id"
+              >
+                Zone
+              </label>
+              <select
+                className="question__input"
+                value={farmlogInfo.zone_id || "NoInput"}
+                {...register("zone_id", { required: true })}
+                onChange={(e) => handleChange(e)}
+              >
+                <option hidden value="Please select">
+                  Please select
+                </option>
+
+                {zone && zone[0] !== undefined ? (
+                  zone.map((zone) => (
+                    <option key={zone.area} value={zone.area}>
+                      {zone.area}
+                    </option>
+                  ))
+                ) : (
+                  <option>No Zone</option>
+                )}
+              </select>
+            </div>
+            {/* Time */}
             <div className="q-box__question">
               <label
                 className="form-select-label question__label"
@@ -60,6 +123,7 @@ export default function Step1(props) {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+            {/* Date */}
             <div className="q-box__question">
               <label
                 className="form-select-label question__label"
@@ -75,6 +139,7 @@ export default function Step1(props) {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+            {/* Weather */}
             <div className="q-box__question">
               <label
                 className="form-select-label question__label"
@@ -88,8 +153,8 @@ export default function Step1(props) {
                 value={farmlogInfo.weather || "NoInput"}
                 onChange={(e) => handleChange(e)}
               >
-                <option hidden value="Weather">
-                  Weather
+                <option hidden value="Please select">
+                  Please select
                 </option>
                 <option value="sunny">Sunny</option>
                 <option value="partly-cloudy">Partly Cloudy</option>
@@ -97,6 +162,7 @@ export default function Step1(props) {
                 <option value="rainy">Rainy</option>
               </select>
             </div>
+            {/* Temperature */}
             <div className="q-box__question">
               <label
                 className="form-select-label question__label"
@@ -110,7 +176,7 @@ export default function Step1(props) {
                 name="s1q5"
                 type="number"
                 {...register("temp", { required: true })}
-                value={farmlogInfo.temp || 25}
+                value={farmlogInfo.temp}
                 onChange={(e) => handleChange(e)}
               />
             </div>

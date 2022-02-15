@@ -141,44 +141,48 @@ export default function Step3(props) {
                   </label>
                 </div>
               </div>
-              <div className="question_others hide_other">
-                <div className="question_dropdown">
-                  <select
-                    className="custom-select"
-                    name="s2q2_fertiliser"
-                    {...register("s2q2_fertiliser")}
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option hidden defaultValue>
-                      Fertiliser Type
-                    </option>
-                    <option className="options" value="Lime">
-                      Lime
-                    </option>
-                    <option className="options" value="White Lime">
-                      White Lime
-                    </option>
-                    <option className="options" value="Bone Meal">
-                      Bone Meal
-                    </option>
-                    <option className="options" value="poultry litter">
-                      poultry litter
-                    </option>
-                  </select>
+              {plantingInfo.s2q2 === "Yes" ? (
+                <div className="question_others hide_other">
+                  <div className="question_dropdown">
+                    <select
+                      className="custom-select"
+                      name="s2q2_fertiliser"
+                      {...register("s2q2_fertiliser")}
+                      onChange={(e) => handleChange(e)}
+                    >
+                      <option hidden defaultValue>
+                        Fertiliser Type
+                      </option>
+                      <option className="options" value="Lime">
+                        Lime
+                      </option>
+                      <option className="options" value="White Lime">
+                        White Lime
+                      </option>
+                      <option className="options" value="Bone Meal">
+                        Bone Meal
+                      </option>
+                      <option className="options" value="poultry litter">
+                        poultry litter
+                      </option>
+                    </select>
+                  </div>
                 </div>
-                <div className="question_remarks">
-                  <label className="remarks" htmlFor="s2q3_remarks">
-                    Remarks:
-                  </label>
-                  <input
-                    className="question_remarks_textInput"
-                    id="s2q2_remarks"
-                    name="s2q2_remarks"
-                    type="text"
-                    {...register("s2q2_remarks")}
-                    onChange={(e) => handleChange(e)}
-                  />
-                </div>
+              ) : (
+                <></>
+              )}
+              <div className="question_remarks">
+                <label className="remarks" htmlFor="s2q3_remarks">
+                  Remarks:
+                </label>
+                <input
+                  className="question_remarks_textInput"
+                  id="s2q2_remarks"
+                  name="s2q2_remarks"
+                  type="text"
+                  {...register("s2q2_remarks")}
+                  onChange={(e) => handleChange(e)}
+                />
               </div>
             </div>
             {/* <!-- S2 Planting : Q3 --> */}

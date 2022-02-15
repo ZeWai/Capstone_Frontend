@@ -59,7 +59,7 @@ p {
   width: 100px;
   display: flex;
   justify-content: space-between;
-  margin: 12px auto;
+  margin: 20px auto 12px auto;
 }
 
 #dot-container .dot {
@@ -307,6 +307,7 @@ button.submit_btn {
   color: var(--color2);
   font-size: 14px;
   line-height: 14px;
+  margin: auto;
 }
 
 .litres_input input {
@@ -369,6 +370,7 @@ button.submit_btn {
 .num_input #s6q2-plus:hover {
   font-size: 40px;
   color: var(--color3);
+  cursor: pointer;
 }
 
 #section7 textarea {
@@ -389,6 +391,10 @@ button.submit_btn {
   background-color: transparent;
   color: var(--color3);
   cursor: pointer;
+}
+
+.upload-input {
+  margin-bottom: 10px;
 }
 
 .image_review {
