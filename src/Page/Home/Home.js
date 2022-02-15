@@ -32,10 +32,7 @@ export default function Home() {
 
   const EnterPress = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault();
-      username.length > 0 &&
-        password.length > 0 &&
-        dispatch(loginUserThunk(username, password));
+      login(e)
     }
   };
   return (
