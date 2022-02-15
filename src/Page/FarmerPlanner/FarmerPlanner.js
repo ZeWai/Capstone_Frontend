@@ -1,5 +1,5 @@
 import Navbar from './Navbar/Navbar'
-import FarmerOverview from './FarmerOverview/Overview'
+import FarmerOverview from './FarmerOverview/FarmerOverview'
 import { useState } from 'react'
 import FarmLogContent from './FarmerFarmlog/FarmLogContent'
 import Setting from './FarmerSetting/Setting'
