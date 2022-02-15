@@ -13,6 +13,7 @@ export default function Setting() {
     const [errmessage, setErrmessage] = useState("")
     let id = jwt_decode(localStorage.getItem("LoggedInToken")).id
 
+    //password input checking
     const passwordcheck = () => {
         if (newpassword === confirmpassword && newpassword !== "" && oldpassword !== "") {
             axios.post(`${process.env.REACT_APP_API_SERVER}/api/users/${id}/passwordchange`, { oldpassword, newpassword })
@@ -34,7 +35,7 @@ export default function Setting() {
             <div className='setting-user'>User</div>
             <div className='setting-username'>{username}</div>
             <br/>
-            <button className="setting-btn" onClick={()=>(setShow(!show),setErrmessage(""))}>Change Password</button>
+            <button className="setting-btn" onClick={()=>((setShow(!show),setErrmessage("")))}>Change Password</button>
             <br /><br />
             {show ?
                 <>

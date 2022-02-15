@@ -5,7 +5,7 @@ import './Clientplanner.css'
 export function Fplanner  ()  {
     return (
     <div>
-    <DashNavbar />
+    <DashNavbar Onview="scheduled"/>
     <Clientplanner />
     </div>
     )

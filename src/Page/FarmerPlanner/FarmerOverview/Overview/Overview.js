@@ -1,17 +1,15 @@
 import './Overview.css'
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {GetCropThunk} from '../../../../../store/Getcrop/actions'
+import {GetCropThunk} from '../../../../store/Getcrop/actions'
 
 export default function Overview(props) {
-    const today = new Date();
     const dispatch = useDispatch();
-    const date = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
     const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest)
 
     useEffect(() => {
         dispatch(GetCropThunk(props.location))
-    }, [props.location,props.currentview]);
+    }, [dispatch,props.location, props.currentview]);
 
     const harvest = [];
     if(readytoharvest.length >=6){
@@ -23,6 +21,7 @@ export default function Overview(props) {
             harvest.push(readytoharvest[i])
         };
     }
+    
     const type = ((type) => {
         if (type === "Fruit") {
             return "🍎";

@@ -11,7 +11,7 @@ export const FarmerForm = () => {
 
     useEffect(() => {
         dispatch(GetClientListThunk())
-    }, []);
+    }, [dispatch]);
     useEffect(() => {
         setClientList(clients);
     }, [clients]);

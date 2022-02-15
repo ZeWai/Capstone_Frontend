@@ -1,13 +1,13 @@
-import './Content.css'
+import './Overview.css'
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GetClientNameThunk } from '../../../../store/user/actions';
-import { GetClientZoneThunk } from '../../../../store/getzone/actions';
+import { GetClientNameThunk } from '../../../store/user/actions';
+import { GetClientZoneThunk } from '../../../store/getzone/actions';
 import Overview from './Overview/Overview';
 import ZonePage from './ZonePage/ZonePage';
 import Todolist from './Todolist/Todolist';
 
-export default function Content() {
+export default function FarmerOverview() {
 
     const clientname = useSelector((state) => state.userStore.clientNames);
     const clientzone = useSelector((state) => state.zoneStore.clientZone);
@@ -21,7 +21,7 @@ export default function Content() {
     }
     useEffect(() => {
         dispatch(GetClientNameThunk())
-    }, []);
+    }, [dispatch]);
 
     const getlocation = ((e) => {
         setLocation(e.currentTarget.value);
@@ -32,12 +32,12 @@ export default function Content() {
     return<><div className='farmer_content'>
         <span>Farm Planner | floor plan</span>
         <select value={location} className='dropdown' onChange={(e) => (getlocation(e))} >
-            {clientname && Array.isArray(clientname) ? clientname.map((client) => <option key={client.username} value={client.username}>{client.username}</option>) : <option>Please contact admin</option>}
+            {clientname &&clientname[0]!==undefined? clientname.map((client) => <option key={client.username} value={client.username}>{client.username}</option>) : <option>Please contact admin</option>}
         </select>
         <br />
         <div className="slidebtn">
             <button className={currentview === "Overview" ? "ActiveTab" : "Tab"} onClick={() => setCurrentview("Overview")}>Overview</button>
-            {clientzone && clientzone[0]!==""? clientzone.map((zone) =>
+            {clientzone && clientzone[0] !== undefined? clientzone.map((zone) =>
                 <button className={currentview === `${zone.area}` ? "ActiveTab" : "Tab"} key={zone.area} onClick={() => setCurrentview(`${zone.area}`)}>Zone {zone.area}</button>) : <span>Please contact admin</span>}
         </div>{currentview === "Overview" ? <><div className='selectbtncontainer'>
             {clientzone && clientzone[0]!== "" ? clientzone.map((zone) =>

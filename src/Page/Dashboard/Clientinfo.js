@@ -1,4 +1,3 @@
-import logo from './assets/logo.svg';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetClientThunk } from '../../store/Farminfo/actions';
@@ -18,14 +17,14 @@ export const Clientinfo = () => {
                 <div className='card mb-3'>
                     <div className='row g-0'>
                         <div className='col-md-6 col-lg-6 col-sm-12 intro_photo'>
-                                <img src={`${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.image}`} className="img-fluid rounded-start" alt="logo" />
+                                <img src={CinfoFromRedux.image !== undefined ?` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.image}`:``}className="img-fluid rounded-start" alt="logo" />
                         </div>
                         <div className='col-md-6 col-lg-6 col-sm-12'>
                             <div className='card-body farmInfo'>
                                 <div className="row intro_info">
 
                                 <div className="col-4 ms-4">
-                                <img src={`${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}`} className="App-logo" alt="logo" />
+                                <img src={CinfoFromRedux.icon !== undefined ?` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}`:``} className="App-logo" alt="logo" />
                                 </div>
 
                                 <div className="col-6 ">

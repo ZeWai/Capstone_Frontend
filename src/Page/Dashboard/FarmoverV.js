@@ -11,14 +11,14 @@ export const FarmoverV = () => {
 
     const OinfoFromRedux = useSelector((state) => state.OverStore.Oinfo);
     const PFromRedux = useSelector((state) => state.OverStore.Productivity);
+    const SSFromRedux = useSelector((state) => state.OverStore.Size);
     let dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(GetOverThunk())
-    }, [])
-   
-
-    return(
+    }, [dispatch])
+    
+    return (
         <>
         <section className='my-2 overview'>
             <div className='container'>
@@ -64,7 +64,7 @@ export const FarmoverV = () => {
                                     <img src={logo5} className="overview_icon m-3" alt="logo" />
                                     <div className='overview_info'>
                                         <h2 className="overview_title">Soil planted</h2>
-                                        <h3 className="overview_data">hi</h3>
+                                        <h3 className="overview_data">{SSFromRedux}</h3>
                                         <h3 className="overview_freq">sq.ft.</h3>
                                     </div>
                                 </div>
