@@ -38,7 +38,6 @@ export function GetFarmerListThunk() {
       },
     })
       .then((response) => {
-        console.log(response.data)
         dispatch(GetFarmerList(response.data));
       });
   }

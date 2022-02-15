@@ -7,7 +7,6 @@ export const Clientinfo = () => {
     let dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("on dispatch")
         dispatch(GetClientThunk())
     }, [dispatch])
     return (
@@ -38,7 +37,7 @@ export const Clientinfo = () => {
                                             <p className="card-text ms-5 info-heading">
                                                 Name:<br />
                                                 Address :<br /><br />
-                                                Size :<br />
+                                               
                                                 Opened :<br />
                                             </p>
                                         </div>
@@ -46,8 +45,8 @@ export const Clientinfo = () => {
                                             <span className="card-text">
                                                 {CinfoFromRedux.name} Rooftop Farm<br />
                                                 {CinfoFromRedux.address}<br />
-                                                Size<br />
-                                                Opened<br />
+                                                
+                                                {CinfoFromRedux.updated_at && CinfoFromRedux.updated_at[0] !==undefined ? CinfoFromRedux.updated_at.slice(0,10) : <></>}<br />
                                             </span>
                                         </div>
                                     </div>
