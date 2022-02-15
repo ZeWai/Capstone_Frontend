@@ -52,23 +52,6 @@ function App() {
             }
           />
           <Route path="/farm_planner" element={<FarmerAuth> <FarmerPlanner /> </FarmerAuth>}/>
-{/*           <Route
-            path="/farm_planner/setting"
-            element={
-              <FarmerAuth>
-                <FarmerSetting />
-              </FarmerAuth>
-            }
-          /> */}
-{/*           <Route
-            path="/farm_planner/farm_log"
-            element={
-              <FarmerAuth>
-                <Farmlog />
-              </FarmerAuth>
-            }
-          /> */}
-
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </BrowserRouter>

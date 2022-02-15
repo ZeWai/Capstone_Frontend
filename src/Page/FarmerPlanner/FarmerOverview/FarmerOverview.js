@@ -1,4 +1,4 @@
-import './Overview.css'
+import './FarmerOverview.css'
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetClientNameThunk } from '../../../store/user/actions';
