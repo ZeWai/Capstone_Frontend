@@ -216,7 +216,7 @@ export const ClientsForm = () => {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">No. of Zone</p>
-                    <select className="admin-input-select col-8" onChange={valueChange} id="create-client-zoneQty" defaultValue="default" value={ZoneQty}>
+                    <select className="admin-input-select col-8" onChange={valueChange} id="create-client-zoneQty" value={ZoneQty}>
                         <option hidden value="default">Please Select here</option>
                         {
                             octionList.map((qty) => {
