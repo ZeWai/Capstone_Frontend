@@ -8,7 +8,7 @@ import './NavBar.css'
 export default function NavBar(props) {
     const username = useSelector((state) => state.userStore.name);
     const dispatch = useDispatch();
-    const [navbarTitle, setNavbarTitle] = useState("")
+    const [navbarTitle, setNavbarTitle] = useState("Farmer Planner")
     const [expanded, setExpanded] = useState(false);
 
     //Getusername
