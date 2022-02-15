@@ -15,16 +15,13 @@ export default function Setting() {
 
     //password input checking
     const passwordcheck = () => {
-        if (newpassword === confirmpassword && newpassword !== "" && oldpassword !== "") {
+        if (newpassword === confirmpassword && newpassword !== "" && oldpassword !== "")
             axios.post(`${process.env.REACT_APP_API_SERVER}/api/users/${id}/passwordchange`, { oldpassword, newpassword })
                 .then((res) => setErrmessage(res.data))
-        } else if (oldpassword === "") {
-            setErrmessage("Please enter your old password")
-        } else if (newpassword === "" || newpassword.length < 6) {
-            setErrmessage("Please enter at least 6 characters for your new password")
-        } else if (confirmpassword === "" || newpassword !== confirmpassword) {
-            setErrmessage("Please confirm your new password")
-        }
+        if (oldpassword === "") setErrmessage("Please enter your old password")
+        if (newpassword === "" || newpassword.length < 6) setErrmessage("Please enter at least 6 characters for your new password")
+        if (confirmpassword === "" || newpassword !== confirmpassword) setErrmessage("Please confirm your new password")
+        
         setOldpassword("")
         setNewpassword("")
         setConfirmpassword("")

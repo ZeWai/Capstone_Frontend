@@ -8,19 +8,14 @@ export default function ZonePage(props) {
     const zonestatus = useSelector((state) => state.cropStore.CropStatus)
 
     const type = ((type) => {
-        if (type === "Fruit") {
-            return "🍎";
-        } else if (type === "Herb") {
-            return '🌿';
-        } else if (type === "Flower") {
-            return "🌸"
-        } else if (type === "Root/Stem") {
-            return "🌱"
-        } else if (type === "Leafy Green") {
-            return "🥬"
-        }
-        else { return "☘️" }
-    })
+        if (type === "Fruit") return "🍒";
+        if (type === "Herb") return '🌿';
+        if (type === "Flower") return "🌸"
+        if (type === "Root/Stem") return "🥔"
+        if (type === "Leafy Green") return "🥬"
+        return "☘️"
+    }
+    )
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -29,12 +24,9 @@ export default function ZonePage(props) {
     today = `${yyyy}-${mm}-${dd}`;
 
     const status = ((sowing, harvest, harvest_date, sowing_date) => {
-        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date > today && sowing_date < today)
-        { return "Growing" }
-        else if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date <= today && sowing_date < today)
-        { return "Harvest" }
-        else if (sowing.trim() === "false" && harvest.trim() === "false" && sowing_date >= today)
-        { return "Sowing" }
+        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date > today && sowing_date < today) return "Growing"
+        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date <= today && sowing_date < today) return "Harvest"
+        if (sowing.trim() === "false" && harvest.trim() === "false" && sowing_date >= today) return "Sowing"
     })
 
     useEffect(() => {

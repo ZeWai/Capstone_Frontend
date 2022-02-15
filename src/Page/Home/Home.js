@@ -17,13 +17,9 @@ export default function Home() {
 
   useEffect(() => {
     if (auth) {
-      if (role === "client") {
-        navigate("/dashboard");
-      } else if (role === "admin") {
-        navigate("/admin");
-      } else if (role === "farmer") {
-        navigate("/farm_planner");
-      }
+      if (role === "client") navigate("/dashboard");
+      if (role === "admin") navigate("/admin");
+      if (role === "farmer") navigate("/farm_planner");
     }
   }, [navigate,auth, role]);
 

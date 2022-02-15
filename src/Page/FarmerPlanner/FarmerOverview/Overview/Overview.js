@@ -16,28 +16,21 @@ export default function Overview(props) {
     for (let i = 0; i <= 5; i++){
         harvest.push(readytoharvest[i])
         };
-    } else if (readytoharvest.length>1 && readytoharvest.length<5){
+    }
+    if (readytoharvest.length > 1 && readytoharvest.length < 5) {
         for (let i = 0; i <= readytoharvest.length; i++) {
             harvest.push(readytoharvest[i])
         };
     }
     
     const type = ((type) => {
-        if (type === "Fruit") {
-            return "🍒";
-        } else if (type === "Herb") {
-            return '🌿';
-        } else if (type ==="Flower") {
-            return "🌸"
-        } else if (type === "Root/Stem") {
-            return "🥔"
-        } else if (type === "Leafy Green") {
-            return "🥬"
-        }
-            else
-        { return "☘️" }
-        
-    })
+        if (type === "Fruit") return "🍒";
+        if (type === "Herb") return '🌿';
+        if (type ==="Flower") return "🌸"
+        if (type === "Root/Stem") return "🥔"
+        if (type === "Leafy Green")return "🥬"
+        return "☘️" }
+       )
 
     return <>
     <div className='farmer-overview'>

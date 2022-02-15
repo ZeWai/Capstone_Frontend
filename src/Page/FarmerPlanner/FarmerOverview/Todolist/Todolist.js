@@ -17,15 +17,10 @@ export default function Todolist(props) {
   }, [dispatch, props.location, props.currentview])
 
   const checkwork = (sowing, harvest, harvest_date, irrigate, sowing_date) => {
-    if (sowing === "false")
-      return "Sow 🌱"
-    else if (harvest === "false" && harvest_date > today) {
-      if ((today - sowing_date) % irrigate === 0) {
-        return "Irrigate 💧"
-      }     }
-    else if (harvest === "false" && harvest_date <= today) {
-      return "Harvest 🎑"
-    }
+    if (sowing === "false") return "Sow 🌱"
+    if (harvest === "false" && harvest_date > today) {
+      if ((today - sowing_date) % irrigate === 0) return "Irrigate 💧"  }
+    if (harvest === "false" && harvest_date <= today) return "Harvest 🎑"
   }
 
 
