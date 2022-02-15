@@ -3,6 +3,7 @@ import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddGrooming } from "../../../../store/Farmlog/actions";
+import { GroomingDone } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -36,6 +37,7 @@ export default function Step5(props) {
   const onNext = () => {
     console.log(groomingInfo);
     dispatch(AddGrooming(groomingInfo));
+    dispatch(GroomingDone(true));
     props.setStep(7);
   };
 

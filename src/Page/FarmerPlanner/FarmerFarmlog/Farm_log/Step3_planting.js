@@ -4,6 +4,7 @@ import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddPlanting } from "../../../../store/Farmlog/actions";
+import { PlantingDone } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -38,6 +39,7 @@ export default function Step3(props) {
   const onNext = () => {
     console.log(plantingInfo);
     dispatch(AddPlanting(plantingInfo));
+    dispatch(PlantingDone(true));
     props.setStep(7);
   };
 

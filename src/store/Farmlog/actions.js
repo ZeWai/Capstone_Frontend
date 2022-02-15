@@ -6,6 +6,10 @@ export const ADD_GROOMING = "ADD_GROOMING";
 export const ADD_HARVEST = "ADD_HARVEST ";
 export const ADD_GARDENMAN = "ADD_GARDENMAN";
 export const ADD_OTHERISSIUES = "ADD_OTHERISSIUES";
+export const PLANTING_DONE = "PLANTING_DONE";
+export const IRRIGATION_DONE = "IRRIGATION_DONE";
+export const GROOMING_DONE = "GROOMING_DONE";
+export const HARVEST_DONE = "HARVEST_DONE";
 
 export function AddFarmlog(farmlogInfo) {
   return {
@@ -50,5 +54,31 @@ export function AddOtherIssues(otherIssuesInfo) {
   return {
     type: ADD_OTHERISSIUES,
     payload: otherIssuesInfo,
+  };
+}
+
+export function PlantingDone(plantingDone) {
+  return {
+    type: PLANTING_DONE,
+    payload: plantingDone,
+  };
+}
+
+export function IrrigationDone(irrigationDone) {
+  return {
+    type: IRRIGATION_DONE,
+    payload: irrigationDone,
+  };
+}
+export function GroomingDone(groomingDone) {
+  return {
+    type: GROOMING_DONE,
+    payload: groomingDone,
+  };
+}
+export function HarvestDone(harvestDone) {
+  return {
+    type: HARVEST_DONE,
+    payload: harvestDone,
   };
 }

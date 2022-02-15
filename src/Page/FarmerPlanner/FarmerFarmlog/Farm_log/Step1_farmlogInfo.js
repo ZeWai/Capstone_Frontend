@@ -11,8 +11,8 @@ export default function Step1(props) {
   let zone = useSelector((state) => state.zoneStore.clientZone);
 
   let [farmlogInfo, setfarmlogInfo] = useState({
-    users_id: null,
-    zone_id: null,
+    users: null,
+    zone: null,
     time: undefined || "",
     date: "",
     weather: null,
@@ -54,14 +54,14 @@ export default function Step1(props) {
             <div className="q-box__question">
               <label
                 className="form-select-label question__label"
-                htmlFor="users_id"
+                htmlFor="users"
               >
                 Location
               </label>
               <select
                 className="question__input"
-                value={farmlogInfo.users_id || "NoInput"}
-                {...register("users_id", { required: true })}
+                value={farmlogInfo.users || "NoInput"}
+                {...register("users", { required: true })}
                 onChange={(e) => handleChange(e)}
               >
                 <option hidden value="Please select">
@@ -82,14 +82,14 @@ export default function Step1(props) {
             <div className="q-box__question">
               <label
                 className="form-select-label question__label"
-                htmlFor="zone_id"
+                htmlFor="zone"
               >
                 Zone
               </label>
               <select
                 className="question__input"
-                value={farmlogInfo.zone_id || "NoInput"}
-                {...register("zone_id", { required: true })}
+                value={farmlogInfo.zone || "NoInput"}
+                {...register("zone", { required: true })}
                 onChange={(e) => handleChange(e)}
               >
                 <option hidden value="Please select">

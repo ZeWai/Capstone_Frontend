@@ -307,7 +307,7 @@ button.submit_btn {
   color: var(--color2);
   font-size: 14px;
   line-height: 14px;
-  margin: auto;
+  margin: auto 0;
 }
 
 .litres_input input {
@@ -435,16 +435,6 @@ button.submit_btn {
   border-top: 1px solid var(--color4);
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 25px;
-}
-
-.step9_arrow {
-  text-align: center;
-}
-
-.step9_arrow button {
-  border: none;
-  background-color: transparent;
   font-size: 25px;
 }
 

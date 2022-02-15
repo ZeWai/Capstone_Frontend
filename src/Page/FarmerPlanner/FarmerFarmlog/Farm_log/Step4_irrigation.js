@@ -3,6 +3,7 @@ import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddIrrigation } from "../../../../store/Farmlog/actions";
+import { IrrigationDone } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -36,6 +37,7 @@ export default function Step4(props) {
   const onNext = () => {
     console.log(irrigationInfo);
     dispatch(AddIrrigation(irrigationInfo));
+    dispatch(IrrigationDone(true));
     props.setStep(7);
   };
 
@@ -220,7 +222,7 @@ export default function Step4(props) {
                 <div className="input-group mb-3 litres_input">
                   <input
                     type="text"
-                    placeholder="12345678"
+                    placeholder="0"
                     id="s3q3"
                     name="s3q3"
                     {...register("s3q3")}

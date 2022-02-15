@@ -3,6 +3,7 @@ import { React, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { AddHarvest } from "../../../../store/Farmlog/actions";
+import { HarvestDone } from "../../../../store/Farmlog/actions";
 import { GetCropThunk } from "../../../../store/Getcrop/actions";
 
 export default function Step6(props) {
@@ -11,16 +12,17 @@ export default function Step6(props) {
 
   const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest);
   const clientSelected = useSelector(
-    (state) => state.farmlogStore.farmlogInfo.users_id
+    (state) => state.farmlogStore.farmlogInfo.users
   );
   const zoneSelected = useSelector(
-    (state) => state.farmlogStore.farmlogInfo.zone_id
+    (state) => state.farmlogStore.farmlogInfo.zone
   );
 
   useEffect(() => {
     dispatch(GetCropThunk(clientSelected));
   }, [dispatch, clientSelected, zoneSelected]);
 
+  // Make Today format to yyyy-mm-dd
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, "0");
   var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -32,13 +34,16 @@ export default function Step6(props) {
 
   function checkharvest(readytoharvest) {
     for (let i = 0; i < readytoharvest.length; i++) {
-      if (readytoharvest[i].harvest_date < today) {
+      let hyy = readytoharvest[i].harvest_date.slice(0, 4);
+      let hmm = readytoharvest[i].harvest_date.slice(5, 7);
+      let hdd = readytoharvest[i].harvest_date.slice(8, 10);
+      let hdate = parseInt(`${hyy}${hmm}${hdd}`);
+      if (hdate <= today) {
         harvest.push(readytoharvest[i]);
       }
     }
     return harvest;
   }
-  console.log(`harvest`, harvest);
 
   let [harvestInfo, setharvestInfo] = useState({
     s5q1: "",
@@ -57,6 +62,7 @@ export default function Step6(props) {
   const onNext = () => {
     console.log(harvestInfo);
     dispatch(AddHarvest(harvestInfo));
+    dispatch(HarvestDone(true));
     props.setStep(7);
   };
 
@@ -100,7 +106,7 @@ export default function Step6(props) {
                         </option>
                       ))
                     ) : (
-                      <option>No Harvest Crop</option>
+                      <option defaultValue>No Harvest Crop</option>
                     )}
                   </select>
                 </div>
