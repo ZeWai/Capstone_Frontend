@@ -88,7 +88,7 @@ export const ClientsOview = () => {
                 </div>
             </div>
             {FarmerListByClient && FarmerListByClient[0] !== undefined ? FarmerListByClient.map((Farmer, index) =>
-                <div key={"overview-wrapper-" + Farmer.id}>
+                <div>
                     <div className="admin-client-overview-wrapper">
                         <div className="admin-list row" style={index % 2 === 0 ? { backgroundColor: "#FFFFFF" } : { backgroundColor: "#f5f5f5" }}>
                             <p className="admin-list-item-user col-6">{Farmer.name}</p>
