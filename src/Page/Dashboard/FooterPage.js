@@ -9,7 +9,7 @@ export const FooterPage = () => {
                 <Container className="text-left">
                     <Row>
                         <Col md="3">
-                            <img src={footerlogo} className="footerlogo"/>
+                            <img src={footerlogo} className="footerlogo" alt="footerlogo"/>
                             
                         </Col>
                         <hr className="clearfix w-100 d-md-none" />

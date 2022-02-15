@@ -11,7 +11,7 @@ export const ClientsOview = () => {
     const [FarmerList, setFarmerList] = useState([]);
     useEffect(() => {
         dispatch(GetClientListThunk())
-    }, []);
+    }, [dispatch]);
     useEffect(() => {
         setFarmerList(clients);
     }, [clients]);

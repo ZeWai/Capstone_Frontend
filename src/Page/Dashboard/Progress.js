@@ -2,12 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetProgressThunk,GetProgressSThunk } from '../../store/Progress/actions';
 
-
 export const Progress = () => {
-
-    
-
-
     const ProgressFromRedux = useSelector((state) => state.ProgressStore.Progress);
     const SFromRedux = useSelector((state) => state.ProgressStore.Single[0]);
     let dispatch = useDispatch();
@@ -17,12 +12,8 @@ export const Progress = () => {
         dispatch(GetProgressSThunk(name))
     }
 
-
-
     useEffect(()=>{
-    
         dispatch(GetProgressThunk())
-        
     }, [dispatch])
     
     console.log("hi")

@@ -21,7 +21,7 @@ export default function FarmerOverview() {
     }
     useEffect(() => {
         dispatch(GetClientNameThunk())
-    }, []);
+    }, [dispatch]);
 
     const getlocation = ((e) => {
         setLocation(e.currentTarget.value);

@@ -16,10 +16,9 @@ export const FarmoverV = () => {
 
     useEffect(()=>{
         dispatch(GetOverThunk())
-    }, [])
-   
-
-    return(
+    }, [dispatch])
+    
+    return (
         <>
         <section className='my-2 overview'>
             <div className='container'>

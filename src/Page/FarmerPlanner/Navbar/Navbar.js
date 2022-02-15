@@ -14,7 +14,7 @@ export default function NavBar(props) {
     //Getusername
     useEffect(() => {
         dispatch(GetUserThunk());
-    }, []);
+    }, [dispatch]);
 
     return <div className='farmer_navbar'>
         <Navbar bg="lg" expand={false} className='navbar' expanded={expanded}>
@@ -37,9 +37,9 @@ export default function NavBar(props) {
                         <div className='farmer_name'> Welcome <br />{username}</div>
                         <ul>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <li onClick={() => ((props.setView("Overview")), setExpanded(false), setNavbarTitle("Farmer Planner"))}>Farmer Planner</li>
-                                <li onClick={() => ((props.setView("Farm_log")), setExpanded(false), setNavbarTitle("Farm Log"))}>Farm log</li>
-                                <li onClick={() => ((props.setView("Setting")), setExpanded(false), setNavbarTitle("Setting"))}>Setting</li>
+                                <li onClick={() => ((props.setView("Overview"), setExpanded(false), setNavbarTitle("Farmer Planner")))}>Farmer Planner</li>
+                                <li onClick={() => ((props.setView("Farm_log"), setExpanded(false), setNavbarTitle("Farm Log")))}>Farm log</li>
+                                <li onClick={() => ((props.setView("Setting"), setExpanded(false), setNavbarTitle("Setting")))}>Setting</li>
                                 <li onClick={() => (dispatch(logoutThunk()))}>Logout</li>
                             </Nav></ul>
                     </Offcanvas.Body>

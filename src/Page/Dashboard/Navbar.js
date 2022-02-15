@@ -23,7 +23,7 @@ export function DashNavbar(props) {
     if (newpassword === Cpassword && newpassword !== "" && newpassword !== "") {
       axios.post(`${process.env.REACT_APP_API_SERVER}/api/users/${id}/passwordchange`, { oldpassword, newpassword })
           .then((res) => setErrmessage(res.data));
-          if (errmessage=="Password changed"){
+          if (errmessage==="Password changed"){
             setModal(!modal)
           }
   } else if (oldpassword === "") {
@@ -38,15 +38,11 @@ export function DashNavbar(props) {
   setCpassword("")
   };
   
-  
-  
-
-  // const [Onview, setOnview] = useState("onBtn")
   return (
     <div className='dashNav'>
       <Navbar bg="black" >
         <Container>
-          <Navbar.Brand href="#home"><img src={navlogo} /></Navbar.Brand>
+          <Navbar.Brand href="#home"><img src={navlogo} alt="rooftop-logo"/></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="dashNav_part me-auto">
@@ -56,10 +52,10 @@ export function DashNavbar(props) {
             <Nav>
               <div className='nav-icon justify-content-end'>
               <button className="btn" onClick={() => setModal(!modal)}>
-              <img className="nav-icon-link" src={navlogo2} />
+              <img className="nav-icon-link" src={navlogo2} alt="setting"/>
               </button>
                 <button className="btn" onClick={() => (dispatch(logoutThunk()))}>
-                  <img className="nav-icon-link" src={navlogo3} />
+                  <img className="nav-icon-link" src={navlogo3} alt="logout"/>
                 </button>
               </div>
             </Nav>

@@ -5,9 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { GetZoneThunk } from "../../store/getzone/actions";
 import { GetCropstoreThunk ,GetCropinfoThunk} from "../../store/Progress/actions"
 
-
-
-
 export const Clientplanner = () => {
     const [FPzone, setFPzone] = useState("A");
     const [FPcropT, setFPcropT] = useState("");
@@ -17,7 +14,6 @@ export const Clientplanner = () => {
     const [FPHarD, setFPHarD] = useState("");
     const [FPyield, setFPyield] = useState("");
     const [FPContri, setFPContri] = useState("Event");
-
 
     const CropFromRedux = useSelector((state) => state.ProgressStore.CropStore);
     const CropinfoFromRedux = useSelector((state) => state.ProgressStore.CropInfo[0]);

@@ -39,7 +39,7 @@ export default function ZonePage(props) {
 
     useEffect(() => {
         dispatch(GetCropZoneThunk(props.location, props.currentview))
-    }, [props.location, props.currentview]);
+    }, [props.location, props.currentview, dispatch]);
 
     return <>
         <div className='farmer-overview'>

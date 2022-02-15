@@ -1,4 +1,3 @@
-import logo from './assets/logo.svg';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetClientThunk } from '../../store/Farminfo/actions';
