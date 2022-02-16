@@ -11,9 +11,11 @@ export default function Step6(props) {
   const { register } = useForm();
 
   const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest);
+  //  Selected on Farmlog S1 user
   const clientSelected = useSelector(
     (state) => state.farmlogStore.farmlogInfo.users
   );
+  //  Selected on Farmlog S1 zone
   const zoneSelected = useSelector(
     (state) => state.farmlogStore.farmlogInfo.zone
   );
@@ -29,20 +31,22 @@ export default function Step6(props) {
   var yyyy = today.getFullYear();
   today = parseInt(`${yyyy}${mm}${dd}`);
 
-  const harvest = [];
-  checkharvest(readytoharvest);
+  const Clientharvest = [];
+  chectClientharvest(readytoharvest);
 
-  function checkharvest(readytoharvest) {
+  // check crop which is ready to harvest by client name (i.e H-day < today)
+  function chectClientharvest(readytoharvest) {
     for (let i = 0; i < readytoharvest.length; i++) {
       let hyy = readytoharvest[i].harvest_date.slice(0, 4);
       let hmm = readytoharvest[i].harvest_date.slice(5, 7);
       let hdd = readytoharvest[i].harvest_date.slice(8, 10);
       let hdate = parseInt(`${hyy}${hmm}${hdd}`);
-      if (hdate <= today) {
-        harvest.push(readytoharvest[i]);
+      if (hdate <= today && readytoharvest[i].area === zoneSelected) {
+        Clientharvest.push(readytoharvest[i]);
       }
     }
-    return harvest;
+    console.log(Clientharvest);
+    return Clientharvest;
   }
 
   let [harvestInfo, setharvestInfo] = useState({
@@ -99,8 +103,8 @@ export default function Step6(props) {
                     <option hidden defaultValue>
                       Please select
                     </option>
-                    {harvest && harvest[0] !== undefined ? (
-                      harvest.map((data) => (
+                    {Clientharvest && Clientharvest[0] !== undefined ? (
+                      Clientharvest.map((data) => (
                         <option key={data.name} value={data.name}>
                           {data.name}
                         </option>

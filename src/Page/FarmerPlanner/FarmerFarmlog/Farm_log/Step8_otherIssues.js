@@ -8,7 +8,7 @@ export default function Step8(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
   let [otherIssuesInfo, setotherIssuesInfo] = useState({
-    s7q1: null,
+    s7q1: "",
   });
 
   function handleChange(e) {

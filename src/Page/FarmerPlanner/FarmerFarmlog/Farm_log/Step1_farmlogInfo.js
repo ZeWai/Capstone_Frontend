@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { AddFarmlog } from "../../../../store/Farmlog/actions";
+import { GetClientZoneThunk } from "../../../../store/getzone/actions";
 
 export default function Step1(props) {
   const dispatch = useDispatch();
@@ -25,6 +26,15 @@ export default function Step1(props) {
       ...prevValue,
       [name]: value,
     }));
+  }
+
+  function getZone_handleChange(e) {
+    const { name, value } = e.target;
+    setfarmlogInfo((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+    dispatch(GetClientZoneThunk(e.currentTarget.value));
   }
 
   const onNext = () => {
@@ -62,7 +72,7 @@ export default function Step1(props) {
                 className="question__input"
                 value={farmlogInfo.users || "NoInput"}
                 {...register("users", { required: true })}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => getZone_handleChange(e)}
               >
                 <option hidden value="Please select">
                   Please select

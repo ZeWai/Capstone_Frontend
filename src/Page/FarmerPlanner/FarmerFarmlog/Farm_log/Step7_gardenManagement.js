@@ -15,14 +15,14 @@ export default function Step7(props) {
   let [count, setCount] = useState(0);
   let [gardenManInfo, setgardenManInfo] = useState({
     s6q1: null,
-    s6q1_remarks: null,
+    s6q1_remarks: "",
     s6q2: null,
     s6q3: null,
-    s6q3_fertiliser: null,
-    s6q3_quantity: null,
-    s6q3_remarks: null,
+    s6q3_fertiliser: "",
+    s6q3_quantity: "",
+    s6q3_remarks: "",
     s6q4: null,
-    s6q4_remarks: null,
+    s6q4_remarks: "",
   });
 
   function handleChange(e) {
@@ -31,6 +31,11 @@ export default function Step7(props) {
       ...prevValue,
       [name]: value,
     }));
+  }
+  function handleClick() {
+    setCount(count++);
+    console.log(count);
+    setgardenManInfo((prevValue) => ([...prevValue], { s6q2: count }));
   }
 
   function minusCount(e) {
@@ -130,19 +135,16 @@ export default function Step7(props) {
               <div className="question_others">
                 <p>2. No. of garden waste bag(s) collected </p>
                 <div className="num_input">
-                  <FontAwesomeIcon
-                    icon={faMinusCircle}
-                    id="s6q2-minus"
-                    onClick={() => setCount(minusCount(count))}
-                  />
-                  <p id="s6q2_num" {...register("s6q2_num")}>
+                  <button onClick={() => setCount(minusCount(count))}>
+                    {" "}
+                    <FontAwesomeIcon icon={faMinusCircle} id="s6q2-minus" />
+                  </button>
+                  <p id="s6q2" {...register("s6q2")}>
                     {count}
                   </p>
-                  <FontAwesomeIcon
-                    icon={faPlusCircle}
-                    id="s6q2-plus"
-                    onClick={() => setCount(count + 1)}
-                  />
+                  <button onClick={() => handleClick()}>
+                    <FontAwesomeIcon icon={faPlusCircle} id="s6q2-plus" />
+                  </button>
                 </div>
               </div>
             </div>

@@ -14,14 +14,14 @@ export default function Step3(props) {
   const { register } = useForm();
   let [plantingInfo, setplantingInfo] = useState({
     s2q1: null,
-    s2q1_remarks: null,
+    s2q1_remarks: "",
     s2q2: null,
-    s2q2_fertiliser: null,
-    s2q2_remarks: null,
+    s2q2_fertiliser: "",
+    s2q2_remarks: "",
     s2q3: null,
-    s2q3_remarks: null,
+    s2q3_remarks: "",
     s2q4: null,
-    s2q4_remarks: null,
+    s2q4_remarks: "",
   });
 
   let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
@@ -278,8 +278,8 @@ export default function Step3(props) {
                   id="s2q4_remarks"
                   name="s2q4_remarks"
                   type="text"
-                  onChange={(e) => handleChange(e)}
                   {...register("s2q4_remarks")}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
             </div>

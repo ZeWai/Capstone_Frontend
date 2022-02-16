@@ -13,44 +13,43 @@ export default function Step9(props) {
   let s7 = useSelector((state) => state.farmlogStore.otherIssuesInfo);
   let done = useSelector((state) => state.farmlogStore.farmlogDone);
 
-  // let allFarmlogInfo = [s1, s2, s3, s4, s5, s6, s7];
-
-  async function onSubmit(s1, s2, s3, s4, s5, s6, s7) {
+  async function onSubmit() {
+    let allFarmlogInfo = [s1, s2, s3, s4, s5, s6, s7];
     let id = jwt_decode(localStorage.getItem("LoggedInToken")).id;
     await axios.post(
       `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s1`,
-      s1
+      { data: allFarmlogInfo }
     );
     // if (done.plantingDone === true) {
     //   return await axios.post(
     //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s2`,
-    //     s2
+    //     { data: s2 }
     //   );
     // } else if (done.irrigationDone === true) {
     //   return await axios.post(
     //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s3`,
-    //     s3
+    //     { data: s3 }
     //   );
     // } else if (done.groomingDone === true) {
     //   return await axios.post(
     //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s4`,
-    //     s4
+    //     { data: s4 }
     //   );
     // } else if (done.harvestDone === true) {
     //   return await axios.post(
     //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s5`,
-    //     s5
+    //     { data: s5 }
     //   );
     // }
     // await axios.post(
     //   `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s6`,
-    //   s6
+    //   { data: s6 }
     // );
     // await axios.post(
     //   `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s7`,
-    //   s7
+    //   { data: s7 }
     // );
-    await props.setStep(10);
+    // await props.setStep(10);
   }
   return (
     <>
