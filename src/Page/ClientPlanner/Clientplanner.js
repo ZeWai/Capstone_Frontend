@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { GetZoneThunk } from "../../store/getzone/actions";
 import {
   GetCropstoreThunk,
@@ -19,9 +20,7 @@ export const Clientplanner = () => {
   const [FPContri, setFPContri] = useState("Event");
 
   const CropFromRedux = useSelector((state) => state.ProgressStore.CropStore);
-  const CropinfoFromRedux = useSelector(
-    (state) => state.ProgressStore.CropInfo[0]
-  );
+  const CropinfoFromRedux = useSelector((state) => state.ProgressStore.CropInfo[0]);
 
   const clearPlannerState = () => {
     setFPzone("");
@@ -35,20 +34,17 @@ export const Clientplanner = () => {
   };
 
   const handleZoneChange = (e) => {
-    console.log(e.target.value);
     setFPzone(e.target.value);
   };
 
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setFPcropN(e.target.value);
     dispatch(GetCropinfoThunk(e.target.value));
-    setFPcropT(CropinfoFromRedux.type);
-    setFPIrriD(CropinfoFromRedux.Irr_Period);
+
+
   };
 
   const handleContriChange = (e) => {
-    console.log(e.target.value);
     setFPContri(e.target.value);
   };
 
@@ -58,10 +54,10 @@ export const Clientplanner = () => {
   useEffect(() => {
     dispatch(GetZoneThunk());
     dispatch(GetCropstoreThunk());
-  }, [dispatch]);
+    setFPIrriD(CropinfoFromRedux.Irr_Period);
+  }, [dispatch, CropinfoFromRedux]);
 
   const plannerSubmit = () => {
-    console.log("whatip");
     let PlannerForm = {
       zone: FPzone,
       cropT: FPcropT,
@@ -217,9 +213,11 @@ export const Clientplanner = () => {
             </tbody>
           </table>
           <div className="Frambtn">
+          <Link to="/dashboard">
             <button type="button" onClick={plannerSubmit}>
               Create
             </button>
+            </Link>
           </div>
         </div>
       </div>
