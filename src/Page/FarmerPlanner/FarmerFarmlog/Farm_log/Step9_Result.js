@@ -22,23 +22,26 @@ export default function Step9(props) {
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/planting`,
         { data: allFarmlogInfo }
       );
+      return props.setStep(10);
     } else if (done.irrigationDone === true) {
-      return await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/irrigation`,
         { data: allFarmlogInfo }
       );
+      return props.setStep(10);
     } else if (done.groomingDone === true) {
-      return await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/grooming`,
         { data: allFarmlogInfo }
       );
+      return props.setStep(10);
     } else if (done.harvestDone === true) {
-      return await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/harvest`,
         { data: allFarmlogInfo }
       );
+      return props.setStep(10);
     }
-    await props.setStep(10);
   }
   return (
     <>
