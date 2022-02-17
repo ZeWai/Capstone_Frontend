@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { GetZoneThunk } from "../../store/getzone/actions";
 import { GetScheduledThunk } from "../../store/Scheduled/actions";
 import { GetOverThunk } from "../../store/Overview/actions";
@@ -218,9 +217,9 @@ export const Clientplanner = () => {
             </tbody>
           </table>
           <div className="Frambtn">
-              <button type="button" onClick={plannerSubmit}>
-                Create
-              </button>
+            <button type="button" onClick={plannerSubmit}>
+              Create
+            </button>
           </div>
         </div>
       </div>
