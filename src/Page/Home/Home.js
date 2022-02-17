@@ -21,7 +21,7 @@ export default function Home() {
       if (role === "admin") navigate("/admin");
       if (role === "farmer") navigate("/farm_planner");
     }
-  }, [navigate,auth, role]);
+  }, [navigate, auth, role]);
 
   const login = (e) => {
     e.preventDefault();
@@ -32,20 +32,20 @@ export default function Home() {
 
   const EnterPress = (e) => {
     if (e.key === "Enter") {
-      login(e)
+      login(e);
     }
   };
   return (
     <div className="content">
       <div className="loginbox">
         <div className="heading1">
-          <span>Rooftop Republic</span>
+          <span className="fontBlack">Rooftop Republic</span>
         </div>
         <div className="heading2">
-          <span>Log In</span>
+          <span className="fontBlack">Log In</span>
         </div>
         <div className="form">
-          <label>Username</label>
+          <label className="fontBlack">Username</label>
           <br />
           <div className="input">
             <div className="icon">
@@ -58,8 +58,7 @@ export default function Home() {
             />
           </div>
           <br />
-          <br />
-          <label>Password</label>
+          <label className="fontBlack">Password</label>
           <br />
           <div className="input">
             <div className="icon">
@@ -83,7 +82,9 @@ export default function Home() {
           </>
         )}
         <div className="loginbtn">
-          <button onClick={login}>Log In</button>
+          <button className="fontBlack" onClick={login}>
+            Log In
+          </button>
         </div>
       </div>
     </div>

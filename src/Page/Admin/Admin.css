@@ -4,7 +4,7 @@
 }
 /*admin navbar*/
 .admin-nav {
-  background: black;
+  background: #42c1c6;
   height: fit-content;
 }
 .admin-wrapper {
@@ -42,9 +42,13 @@
 .admin-nav-logout-btn {
   object-fit: contain;
   margin-right: 55px;
-  background: black;
+  background: #42c1c6;
   border: none;
   color: white;
+}
+
+.admin-nav-logout-btn:hover {
+  color: #221f20;
 }
 
 /*control panel*/
@@ -55,6 +59,7 @@
   align-items: center;
   max-height: fit-content;
   padding-bottom: 2vh;
+  padding-top: 30px;
 }
 .admin-btn-wrapper {
   display: flex;
@@ -65,8 +70,8 @@
 .admin-sub-title {
   font-weight: 400;
   font-size: 20px;
-  margin-top: 60px;
   line-height: 30px;
+  text-align: center;
 }
 .admin-sub-btn {
   background-color: #f5f5f5;
@@ -76,6 +81,10 @@
   border: none;
   margin-bottom: 13px;
   color: rgba(0, 0, 0, 0.5);
+}
+
+.admin-sub-btn:hover {
+  color: #221f20;
 }
 .admin-sub-btn:focus {
   color: rgb(0, 0, 0);
@@ -140,10 +149,10 @@
   font-size: 15px;
   line-height: 18px;
 }
-.admin-logo-image{
+.admin-logo-image {
   height: 300px;
   width: 300px;
-  object-fit:contain;
+  object-fit: contain;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
   margin: 10px;
 }
@@ -161,53 +170,57 @@
 }
 .admin-client-create-btn,
 .admin-farmer-create-btn,
-.admin-create-btn{
-  background: #f5f5f5;
+.admin-create-btn {
+  background-color: #42c1c6;
   margin-top: 20px;
   width: 143px;
   height: 44px;
   border: none;
-  background: #f5f5f5;
   border-radius: 25px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
 }
-.admin-client-create-btn:focus,
+
+.admin-client-create-btn:hover {
+  filter: brightness(0.9);
+}
+
+/* .admin-client-create-btn:focus,
 .admin-farmer-create-btn:focus {
   border: 2px solid black;
-}
+} */
+
 /*list wrapper*/
 .admin-list-wrapper {
-  padding-left: 10vw;
-  padding-right: 10vw;
+  padding-left: 11vw;
+  padding-right: 11vw;
 }
 .admin-list-item-name {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   padding-top: 20px;
-  padding-left: 80px;
+  text-align: center;
 }
 .admin-list-item-user {
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   padding-top: 20px;
-  padding-left: 80px;
+  text-align: center;
 }
 .admin-list-item-label {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   padding-top: 20px;
-  padding-left: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .admin-list-farmer-edit-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  margin-top: 10px;
 }
 .admin-list-farmer-edit-btn,
 .admin-list-farmer-del-btn {
@@ -217,13 +230,13 @@
 }
 .admin-list-farmer-edit-btn:hover,
 .admin-list-farmer-del-btn:hover {
-  color: #0d6efd;
+  color: #42c1c6;
 }
 /*checkbox*/
-.admin-input-checkbox-wrapper{
+.admin-input-checkbox-wrapper {
   margin-top: 10px;
 }
-.admin-input-checkbox-linner{
+.admin-input-checkbox-linner {
   margin-bottom: 10px;
 }
 .admin-input-checkbox-label {
@@ -236,59 +249,72 @@
   margin-left: 23px;
 }
 /*error msg*/
-.admin-client-overview-wrapper .admin-form-errMsg{
+.admin-client-overview-wrapper .admin-form-errMsg {
   padding-top: 20px;
   font-size: large;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.admin-form-errMsg{
+.admin-form-errMsg {
   color: red;
   font-weight: 700;
   padding-left: 40px;
 }
 /*client overview*/
-.admin-client-overview-wrapper{
+.admin-client-overview-wrapper {
   padding-left: 10vw;
   padding-right: 10vw;
 }
 /*popup*/
-.admin-popup-wrapper{
+.admin-popup-wrapper {
   margin-top: 30vh;
   margin-bottom: 30vh;
 }
-.admin-popup-header{
+
+.admin-modal-body {
+  padding: 1rem 4rem;
+}
+.admin-popup-header {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.admin-popup-list-name-wrapper{
+.admin-popup-list-name-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
-.admin-popup-list-name{
+.admin-popup-list-name {
   font-size: 18px;
   margin-top: 18px;
   line-height: 24px;
 }
-.admin-popup-list-btn-wrapper{
+.admin-popup-list-btn-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  padding-left: 9vw;
 }
-.admin-popup-list-lable{
+.admin-popup-list-lable {
   display: flex;
   justify-content: center;
   font-size: 18px;
   line-height: 24px;
 }
-.admin-popup-list-minus-btn,.admin-popup-list-add-btn{
-
+.admin-popup-list-minus-btn,
+.admin-popup-list-add-btn {
   background-color: white;
   border: none;
-/*   padding-right: 40px; */
   margin-right: 30px;
+}
+
+/* Client Overview modal */
+.admin-popup-submit-btn,
+.admin-popup-cancel-btn {
+  width: 7em;
+  height: 2.4em;
+}
+
+.admin-popup-cancel-btn {
+  background-color: #788985;
 }

@@ -87,8 +87,9 @@ export const FarmerOview = () => {
     <>
       <div className="admin-list-wrapper">
         <div className="admin-list row" style={{ backgroundColor: "#F5F5F5" }}>
-          <p className="admin-list-item-name col-6">Farmer Name</p>
-          <p className="admin-list-item-name col-6">no. of place assigned</p>
+          <p className="admin-list-item-name col-5">Farmer Name</p>
+          <p className="admin-list-item-name col-5">no. of place assigned</p>
+          <p className="admin-list-item-name col-2"></p>
         </div>
       </div>
       {ClientListByFarmer && ClientListByFarmer[0] !== undefined ? (
@@ -103,11 +104,11 @@ export const FarmerOview = () => {
                     : { backgroundColor: "#f5f5f5" }
                 }
               >
-                <p className="admin-list-item-user col-6">{client.name}</p>
-                <p className="admin-list-item-label col-3">
+                <p className="admin-list-item-user col-5">{client.name}</p>
+                <p className="admin-list-item-label col-5">
                   {client.client.length}
                 </p>
-                <div className="admin-list-farmer-edit-wrapper col-3">
+                <div className="admin-list-farmer-edit-wrapper col-2">
                   <button
                     style={
                       index % 2 === 0
@@ -181,7 +182,7 @@ export const FarmerOview = () => {
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                              ❌
+                            ❌
                           </button>
                         )}
                       </div>

@@ -79,7 +79,7 @@ p {
 .main-body-container {
   background-color: white;
   width: 327px;
-  min-height: 488px;
+  min-height: 100vh;
   margin: 0 auto;
   background: #ffffff;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
