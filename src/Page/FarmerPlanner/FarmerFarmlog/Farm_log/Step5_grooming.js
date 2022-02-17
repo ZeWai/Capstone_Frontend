@@ -11,16 +11,17 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 export default function Step5(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
+  let [Errmsg, setErrMsg] = useState("");
   let [groomingInfo, setgroomingInfo] = useState({
     s4q1: null,
-    s4q1_pest: null,
-    s4q1_dosage: null,
-    s4q1_remarks: null,
+    s4q1_pest: "",
+    s4q1_dosage: "",
+    s4q1_remarks: "",
     s4q2: null,
-    s4q2_remarks: null,
+    s4q2_remarks: "",
     s4q3: null,
-    s4q3_remarks: null,
-    s4q4: null,
+    s4q3_remarks: "",
+    s4q4: "",
   });
 
   let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
@@ -36,9 +37,18 @@ export default function Step5(props) {
 
   const onNext = () => {
     console.log(groomingInfo);
-    dispatch(AddGrooming(groomingInfo));
-    dispatch(GroomingDone(true));
-    props.setStep(7);
+    if (
+      groomingInfo.s4q1 === null ||
+      groomingInfo.s4q2 === null ||
+      groomingInfo.s4q3 === null ||
+      groomingInfo.s4q4 === null
+    ) {
+      setErrMsg("** All fields are required");
+    } else {
+      dispatch(AddGrooming(groomingInfo));
+      dispatch(GroomingDone(true));
+      props.setStep(7);
+    }
   };
 
   return (
@@ -302,6 +312,7 @@ export default function Step5(props) {
                 </div>
               </div>
             </div>
+            {Errmsg ? <p className="errmsg">{Errmsg}</p> : <></>}
           </div>
         </div>
         <div className="q-box__buttons">

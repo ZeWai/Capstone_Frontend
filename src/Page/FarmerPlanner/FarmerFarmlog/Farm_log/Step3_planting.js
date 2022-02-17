@@ -12,6 +12,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 export default function Step3(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
+  let [Errmsg, setErrMsg] = useState("");
   let [plantingInfo, setplantingInfo] = useState({
     s2q1: null,
     s2q1_remarks: "",
@@ -38,9 +39,18 @@ export default function Step3(props) {
 
   const onNext = () => {
     console.log(plantingInfo);
-    dispatch(AddPlanting(plantingInfo));
-    dispatch(PlantingDone(true));
-    props.setStep(7);
+    if (
+      plantingInfo.s2q1 === null ||
+      plantingInfo.s2q2 === null ||
+      plantingInfo.s2q3 === null ||
+      plantingInfo.s2q4 === null
+    ) {
+      setErrMsg("** All fields are required");
+    } else {
+      dispatch(AddPlanting(plantingInfo));
+      dispatch(PlantingDone(true));
+      props.setStep(7);
+    }
   };
 
   return (
@@ -283,6 +293,7 @@ export default function Step3(props) {
                 />
               </div>
             </div>
+            {Errmsg ? <p className="errmsg">{Errmsg}</p> : <></>}
           </div>
         </div>
         <div className="q-box__buttons">

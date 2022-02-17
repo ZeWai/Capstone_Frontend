@@ -10,7 +10,7 @@ export default function Step1(props) {
 
   let client = useSelector((state) => state.userStore.clientNames);
   let zone = useSelector((state) => state.zoneStore.clientZone);
-
+  let [Errmsg, setErrMsg] = useState("");
   let [farmlogInfo, setfarmlogInfo] = useState({
     users: null,
     zone: null,
@@ -36,11 +36,22 @@ export default function Step1(props) {
     }));
     dispatch(GetClientZoneThunk(e.currentTarget.value));
   }
+  console.log(`check`, farmlogInfo.users === null);
 
   const onNext = () => {
-    console.log(farmlogInfo);
-    dispatch(AddFarmlog(farmlogInfo));
-    props.setStep(2);
+    if (
+      farmlogInfo.users === "null" ||
+      farmlogInfo.zone === 0 ||
+      farmlogInfo.time === "null" ||
+      farmlogInfo.date === null ||
+      farmlogInfo.weather === null ||
+      farmlogInfo.temp === null
+    ) {
+      setErrMsg("** All fields are required");
+    } else {
+      dispatch(AddFarmlog(farmlogInfo));
+      props.setStep(2);
+    }
   };
 
   return (
@@ -190,6 +201,7 @@ export default function Step1(props) {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+            {Errmsg ? <p className="errmsg">{Errmsg}</p> : <></>}
           </div>
         </div>
 

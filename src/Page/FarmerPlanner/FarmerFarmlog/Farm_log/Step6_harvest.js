@@ -9,6 +9,7 @@ import { GetCropThunk } from "../../../../store/Getcrop/actions";
 export default function Step6(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
+  let [Errmsg, setErrMsg] = useState("");
 
   const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest);
   //  Selected on Farmlog S1 user
@@ -65,9 +66,17 @@ export default function Step6(props) {
 
   const onNext = () => {
     console.log(harvestInfo);
-    dispatch(AddHarvest(harvestInfo));
-    dispatch(HarvestDone(true));
-    props.setStep(7);
+    if (
+      harvestInfo.s5q1 === "" ||
+      harvestInfo.s5q2 === "" ||
+      harvestInfo.s5q3 === ""
+    ) {
+      setErrMsg("** All fields are required");
+    } else {
+      dispatch(AddHarvest(harvestInfo));
+      dispatch(HarvestDone(true));
+      props.setStep(7);
+    }
   };
 
   return (
@@ -161,6 +170,7 @@ export default function Step6(props) {
                 </div>
               </div>
             </div>
+            {Errmsg ? <p className="errmsg">{Errmsg}</p> : <></>}
           </div>
         </div>
         <div className="q-box__buttons">

@@ -11,16 +11,17 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 export default function Step4(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
+  let [Errmsg, setErrMsg] = useState("");
   let [irrigationInfo, setirrigationInfo] = useState({
     s3q1: null,
-    s3q1_remarks: null,
+    s3q1_remarks: "",
     s3q2: null,
-    s3q2_date_start: null,
-    s3q2_date_end: null,
-    s3q2_time_start: null,
-    s3q2_time_end: null,
-    s3q2_frequency: null,
-    s3q3: null,
+    s3q2_date_start: "",
+    s3q2_date_end: "",
+    s3q2_time_start: "",
+    s3q2_time_end: "",
+    s3q2_frequency: "",
+    s3q3: 0,
   });
 
   let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
@@ -36,9 +37,17 @@ export default function Step4(props) {
 
   const onNext = () => {
     console.log(irrigationInfo);
-    dispatch(AddIrrigation(irrigationInfo));
-    dispatch(IrrigationDone(true));
-    props.setStep(7);
+    if (
+      irrigationInfo.s3q1 === null ||
+      irrigationInfo.s3q2 === null ||
+      irrigationInfo.s3q3 === 0
+    ) {
+      setErrMsg("** All fields are required");
+    } else {
+      dispatch(AddIrrigation(irrigationInfo));
+      dispatch(IrrigationDone(true));
+      props.setStep(7);
+    }
   };
 
   return (
@@ -192,19 +201,19 @@ export default function Step4(props) {
                       onChange={(e) => handleChange(e)}
                     >
                       <option defaultValue>Frequency</option>
-                      <option className="options" defaultValue="1">
+                      <option className="options" value="1">
                         1
                       </option>
-                      <option className="options" defaultValue="2">
+                      <option className="options" value="2">
                         2
                       </option>
-                      <option className="options" defaultValue="3">
+                      <option className="options" value="3">
                         3
                       </option>
-                      <option className="options" defaultValue="4">
+                      <option className="options" value="4">
                         4
                       </option>
-                      <option className="options" defaultValue="5">
+                      <option className="options" value="5">
                         5
                       </option>
                     </select>
@@ -232,6 +241,7 @@ export default function Step4(props) {
                 </div>
               </div>
             </div>
+            {Errmsg ? <p className="errmsg">{Errmsg}</p> : <></>}
           </div>
         </div>
         <div className="q-box__buttons">

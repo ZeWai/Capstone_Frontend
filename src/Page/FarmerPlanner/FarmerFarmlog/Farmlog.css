@@ -473,3 +473,9 @@ button.submit_btn {
   font-size: 50px;
   color: var(--color3);
 }
+
+/* error msg */
+.errmsg {
+  color: red;
+  margin-top: 20px;
+}

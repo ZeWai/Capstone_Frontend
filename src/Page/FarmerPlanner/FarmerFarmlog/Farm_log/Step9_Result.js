@@ -13,43 +13,32 @@ export default function Step9(props) {
   let s7 = useSelector((state) => state.farmlogStore.otherIssuesInfo);
   let done = useSelector((state) => state.farmlogStore.farmlogDone);
 
+  // Submission Function
   async function onSubmit() {
     let allFarmlogInfo = [s1, s2, s3, s4, s5, s6, s7];
     let id = jwt_decode(localStorage.getItem("LoggedInToken")).id;
-    await axios.post(
-      `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s1`,
-      { data: allFarmlogInfo }
-    );
-    // if (done.plantingDone === true) {
-    //   return await axios.post(
-    //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s2`,
-    //     { data: s2 }
-    //   );
-    // } else if (done.irrigationDone === true) {
-    //   return await axios.post(
-    //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s3`,
-    //     { data: s3 }
-    //   );
-    // } else if (done.groomingDone === true) {
-    //   return await axios.post(
-    //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s4`,
-    //     { data: s4 }
-    //   );
-    // } else if (done.harvestDone === true) {
-    //   return await axios.post(
-    //     `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s5`,
-    //     { data: s5 }
-    //   );
-    // }
-    // await axios.post(
-    //   `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s6`,
-    //   { data: s6 }
-    // );
-    // await axios.post(
-    //   `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/s7`,
-    //   { data: s7 }
-    // );
-    // await props.setStep(10);
+    if (done.plantingDone === true) {
+      await axios.post(
+        `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/planting`,
+        { data: allFarmlogInfo }
+      );
+    } else if (done.irrigationDone === true) {
+      return await axios.post(
+        `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/irrigation`,
+        { data: allFarmlogInfo }
+      );
+    } else if (done.groomingDone === true) {
+      return await axios.post(
+        `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/grooming`,
+        { data: allFarmlogInfo }
+      );
+    } else if (done.harvestDone === true) {
+      return await axios.post(
+        `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/harvest`,
+        { data: allFarmlogInfo }
+      );
+    }
+    await props.setStep(10);
   }
   return (
     <>
@@ -224,7 +213,7 @@ export default function Step9(props) {
               <p className="step9_Question">
                 2. No. of garden waste bag(s) collected
               </p>
-              <p className="step9_Answer">{s6.s6q2_num || "-"} bag</p>
+              <p className="step9_Answer">{s6.s6q2 || "-"} bag</p>
               {/* Garden Management Q3 */}
               <p className="step9_Question">
                 3. Farm supplies require any refill?

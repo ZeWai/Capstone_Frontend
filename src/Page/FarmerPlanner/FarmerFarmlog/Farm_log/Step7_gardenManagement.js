@@ -4,15 +4,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddGardenMan } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Step7(props) {
   const dispatch = useDispatch();
   const { register } = useForm();
-  let [count, setCount] = useState(0);
+  let [Errmsg, setErrMsg] = useState("");
   let [gardenManInfo, setgardenManInfo] = useState({
     s6q1: null,
     s6q1_remarks: "",
@@ -32,24 +30,20 @@ export default function Step7(props) {
       [name]: value,
     }));
   }
-  function handleClick() {
-    setCount(count++);
-    console.log(count);
-    setgardenManInfo((prevValue) => ([...prevValue], { s6q2: count }));
-  }
-
-  function minusCount(e) {
-    if ((e = 0)) {
-      return e;
-    } else {
-      return e;
-    }
-  }
 
   const onNext = () => {
     console.log(gardenManInfo);
-    dispatch(AddGardenMan(gardenManInfo));
-    props.setStep(8);
+    if (
+      gardenManInfo.s6q1 === null ||
+      gardenManInfo.s6q2 === null ||
+      gardenManInfo.s6q3 === null ||
+      gardenManInfo.s6q4 === null
+    ) {
+      setErrMsg("** All fields are required");
+    } else {
+      dispatch(AddGardenMan(gardenManInfo));
+      props.setStep(8);
+    }
   };
 
   let checkIcon = <FontAwesomeIcon icon={faCheck} className="fa-check" />;
@@ -134,17 +128,35 @@ export default function Step7(props) {
             <div className="s6q2">
               <div className="question_others">
                 <p>2. No. of garden waste bag(s) collected </p>
-                <div className="num_input">
-                  <button onClick={() => setCount(minusCount(count))}>
-                    {" "}
-                    <FontAwesomeIcon icon={faMinusCircle} id="s6q2-minus" />
-                  </button>
-                  <p id="s6q2" {...register("s6q2")}>
-                    {count}
-                  </p>
-                  <button onClick={() => handleClick()}>
-                    <FontAwesomeIcon icon={faPlusCircle} id="s6q2-plus" />
-                  </button>
+                <div className="question_dropdown">
+                  <select
+                    className="custom-select"
+                    name="s6q2"
+                    {...register("s6q2")}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    <option hidden defaultValue>
+                      Please select
+                    </option>
+                    <option className="options" value="0">
+                      0
+                    </option>
+                    <option className="options" value="1">
+                      1
+                    </option>
+                    <option className="options" value="2">
+                      2
+                    </option>
+                    <option className="options" value="3">
+                      3
+                    </option>
+                    <option className="options" value="4">
+                      4
+                    </option>
+                    <option className="options" value="5">
+                      5
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -324,6 +336,7 @@ export default function Step7(props) {
                 </div>
               </div>
             </div>
+            {Errmsg ? <p className="errmsg">{Errmsg}</p> : <></>}
           </div>
         </div>
         <div className="q-box__buttons">
