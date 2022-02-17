@@ -132,6 +132,9 @@ a {
 .intro .card-body {
   padding: 30px;
 }
+.intro_info td {
+  height: 40px;
+}
 
 .Cinfoheader {
   padding: none;
@@ -139,17 +142,17 @@ a {
   padding-bottom: 40px;
 }
 .Cinfoheadertitle {
-  padding-top: 25px;
+  padding-top: 17px;
 }
 .CinfoName {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .Cinfologo {
-  padding-left: 6ch;
+  padding-left: 4ch;
 }
 .Cinfocol {
-  padding-left: 13vh;
-  padding-right: 9vh;
+  padding-left: 9vh;
+  padding-right: 5vh;
   display: flex;
   text-align: top;
   font-weight: 600;
