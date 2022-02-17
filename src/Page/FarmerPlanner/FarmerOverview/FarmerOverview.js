@@ -31,7 +31,7 @@ export default function FarmerOverview() {
   return (
     <>
       <div className="farmer_content">
-        <span>Farm Planner | floor plan</span>
+        <span>Farm Planner | Floor plan</span>
         <select
           value={location}
           className="dropdown"

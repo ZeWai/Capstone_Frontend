@@ -1,43 +1,48 @@
-.farmer-zone-crop{
-    background-color: white;
-    border-radius:10px;
-    padding: 10px 20px;
-    margin-bottom:20px ;
-    height: auto;
-    display: flex;
+.farmer-zone-crop {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  height: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .farmer-zone-crop-left {
-    width: 80%;
+  width: 80%;
 }
 
-.farmer-zone-crop-left .crop-name{
-    font-weight: 700;
-    margin-bottom: 5px;
+.farmer-zone-crop-left .crop-name {
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
-.farmer-zone-crop-left .date{
-    margin-bottom: 0;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
+.farmer-zone-crop-left .date {
+  margin-bottom: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
 }
 .farmer-zone-crop-right {
-    width: 20%;
-    display: inline;
+  width: 20%;
+  display: inline;
 }
 
-.farmer-zone-crop-right .display-zone{
-    margin-bottom: 0;
-    font-weight: 700;
+.farmer-zone-crop-right .display-zone {
+  margin-bottom: 0;
+  font-weight: 700;
 }
 
-.farmer-crop-status{
-color: white;
-font-size: 14px;
-font-weight:300;
-width:100%;
-text-align: center;
-background-color: rgb(66, 193, 198);
-border-radius: 10px;
+.farmer-crop-status {
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(66, 193, 198);
+  border-radius: 10px;
+}
+
+.farmer-zone-nocrop {
+  font-weight: 700;
 }

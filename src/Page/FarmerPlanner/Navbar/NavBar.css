@@ -45,20 +45,39 @@
   background-color: rgb(66, 193, 198);
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  box-shadow: 3px 0px 5px 5px gray;
+  box-shadow: 2px 0px 8px 1px rgb(0 0 0 / 30%);
 }
+
 .Offcanvas li {
   color: white;
   list-style-type: disc;
   cursor: pointer;
 }
-.Offcanvas li:hover{
+.Offcanvas li:hover {
   color: black;
 }
+
 .farmer_name {
   color: white;
-  text-align: center;
   font-size: 16px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  padding-bottom: 14px;
+  margin-top: 3px;
+  margin-left: 1em;
+  border-bottom: 1px solid white;
+}
+
+.farmer_navContainer {
+  display: flex;
+}
+
+.farmer_navbox {
+  display: flex;
+}
+
+.farmer_sidebar li {
+  margin-bottom: 10px;
+}
+
+.farmer_sidebar li:first-child {
+  margin-top: 10px;
 }

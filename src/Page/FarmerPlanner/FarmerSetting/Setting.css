@@ -1,41 +1,51 @@
 .farmer-setting {
-  margin: 4vh 4% 0 3%;
+  margin: 2vh 4% 0 3%;
   text-align: center;
-  height: 90vh;
+  height: 55vh;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
 }
 
-.farmer-setting .setting-user {
+.farmer-setting .setting-username {
+  color: rgb(66, 193, 198);
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.farmer-setting .setting-btn {
+  background-color: rgb(66, 193, 198);
+  color: white;
   font-weight: 700;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 3px 2px 1px gray;
+}
+
+.farmer-setting .setting-btn:hover {
+  box-shadow: -3px -2px 2px 1px gray;
+  transition: 0.5s;
+}
+.farmer-setting input {
+  border: 1px rgb(66, 193, 198) solid;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.farmer-setting .setting-error {
+  color: red;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.setting_title {
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
   color: rgb(66, 193, 198);
-  font-size:30px;
-}
-.farmer-setting .setting-username{
-  color: rgb(66, 193, 198);
-    font-size:20px;
 }
 
-.farmer-setting .setting-btn{
-    background-color: rgb(66, 193, 198);
-    color: white;
-    font-weight: 700;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 2px 3px 2px 1px gray;
-}
-
-.farmer-setting .setting-btn:hover{
-    box-shadow: -3px -2px 2px 1px gray;
-    transition: 0.5s;
-}
-.farmer-setting input{
-    border: 1px rgb(66, 193, 198) solid;
-    border-radius: 10px;
-    padding: 0 10px;
-}
-
-.farmer-setting .setting-error{
-    color: red;
-    font-weight: 700;
-    margin-bottom: 0;
+.setting_base {
+  height: 100vh;
 }

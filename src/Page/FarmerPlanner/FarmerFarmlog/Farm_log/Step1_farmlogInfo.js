@@ -55,7 +55,10 @@ export default function Step1(props) {
   };
 
   return (
-    <>
+    <div className="farmlog_base">
+      <div className="farmlog_title">
+        <span>Farm Planner | Farm Log</span>
+      </div>
       {/* Progress bar */}
       <div id="dot-container">
         <span className="dot active"></span>
@@ -211,6 +214,6 @@ export default function Step1(props) {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
