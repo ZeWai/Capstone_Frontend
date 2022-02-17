@@ -40,7 +40,6 @@ export function GetProductivity(info) {
 }
 export function GetOverThunk(){
     return (dispatch) => {
-      console.log("on overthunk")
         let token = localStorage.getItem("LoggedInToken");
         axios.get(`${process.env.REACT_APP_API_SERVER}/api/dashboard/harvest`,{
         headers: {
@@ -48,7 +47,6 @@ export function GetOverThunk(){
         },
         })
         .then((response) => {
-        console.log(response.data);
         dispatch(GetHarvest(response.data));
         });
 
@@ -60,7 +58,6 @@ export function GetOverThunk(){
         },
         })
         .then((response) => {
-        console.log(response.data);
         dispatch(GetGrowing(response.data));
         });
 
@@ -71,7 +68,6 @@ export function GetOverThunk(){
         },
         })
         .then((response) => {
-        console.log(response.data);
         dispatch(GetSow(response.data));
         });
 
@@ -81,7 +77,6 @@ export function GetOverThunk(){
           },
           })
           .then((response) => {
-          console.log(response.data);
           dispatch(GetSize(response.data));
           });
 
@@ -91,7 +86,6 @@ export function GetOverThunk(){
           },
           })
         .then((response) => {
-        console.log(response.data);
         dispatch(GetProductivity(response.data));
         });
     }

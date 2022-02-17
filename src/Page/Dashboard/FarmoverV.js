@@ -87,7 +87,7 @@ export const FarmoverV = () => {
                             <tr key={i}>
                             <td>{l.name}</td>
                             <td>{l.yield}kg</td>
-                            <td>{Array.isArray(l.harvest_date.length) ? l.harvest_date.slice(0, 10):<></>}</td>
+                            <td>{l.harvest_date && l.harvest_date[0] !==undefined ? l.harvest_date.slice(0,10) : <></>}</td>
                             <td>{l.contribution}</td>
                             </tr>
                             )):null}

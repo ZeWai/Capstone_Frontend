@@ -11,13 +11,16 @@ export const Progress = () => {
         console.log("at getSinP", name)
         dispatch(GetProgressSThunk(name))
     }
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
 
+    today = `${yyyy}-${mm}-${dd}T16:00:00.000Z`;
     useEffect(()=>{
         dispatch(GetProgressThunk())
     }, [dispatch])
     
-    console.log("hi")
-    console.log(SFromRedux.sowing_date) 
     return (
         <>
         {ProgressFromRedux.length>0 ?
@@ -39,7 +42,7 @@ export const Progress = () => {
             <div className='card mb-3'>
             <div className="row g-0">
                 
-                <div className="col-md-6">
+                <div className="col-6">
                     <div className="card-body">
                         <h5 className="card-title">{SFromRedux.name}</h5>
 
@@ -55,7 +58,7 @@ export const Progress = () => {
                             </div>
                             <div className="col-5">
                                 <span className="card-text">
-                                    {SFromRedux.grooming === true? "Ready to harvest": "Active growing"} <br/>
+                                    {SFromRedux.harvest_date < today? "Ready to harvest": "Active growing"} <br/>
                                     {SFromRedux.type} <br/>
                                     Zone {SFromRedux.area} <br/>
                                    
@@ -71,7 +74,7 @@ export const Progress = () => {
                 <div className="col-md-6 col-sm-12 d-flex justify-content-end crops_img">
                     <img src={SFromRedux.image !== undefined ?` ${process.env.REACT_APP_API_SERVER}/${SFromRedux.image}`:``}
                         className="img-fluid rounded-start" alt="chili" />
-                    <span className="crops_date">05/01/2021</span>
+                   
                 </div>
             </div>
              </div>

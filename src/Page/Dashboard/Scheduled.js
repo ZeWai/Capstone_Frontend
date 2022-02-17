@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GetScheduledThunk } from "../../store/Scheduled/actions"
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 export const Scheduled = () => {
 
@@ -8,13 +10,12 @@ export const Scheduled = () => {
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        console.log("on dispatch")
         dispatch(GetScheduledThunk ())
     }, [dispatch])
 
     return (
         <>
-        <section className='intro my-2'>
+        <section className='intro Sch_crop my-2'>
             <div className='container'>
                 <h1 className='pt-5'>Scheduled Crops</h1>
                 <div className='card mb-3'>
@@ -29,6 +30,7 @@ export const Scheduled = () => {
                             <th>Harvest Date</th>
                             <th>Yield</th>
                             <th>Contribution</th>
+                            <th></th>
                             </tr>
                             { SchFromRedux && SchFromRedux.length>=0 ? SchFromRedux.map((l, i) => (
                             <tr key={i}>
@@ -37,7 +39,12 @@ export const Scheduled = () => {
                             <td> {l.sowing_date && l.sowing_date[0] !==undefined ? l.sowing_date.slice(0,10) : <></>}</td>
                             <td> {l.harvest_date && l.harvest_date[0] !==undefined ? l.harvest_date.slice(0,10) : <></>}</td>
                             <td>{l.yield}kg</td>
-                            <td>{l.contribution}</td>
+                            <td>{l.contribution} </td>
+                            <td>
+                                <IconButton aria-label="delete">
+                                <DeleteIcon />
+                                </IconButton>
+                            </td>
                             </tr>
                             )):null}
                             
