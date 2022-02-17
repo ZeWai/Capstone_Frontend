@@ -32,7 +32,6 @@ export default function Step7(props) {
   }
 
   const onNext = () => {
-    console.log(gardenManInfo);
     if (
       gardenManInfo.s6q1 === null ||
       gardenManInfo.s6q2 === null ||

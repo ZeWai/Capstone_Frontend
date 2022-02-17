@@ -17,7 +17,7 @@ export default function Step9(props) {
   async function onSubmit() {
     let allFarmlogInfo = [s1, s2, s3, s4, s5, s6, s7];
     let id = jwt_decode(localStorage.getItem("LoggedInToken")).id;
-    if (done.plantingDone === true) {
+    if (done.plantingDone === true && done.harvestDone === false) {
       await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/planting`,
         { data: allFarmlogInfo }

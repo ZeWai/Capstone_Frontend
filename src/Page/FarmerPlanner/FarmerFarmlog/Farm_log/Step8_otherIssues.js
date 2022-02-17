@@ -20,7 +20,6 @@ export default function Step8(props) {
   }
 
   function onNext() {
-    console.log(otherIssuesInfo);
     dispatch(AddOtherIssues(otherIssuesInfo));
     props.setStep(9);
   }
