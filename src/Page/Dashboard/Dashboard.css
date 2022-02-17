@@ -137,6 +137,29 @@ a {
     padding: 30px;
 }
 
+.Cinfoheader{
+    padding:none;
+    margin: 0;
+    padding-bottom: 40px;
+  
+}
+.Cinfoheadertitle{
+    padding-top: 25px;
+}
+.CinfoName{
+    padding-top:40px
+}
+.Cinfologo{
+   padding-left: 6ch;
+}
+.Cinfocol {
+    padding-left:13vh;
+    padding-right:9vh;
+    display: flex;
+    text-align: top;
+    font-weight: 600;
+    line-height: 40px;
+}
 .info-heading-container{
     padding: 0px !important;
 }
@@ -266,6 +289,9 @@ a:hover {
 }
 
 /* Overview */
+.OverFnorow{
+flex-wrap: nowrap;
+}
 .overview_title{
     font-size: 20px;
 }

@@ -24,7 +24,7 @@ export const FarmoverV = () => {
             <div className='container'>
                 <h1 className='pt-5'>Farm overview</h1>
                 <div className='card mb-3'>
-                    <div className="row">
+                    <div className="row OverFnorow">
                         <div className='col-lg-6 overview_box'>
                             <div className='impact-up'>
                                 <div className='impact-up-partA'>
@@ -73,7 +73,7 @@ export const FarmoverV = () => {
                             <div className="col-lg-1 empty_div"></div>
                             <div className="col-lg-6">
                         <div className="card-body">
-                            <h1 className="productivity">Productivity</h1>
+                            <h1 className="productivity">History</h1>
                             
                             <table>
                             <tbody>
