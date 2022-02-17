@@ -164,25 +164,25 @@ export const FarmerOview = () => {
                     <div className="admin-popup-list-btn-wrapper col-6">
                       <div className="admin-popup-list-btn-inner-wrapper row">
                         {CurrentClientList.indexOf(clients.id) !== -1 ? (
-                          <Button
+                          <button
                             key={"client-" + clients.id + "-minus"}
                             className="admin-popup-list-minus-btn"
                             id="admin-popup-list-minus-btn"
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                            -
-                          </Button>
+                            ✔️
+                          </button>
                         ) : (
-                          <Button
+                          <button
                             key={"client-" + clients.id + "-add"}
                             className="admin-popup-list-add-btn"
                             id="admin-popup-list-add-btn"
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                            +
-                          </Button>
+                              ❌
+                          </button>
                         )}
                       </div>
                     </div>
