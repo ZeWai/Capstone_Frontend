@@ -19,38 +19,39 @@ export const Clientinfo = () => {
                                 <img src={CinfoFromRedux.image !== undefined ? ` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.image}` : ``} className="img-fluid rounded-start" alt="logo" />
                             </div>
                             <div className='col-md-6 col-lg-6 col-sm-12'>
-                                <div className='card-body farmInfo'>
-                                    <div className="row intro_info">
+                     
+                            
+                         
+                            <table className="intro_info">
+                            <tbody>
 
-                                        <div className="col-4 ms-4">
-                                            <img src={CinfoFromRedux.icon !== undefined ? ` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}` : ``} className="App-logo" alt="logo" />
-                                        </div>
-
-                                        <div className="col-6 ">
-                                            <h4 className="card-title text-left farm_info">Farm Information</h4>
-                                            <h1 className="text-left mt-5 farm_location" >{CinfoFromRedux.name}</h1>
-                                        </div>
-
-                                    </div>
-                                    <div className="row mx-4 intro_text">
-                                        <div className="col-4 info-heading-container">
-                                            <p className="card-text ms-5 info-heading">
-                                                Name:<br />
-                                                Address :<br /><br />
-                                               
-                                                Opened :<br />
-                                            </p>
-                                        </div>
-                                        <div className="col-6 info-content">
-                                            <span className="card-text">
-                                                {CinfoFromRedux.name} Rooftop Farm<br />
-                                                {CinfoFromRedux.address}<br />
-                                                
-                                                {CinfoFromRedux.updated_at && CinfoFromRedux.updated_at[0] !==undefined ? CinfoFromRedux.updated_at.slice(0,10) : <></>}<br />
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                           
+                            <tr>
+                            <td className="Cinfologo"><br/><img src={CinfoFromRedux.icon !== undefined ? ` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}` : ``} className="App-logo" alt="logo" /></td>
+                            <td className="Cinfoheader">
+                            <h4 className="Cinfoheadertitle">Fram infomation</h4>
+                            <h1 className="CinfoName">{CinfoFromRedux.name}</h1>
+                            </td>
+                            </tr>            
+                            <tr>
+                            <td className="Cinfocol">Name:</td>
+                            <td>{CinfoFromRedux.name} Rooftop Fram</td>
+        
+                            </tr>
+                            <tr>
+                            <td className="Cinfocol">Address:</td>
+                            <td>{CinfoFromRedux.address}</td> 
+                            </tr>
+                            <tr>
+                            <td className="Cinfocol">Opened:</td>   
+                            <td> {CinfoFromRedux.name && CinfoFromRedux.name !==undefined ? CinfoFromRedux.updated_at.slice(0,10) : <></>}</td>
+                            </tr>
+                        
+                  
+                            
+                            </tbody>
+                            </table>
+                          
                             </div>
                         </div>
                     </div>

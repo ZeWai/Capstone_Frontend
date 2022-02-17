@@ -55,6 +55,7 @@ export const Clientplanner = () => {
     dispatch(GetZoneThunk());
     dispatch(GetCropstoreThunk());
     setFPIrriD(CropinfoFromRedux.Irr_Period);
+    setFPcropT(CropinfoFromRedux.type)
   }, [dispatch, CropinfoFromRedux]);
 
   const plannerSubmit = () => {
@@ -136,20 +137,12 @@ export const Clientplanner = () => {
               <tr>
                 <td>Crop Type</td>
                 <td>
-                  <select
-                    name={FPcropT}
+                <input
+                    type="text"
+                    value={FPcropT}
                     onChange={(e) => setFPcropT(e.currentTarget.value)}
-                    className="FramPcropT"
-                  >
-                    <option hidden defaultValue>
-                      Please select
-                    </option>
-                    <option value="Fruit">🍒 Fruit</option>
-                    <option value="Herb">🌿 Herb</option>
-                    <option value="Flower">🌸 Flower</option>
-                    <option value="Root/Stem">🥔 Root/Stem</option>
-                    <option value="Leafy Green">🥬 Leafy Green</option>
-                  </select>
+                    className="FramPsowD"
+                  />
                 </td>
               </tr>
               <tr>
