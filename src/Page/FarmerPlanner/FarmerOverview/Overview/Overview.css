@@ -21,7 +21,8 @@
 .farmer_schedule{
     overflow: hidden;
     width: 33%;
-    height: 17vh;
+    height: 18vh;
     text-align: center;
     display: inline-block;
+    max-height: fit-content;
 }

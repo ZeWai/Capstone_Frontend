@@ -20,7 +20,7 @@ export const FarmerForm = () => {
     const [FarmerUsername, setFarmerUsername] = useState("");
     const [FarmerEmail, setFarmerEmail] = useState("");
     const [FarmerPassword, setFarmerPassword] = useState("");
-    const [FarmerPostCode, setFarmerPostCode] = useState(852);
+    const [FarmerPostCode, setFarmerPostCode] = useState("852");
     const [FarmerTelephone, setFarmerTelephone] = useState("");
     const [FarmerIcon, setFarmerIcon] = useState(null);
     const [errMsg, setErrMsg] = useState("");
@@ -48,7 +48,7 @@ export const FarmerForm = () => {
         setFarmerUsername("");
         setFarmerEmail("");
         setFarmerPassword("");
-        setFarmerPostCode(852);
+        setFarmerPostCode("852");
         setFarmerTelephone("");
         setFarmerIcon(null);
         setClientList(clientList.map(c => ({
@@ -84,8 +84,8 @@ export const FarmerForm = () => {
             return setErrMsg("Farmer username at least 8 characters!");
         } else if (farmerForm.email === undefined || !regEx.test(farmerForm.email)) {
             return setErrMsg("Email is not valid!");
-        } else if (farmerForm.password === undefined || farmerForm.password.length < 6) {
-            return setErrMsg("Password at least 6 characters!");
+        } else if (farmerForm.password === undefined || farmerForm.password.length < 8) {
+            return setErrMsg("Password at least 8 characters!");
         } else if (farmerForm.postCode === undefined || farmerForm.postCode.length < 1) {
             return setErrMsg("Post code is empty!");
         } else if (farmerForm.tel === undefined || farmerForm.tel.length < 8) {
@@ -125,12 +125,12 @@ export const FarmerForm = () => {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Password</p>
-                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..." value={FarmerPassword} onChange={valueChange} id="create-farmer-password"></input>
+                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 8 characters password..." value={FarmerPassword} onChange={valueChange} id="create-farmer-password"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-postCode col-2" type="number" placeholder="Please enter post code..." value={FarmerPostCode} onChange={valueChange} id="create-farmer-postcode"></input>
-                    <input className="admin-input-box-tel col-6" type="number" placeholder="Please enter farmer mobile number..." value={FarmerTelephone} onChange={valueChange} id="create-farmer-telephone"></input>
+                    <input className="admin-input-box-postCode col-2" placeholder="Please enter post code..." value={FarmerPostCode} onChange={valueChange} id="create-farmer-postcode"></input>
+                    <input className="admin-input-box-tel col-6" placeholder="Please enter farmer mobile number..." value={FarmerTelephone} onChange={valueChange} id="create-farmer-telephone"></input>
                 </div>
                 <div className="admin-input-wrapper row">
                     <p className="admin-input-title col-4">Farmer Icon</p>
