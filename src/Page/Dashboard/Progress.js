@@ -16,7 +16,7 @@ export const Progress = () => {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = `${yyyy}-${mm}-${dd}T16:00:00.000Z`;
+    today = `${yyyy}-${mm}-${dd}`;
     useEffect(()=>{
         dispatch(GetProgressThunk())
     }, [dispatch])
