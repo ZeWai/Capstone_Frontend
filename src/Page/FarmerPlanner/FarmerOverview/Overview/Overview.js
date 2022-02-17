@@ -44,9 +44,10 @@ export default function Overview(props) {
                     <br />
                     <span> {data.name}</span>
                     <br />
-                    <span> {data.yield}</span>
+                    <span> {data.yield} kg</span>
                     <br />
-                    <span> Zone {data.area}</span></div>)
+                        <span> Zone {data.area}</span>
+                    </div>)
                 : <span>No Crops Here</span>}
         </div>
         </div>

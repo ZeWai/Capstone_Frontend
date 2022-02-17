@@ -21,19 +21,21 @@ padding-bottom:10%;
 }
 
 .todo-zone{
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
     justify-items: center;
     align-items: center;
     height:auto;
     width: 30%;
     border-right: 2px solid rgb(66, 193, 198);
+    padding-top: 5px;
 }
 
 .todo-detail{
-    padding-left: 5%;
+    padding:10px 5%;
     width: 60%;
     float: right;
+    font-size: 0.8em;
 }
 
 .noworkcard{
