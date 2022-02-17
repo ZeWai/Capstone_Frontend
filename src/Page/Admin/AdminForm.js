@@ -7,7 +7,7 @@ export const AdminForm = () => {
     const [AdminUsername, setAdminUsername] = useState("");
     const [AdminEmail, setAdminEmail] = useState("");
     const [AdminPassword, setAdminPassword] = useState("");
-    const [AdminPostCode, setAdminPostCode] = useState(852);
+    const [AdminPostCode, setAdminPostCode] = useState("852");
     const [AdminTelephone, setAdminTelephone] = useState("");
     const [errMsg, setErrMsg] = useState("");
     //handler
@@ -32,7 +32,7 @@ export const AdminForm = () => {
         setAdminUsername("");
         setAdminEmail("");
         setAdminPassword("");
-        setAdminPostCode(852);
+        setAdminPostCode("852");
         setAdminTelephone("");
         setErrMsg("");
     }
@@ -60,8 +60,8 @@ export const AdminForm = () => {
             return setErrMsg("Username at least 8 characters!");
         } else if (adminForm.email === undefined || !regEx.test(adminForm.email)) {
             return setErrMsg("Email is not valid!");
-        } else if (adminForm.password === undefined || adminForm.password.length < 6) {
-            return setErrMsg("Password at least 6 characters!");
+        } else if (adminForm.password === undefined || adminForm.password.length < 8) {
+            return setErrMsg("Password at least 8 characters!");
         } else if (adminForm.postCode === undefined || adminForm.postCode.length < 1) {
             return setErrMsg("Post code is empty!");
         } else if (adminForm.tel === undefined || adminForm.tel.length < 8) {
@@ -82,7 +82,7 @@ export const AdminForm = () => {
             <div className="admin-form-upper-wrapper">
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Admin Name</p>
-                    <input className="admin-input-box col-8" placeholder="Please enter company name..." value={AdminName} onChange={valueChange} id="create-admin-name"></input>
+                    <input className="admin-input-box col-8" placeholder="Please enter name..." value={AdminName} onChange={valueChange} id="create-admin-name"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Username</p>
@@ -94,12 +94,12 @@ export const AdminForm = () => {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Password</p>
-                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..." value={AdminPassword} onChange={valueChange} id="create-admin-password"></input>
+                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 8 characters password..." value={AdminPassword} onChange={valueChange} id="create-admin-password"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-postCode col-2" type="number" placeholder="Please enter post code..." value={AdminPostCode} onChange={valueChange} id="create-admin-postcode"></input>
-                    <input className="admin-input-box-tel col-6" type="number" placeholder="Please enter your mobile number..." value={AdminTelephone} onChange={valueChange} id="create-admin-telephone"></input>
+                    <input className="admin-input-box-postCode col-2" placeholder="Please enter post code..." value={AdminPostCode} onChange={valueChange} id="create-admin-postcode"></input>
+                    <input className="admin-input-box-tel col-6" placeholder="Please enter your mobile number..." value={AdminTelephone} onChange={valueChange} id="create-admin-telephone"></input>
                 </div>
                 <p className="admin-form-errMsg">
                     {errMsg === "Signup success!" || errMsg === "" ? "" : "Error : "}

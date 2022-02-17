@@ -13,7 +13,7 @@ export const ClientsForm = () => {
     const [Username, setUsername] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
-    const [PostCode, setPostCode] = useState(852);
+    const [PostCode, setPostCode] = useState("852");
     const [Telephone, setTelephone] = useState("");
     const [Address, setAddress] = useState("");
     const [Icon, setIcon] = useState(null);
@@ -104,7 +104,7 @@ export const ClientsForm = () => {
         setUsername("");
         setEmail("");
         setPassword("");
-        setPostCode(852);
+        setPostCode("852");
         setTelephone("");
         setAddress("");
         setIcon(null);
@@ -146,8 +146,8 @@ export const ClientsForm = () => {
             return setErrMsg("Username at least 8 characters!");
         } else if (clientForm.email === undefined || !regEx.test(clientForm.email)) {
             return setErrMsg("Email is not valid!");
-        } else if (clientForm.password === undefined || clientForm.password.length < 6) {
-            return setErrMsg("Password at least 6 characters!");
+        } else if (clientForm.password === undefined || clientForm.password.length < 8) {
+            return setErrMsg("Password at least 8 characters!");
         } else if (clientForm.postCode === undefined || clientForm.postCode.length < 1) {
             return setErrMsg("Post code is empty!");
         } else if (clientForm.tel === undefined || clientForm.tel.length < 8) {
@@ -193,12 +193,12 @@ export const ClientsForm = () => {
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Password</p>
-                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 6 characters password..." value={Password} onChange={valueChange} id="create-client-password"></input>
+                    <input className="admin-input-box col-8" type="password" placeholder="Please enter at least 8 characters password..." value={Password} onChange={valueChange} id="create-client-password"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Contact no.</p>
-                    <input className="admin-input-box-postCode col-2" type="number" placeholder="Please enter post code..." value={PostCode} onChange={valueChange} id="create-client-postcode"></input>
-                    <input className="admin-input-box-tel col-6" type="number" placeholder="Please enter your mobile number..." value={Telephone} onChange={valueChange} id="create-client-telephone"></input>
+                    <input className="admin-input-box-postCode col-2" placeholder="Please enter post code..." value={PostCode} onChange={valueChange} id="create-client-postcode"></input>
+                    <input className="admin-input-box-tel col-6" placeholder="Please enter your mobile number..." value={Telephone} onChange={valueChange} id="create-client-telephone"></input>
                 </div>
                 <div className="admin-form-wrapper row">
                     <p className="admin-input-title col-4">Address</p>
