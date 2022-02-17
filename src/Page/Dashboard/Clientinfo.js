@@ -27,11 +27,11 @@ export const Clientinfo = () => {
 
                            
                             <tr>
-                            <td className="Cinfologo"><br/><img src={CinfoFromRedux.icon !== undefined ? ` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}` : ``} className="App-logo" alt="logo" /></td>
-                            <td className="Cinfoheader">
+                            <th className="Cinfologo"><br/><img src={CinfoFromRedux.icon !== undefined ? ` ${process.env.REACT_APP_API_SERVER}/${CinfoFromRedux.icon}` : ``} className="App-logo" alt="logo" /></th>
+                            <th className="Cinfoheader">
                             <h4 className="Cinfoheadertitle">Fram infomation</h4>
                             <h1 className="CinfoName">{CinfoFromRedux.name}</h1>
-                            </td>
+                            </th>
                             </tr>            
                             <tr>
                             <td className="Cinfocol">Name:</td>
