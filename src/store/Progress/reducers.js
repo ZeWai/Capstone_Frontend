@@ -2,7 +2,10 @@ import { GET_PROGRESS, GET_SINGLE_PROGRESS , GET_CROPSTORE ,GET_CROPINFO} from "
 
 const initialState = {
     CropStore:[],
-    CropInfo:[{Irr_Period:1}],
+    CropInfo:[{
+    Irr_Period:"",
+    type:""
+    }],
     Progress: [],
     Single:[{
         // id: 1,

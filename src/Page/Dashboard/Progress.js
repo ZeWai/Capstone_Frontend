@@ -52,8 +52,8 @@ export const Progress = () => {
                                     Status: <br/>
                                     Type: <br/>
                                     Planting Zone: <br/>
-                                    Sowing Month: <br/>
-                                    Excepted Harvest Month:
+                                    Sowing Date: <br/>
+                                    Estimated Harvest Date:
                                 </p>
                             </div>
                             <div className="col-5">
