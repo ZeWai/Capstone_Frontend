@@ -79,6 +79,10 @@ a {
 }
 /* Navbar */
 
+.navBar-base {
+  background-color: #42c1c6;
+}
+
 .dashNav .dashNav_part {
   display: flex;
   align-items: center;
@@ -117,17 +121,17 @@ a {
   background: transparent;
   border: none;
   font-weight: 700;
-  color: rgb(128, 128, 128);
+  color: rgb(107, 107, 107);
   box-shadow: none;
 }
 .navbtn {
-  background-color: black;
+  background-color: #42c1c6;
   border: none;
 }
 
 /* Intro */
-.intro .container {
-  margin-top: 70px;
+.intro {
+  margin-top: 3rem;
 }
 .intro .card-body {
   padding: 30px;
@@ -148,7 +152,7 @@ a {
   padding-top: 20px;
 }
 .Cinfologo {
-  padding-left: 4ch;
+  padding-left: 2ch;
 }
 .Cinfocol {
   padding-left: 9vh;
@@ -342,7 +346,7 @@ a:hover {
   color: #42c1c6;
 }
 
-.w3-red {
+.w3-bar-item:focus {
   color: #42c1c6;
   text-decoration: underline;
 }
@@ -390,43 +394,55 @@ a:hover {
   margin-top: 150px;
 }
 .ChangePwBtn {
-  background-color: black;
+  background-color: #42c1c6;
+  font-size: 20px;
+  border: none;
+}
+.ChangePwBtn:hover {
+  background-color: #42c1c6;
+
+  filter: brightness(1.1);
+}
+
+.ChangePwBtn-cancel {
+  background-color: #788985;
   font-size: 20px;
   border: none;
 }
 
-.ChangePwBtn :hover {
-  background-color: black;
+.ChangePwBtn-cancel:hover {
+  background-color: #788985;
+
+  filter: brightness(1.1);
 }
 
 .PWerrormsg {
+  margin-top: 10px;
   color: red;
 }
 
 /* footer*/
-.Foter {
-  margin-top: 150px;
+.footer {
+  background-color: #42c1c6;
+  height: 200px;
+  margin-top: 3rem;
+  padding: 1vw 16vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-.page-footer {
-  background-color: #788085;
-  color: #c4c4c4;
+
+.logo-container {
+  display: flex;
+  justify-content: flex-start;
 }
+
 .footerlogo {
-  width: 15vh;
-  height: 8vh;
+  width: 200px;
+  resize: both;
 }
-.page-footer .text-left {
-  margin-top: 70px;
-}
-
-.page-footer li {
-  padding-bottom: 12px;
-  color: #c4c4c4;
-}
-
 .footer-copyright {
-  padding-bottom: 50px;
-}
-.About {
+  display: flex;
+  justify-content: flex-end;
   color: white;
 }

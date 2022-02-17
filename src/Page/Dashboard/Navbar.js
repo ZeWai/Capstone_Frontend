@@ -31,11 +31,13 @@ export function DashNavbar(props) {
         setModal(false);
       }
     } else if (oldpassword === "") {
-      setErrmessage("Please enter your old password");
+      setErrmessage("** Please enter your old password");
     } else if (newpassword === "" || newpassword.length < 6) {
-      setErrmessage("Please enter at least 6 characters for your new password");
+      setErrmessage(
+        "** Please enter at least 6 characters for your new password"
+      );
     } else if (Cpassword === "" || newpassword !== Cpassword) {
-      setErrmessage("Please confirm your new password");
+      setErrmessage("** Please confirm your new password");
     }
     setOpassword("");
     setNpassword("");
@@ -44,7 +46,7 @@ export function DashNavbar(props) {
 
   return (
     <div className="dashNav">
-      <Navbar bg="black">
+      <Navbar className="navBar-base">
         <Container>
           <Navbar.Brand>
             <img src={navlogo} alt="rooftop-logo" />
@@ -84,7 +86,7 @@ export function DashNavbar(props) {
               </Link>
             </Nav>
             <Nav>
-              <div className="nav-icon justify-content-end">
+              <div className="nav-icon ">
                 <button className="navbtn" onClick={() => setModal(!modal)}>
                   <img className="nav-icon-link" src={navlogo2} alt="setting" />
                 </button>
@@ -135,7 +137,10 @@ export function DashNavbar(props) {
           <Button className="ChangePwBtn" onClick={ChangePassword}>
             Submit
           </Button>
-          <Button className="ChangePwBtn" onClick={() => setModal(!modal)}>
+          <Button
+            className="ChangePwBtn-cancel"
+            onClick={() => setModal(!modal)}
+          >
             Cancel
           </Button>
         </Modal.Footer>

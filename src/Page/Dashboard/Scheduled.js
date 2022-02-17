@@ -13,9 +13,9 @@ export const Scheduled = () => {
   console.log(`SchFromRedux`, SchFromRedux);
   return (
     <>
-      <section className="intro Sch_crop my-2">
+      <section className="Sch_crop">
         <div className="container">
-          <h1 className="pt-5">Scheduled Crops</h1>
+          <h1 className="pt-4">Scheduled Crops</h1>
           <div className="card mb-3">
             <div className="row g-0">
               <div className="card-body Scheduled_card">
