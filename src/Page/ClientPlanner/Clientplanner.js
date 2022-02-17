@@ -4,6 +4,9 @@ import jwt_decode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { GetZoneThunk } from "../../store/getzone/actions";
+import { GetScheduledThunk } from "../../store/Scheduled/actions";
+import { GetOverThunk } from "../../store/Overview/actions";
+
 import {
   GetCropstoreThunk,
   GetCropinfoThunk,
@@ -20,7 +23,9 @@ export const Clientplanner = () => {
   const [FPContri, setFPContri] = useState("Event");
 
   const CropFromRedux = useSelector((state) => state.ProgressStore.CropStore);
-  const CropinfoFromRedux = useSelector((state) => state.ProgressStore.CropInfo[0]);
+  const CropinfoFromRedux = useSelector(
+    (state) => state.ProgressStore.CropInfo[0]
+  );
 
   const clearPlannerState = () => {
     setFPzone("");
@@ -40,8 +45,6 @@ export const Clientplanner = () => {
   const handleNameChange = (e) => {
     setFPcropN(e.target.value);
     dispatch(GetCropinfoThunk(e.target.value));
-
-
   };
 
   const handleContriChange = (e) => {
@@ -78,6 +81,8 @@ export const Clientplanner = () => {
       .then((res) => {
         return res.data;
       });
+    dispatch(GetScheduledThunk());
+    dispatch(GetOverThunk());
     clearPlannerState();
   };
 
@@ -213,10 +218,10 @@ export const Clientplanner = () => {
             </tbody>
           </table>
           <div className="Frambtn">
-          <Link to="/dashboard">
-            <button type="button" onClick={plannerSubmit}>
-              Create
-            </button>
+            <Link to="/dashboard">
+              <button type="button" onClick={plannerSubmit}>
+                Create
+              </button>
             </Link>
           </div>
         </div>
