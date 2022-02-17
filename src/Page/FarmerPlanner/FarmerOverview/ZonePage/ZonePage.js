@@ -24,9 +24,9 @@ export default function ZonePage(props) {
     today = `${yyyy}-${mm}-${dd}`;
 
     const status = ((sowing, harvest, harvest_date, sowing_date) => {
-        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date > today && sowing_date < today) return "Growing"
-        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date <= today && sowing_date < today) return "Harvest"
-        if (sowing.trim() === "false" && sowing_date <= today) return "Sowing"
+        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date > today ) return "Growing"
+        if (sowing.trim() === "true" && harvest.trim() === "false" && harvest_date <= today) return "Harvest"
+        if (sowing.trim() === "false") return "Sowing"
     })
 
     useEffect(() => {

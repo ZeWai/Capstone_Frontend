@@ -218,11 +218,9 @@ export const Clientplanner = () => {
             </tbody>
           </table>
           <div className="Frambtn">
-            <Link to="/dashboard">
               <button type="button" onClick={plannerSubmit}>
                 Create
               </button>
-            </Link>
           </div>
         </div>
       </div>
