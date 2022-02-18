@@ -17,7 +17,7 @@ export default function Overview(props) {
       harvest.push(readytoharvest[i]);
     }
   }
-  if (readytoharvest.length > 1 && readytoharvest.length < 5) {
+  if (readytoharvest.length > 1 && readytoharvest.length <= 5) {
     for (let i = 0; i < readytoharvest.length; i++) {
       harvest.push(readytoharvest[i]);
     }

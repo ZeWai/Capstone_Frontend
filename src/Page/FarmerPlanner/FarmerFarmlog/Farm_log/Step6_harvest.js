@@ -47,7 +47,6 @@ export default function Step6(props) {
         Clientharvest.push(readytoharvest[i]);
       }
     }
-    console.log(Clientharvest);
     return Clientharvest;
   }
 

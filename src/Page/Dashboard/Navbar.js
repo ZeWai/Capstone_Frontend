@@ -4,7 +4,7 @@ import navlogo3 from "./assets/exit-icon.png";
 import { logoutThunk } from "../../store/auth/action";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useState } from "react";
@@ -134,15 +134,18 @@ export function DashNavbar(props) {
           <h3 className="PWerrormsg">{errmessage} </h3>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="ChangePwBtn" onClick={ChangePassword}>
+          <button
+            className="ChangePwBtn ChangePwBtn-submit"
+            onClick={ChangePassword}
+          >
             Submit
-          </Button>
-          <Button
-            className="ChangePwBtn-cancel"
+          </button>
+          <button
+            className="ChangePwBtn ChangePwBtn-cancel"
             onClick={() => setModal(!modal)}
           >
             Cancel
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>

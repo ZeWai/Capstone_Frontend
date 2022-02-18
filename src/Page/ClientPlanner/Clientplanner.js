@@ -20,6 +20,7 @@ export const Clientplanner = () => {
   const [FPHarD, setFPHarD] = useState("");
   const [FPyield, setFPyield] = useState("");
   const [FPContri, setFPContri] = useState("Event");
+  const [err,setErr] = useState("")
 
   const CropFromRedux = useSelector((state) => state.ProgressStore.CropStore);
   const CropinfoFromRedux = useSelector(
@@ -61,6 +62,11 @@ export const Clientplanner = () => {
   }, [dispatch, CropinfoFromRedux]);
 
   const plannerSubmit = () => {
+    if (FPcropT === "" || FPIrriD === "" || FPHarD === "" || FPSowD === "" || FPyield === "" || FPcropN === "") {
+      clearPlannerState();
+      setErr("Please fill in all information")
+    }
+    if (FPcropT !== "" && FPIrriD !== "" && FPHarD !== "" && FPSowD !== "" && FPyield!=="" && FPcropN !==""){
     let PlannerForm = {
       zone: FPzone,
       cropT: FPcropT,
@@ -84,6 +90,8 @@ export const Clientplanner = () => {
     dispatch(GetScheduledThunk());
     dispatch(GetOverThunk());
     clearPlannerState();
+    setErr("Crop Scheduled")
+    }
   };
 
   return (
@@ -209,6 +217,7 @@ export const Clientplanner = () => {
               </tr>
             </tbody>
           </table>
+            <p className="err-message">{err}</p>
           <div className="Frambtn">
             <button type="button" onClick={plannerSubmit}>
               Create

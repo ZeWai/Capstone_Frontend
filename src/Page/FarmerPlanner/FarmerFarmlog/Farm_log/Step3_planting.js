@@ -38,15 +38,16 @@ export default function Step3(props) {
   }
 
   const onNext = () => {
-    console.log(plantingInfo);
+    console.log(plantingInfo,'12312312312123123');
     if (
-      plantingInfo.s2q1 === null ||
-      plantingInfo.s2q2 === null ||
-      plantingInfo.s2q3 === null ||
-      plantingInfo.s2q4 === null
+      plantingInfo.s2q1 === "" &&
+      plantingInfo.s2q2 === "" &&
+      plantingInfo.s2q3 === "" &&
+      plantingInfo.s2q4 === ""
     ) {
       setErrMsg("** All fields are required");
     } else {
+      
       dispatch(AddPlanting(plantingInfo));
       dispatch(PlantingDone(true));
       props.setStep(7);

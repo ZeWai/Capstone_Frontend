@@ -54,6 +54,21 @@ p {
   flex-direction: column;
   align-items: center;
 }
+
+/* farmlog base */
+.farmlog_base {
+  background-color: rgb(249, 246, 237);
+  height: 100vh;
+}
+
+/* title */
+.farmlog_title {
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: rgb(66, 193, 198);
+}
+
 /* Progress dot */
 #dot-container {
   width: 100px;

@@ -1,28 +1,29 @@
-.farmer-overview{
-    margin-top: 5%;
-    background-color: #42C1C6;
-    width: 100%;
-    padding: 5%;
+.farmer-overview {
+  margin-top: 5%;
+  background-color: #42c1c6;
+  width: 100%;
+  padding: 5%;
 }
 
-.farmer-overview .schedule{
-    background-color: white;
-    border-radius: 10px;
-    color: black;
-    padding: 5%;
+.farmer-overview .schedule {
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  padding: 5%;
 }
 
-.farmer-overview .schedule .title{
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 16px;
+.farmer-overview .schedule .title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
 }
 
-.farmer_schedule{
-    overflow: hidden;
-    width: 33%;
-    height: 18vh;
-    text-align: center;
-    display: inline-block;
-    max-height: fit-content;
+.farmer_schedule {
+  overflow: hidden;
+  width: 33%;
+  height: 18vh;
+  text-align: center;
+  display: inline-block;
+  max-height: fit-content;
 }
+

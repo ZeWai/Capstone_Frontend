@@ -393,20 +393,27 @@ a:hover {
 .ChangePwModal {
   margin-top: 150px;
 }
+
 .ChangePwBtn {
+  width: 75px;
+  height: 32px;
+  font-size: 16px;
+  border-radius: 15px;
+}
+
+.ChangePwBtn-submit,
+.ChangePwBtn-submit:focus {
   background-color: #42c1c6;
-  font-size: 20px;
   border: none;
 }
-.ChangePwBtn:hover {
+.ChangePwBtn-submit:hover {
   background-color: #42c1c6;
-
   filter: brightness(1.1);
 }
 
-.ChangePwBtn-cancel {
+.ChangePwBtn-cancel,
+.ChangePwBtn-cancel:focus {
   background-color: #788985;
-  font-size: 20px;
   border: none;
 }
 
