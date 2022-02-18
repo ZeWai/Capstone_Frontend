@@ -172,7 +172,7 @@ export const ClientsOview = () => {
                             onClick={assignFarmer}
                             name={farmer.id}
                           >
-                            ✔️ Assigned
+                            ❌
                           </button>
                         ) : (
                           <button
@@ -182,7 +182,7 @@ export const ClientsOview = () => {
                             onClick={assignFarmer}
                             name={farmer.id}
                           >
-                            ❌ Unassigned
+                            ✔️
                           </button>
                         )}
                       </div>

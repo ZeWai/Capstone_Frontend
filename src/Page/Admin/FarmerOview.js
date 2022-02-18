@@ -149,7 +149,7 @@ export const FarmerOview = () => {
         <Modal.Header className="admin-popup-header">
           <h1 className="admin-popup-header-title">Assign Farmer</h1>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="admin-modal-body">
           {Clients && Clients[0] !== undefined ? (
             Clients.map((clients) => {
               return (
@@ -172,7 +172,7 @@ export const FarmerOview = () => {
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                            ✔️
+                            ❌
                           </button>
                         ) : (
                           <button
@@ -182,7 +182,7 @@ export const FarmerOview = () => {
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                            ❌
+                            ✔️
                           </button>
                         )}
                       </div>
