@@ -39,7 +39,7 @@ export default function NavBar(props) {
             placement="start"
             className="Offcanvas"
           >
-            <Offcanvas.Header closeButton>
+            <Offcanvas.Header closeButton onClick={() => setExpanded(expanded ? false : true)}>
               <Offcanvas.Title id="offcanvasNavbarLabel"></Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
