@@ -3,6 +3,10 @@ import { React, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AddGardenMan } from "../../../../store/Farmlog/actions";
+import { PlantingDone } from "../../../../store/Farmlog/actions";
+import { IrrigationDone } from "../../../../store/Farmlog/actions";
+import { GroomingDone } from "../../../../store/Farmlog/actions";
+import { HarvestDone } from "../../../../store/Farmlog/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -30,6 +34,13 @@ export default function Step7(props) {
       [name]: value,
     }));
   }
+  const onPrev = () => {
+    props.setStep(2);
+    dispatch(PlantingDone(false));
+    dispatch(IrrigationDone(false));
+    dispatch(GroomingDone(false));
+    dispatch(HarvestDone(false));
+  };
 
   const onNext = () => {
     console.log(gardenManInfo);
@@ -340,7 +351,7 @@ export default function Step7(props) {
           </div>
         </div>
         <div className="q-box__buttons">
-          <button className="prev_btn" onClick={() => props.setStep(2)}>
+          <button className="prev_btn" onClick={() => onPrev()}>
             Previous
           </button>
           <button className="next_btn" onClick={() => onNext()}>

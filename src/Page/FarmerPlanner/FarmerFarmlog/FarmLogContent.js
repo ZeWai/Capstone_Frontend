@@ -11,7 +11,7 @@ import Step9 from "./Farm_log/Step9_Result";
 import Step10 from "./Farm_log/Step10_Success";
 import "./Farmlog.css";
 
-export default function Content() {
+export default function Content(props) {
   const [farmlogCurrentView, setfarmlogCurrentView] = useState(1);
 
   return (
@@ -62,7 +62,11 @@ export default function Content() {
         <></>
       )}
       {farmlogCurrentView === 10 ? (
-        <Step10 Step={farmlogCurrentView} setStep={setfarmlogCurrentView} />
+        <Step10
+          Step={farmlogCurrentView}
+          setStep={setfarmlogCurrentView}
+          setView={props.setView}
+        />
       ) : (
         <></>
       )}

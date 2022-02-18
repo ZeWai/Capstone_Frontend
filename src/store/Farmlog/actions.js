@@ -10,6 +10,13 @@ export const PLANTING_DONE = "PLANTING_DONE";
 export const IRRIGATION_DONE = "IRRIGATION_DONE";
 export const GROOMING_DONE = "GROOMING_DONE";
 export const HARVEST_DONE = "HARVEST_DONE";
+export const RESET_DATA = "RESET_DATA";
+
+export function ResetData() {
+  return {
+    type: RESET_DATA,
+  };
+}
 
 export function AddFarmlog(farmlogInfo) {
   return {

@@ -1,9 +1,12 @@
 import { React } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { ResetData } from "../../../../store/Farmlog/actions";
 
 export default function Step9(props) {
+  const dispatch = useDispatch();
+
   let s1 = useSelector((state) => state.farmlogStore.farmlogInfo);
   let s2 = useSelector((state) => state.farmlogStore.plantingInfo);
   let s3 = useSelector((state) => state.farmlogStore.irrigationInfo);
@@ -22,24 +25,28 @@ export default function Step9(props) {
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/planting`,
         { data: allFarmlogInfo }
       );
+      dispatch(ResetData());
       return props.setStep(10);
     } else if (done.irrigationDone === true) {
       await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/irrigation`,
         { data: allFarmlogInfo }
       );
+      dispatch(ResetData());
       return props.setStep(10);
     } else if (done.groomingDone === true) {
       await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/grooming`,
         { data: allFarmlogInfo }
       );
+      dispatch(ResetData());
       return props.setStep(10);
     } else if (done.harvestDone === true) {
       await axios.post(
         `${process.env.REACT_APP_API_SERVER}/api/farmlog/${id}/harvest`,
         { data: allFarmlogInfo }
       );
+      dispatch(ResetData());
       return props.setStep(10);
     }
   }
@@ -56,7 +63,7 @@ export default function Step9(props) {
       <div className="step">
         <div className="main-body-container" id="section8">
           <div>
-            <h1 className="section-title">Farm Log Overview</h1>
+            <h1 className="section-title">Farm Log Review</h1>
           </div>
           <div className="section-content">
             <div className="s1">

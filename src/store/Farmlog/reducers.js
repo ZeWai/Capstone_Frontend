@@ -9,6 +9,7 @@ import { PLANTING_DONE } from "./actions";
 import { IRRIGATION_DONE } from "./actions";
 import { GROOMING_DONE } from "./actions";
 import { HARVEST_DONE } from "./actions";
+import { RESET_DATA } from "./actions";
 
 const initialState = {
   farmlogInfo: {},
@@ -235,6 +236,25 @@ export function farmlogReducer(state = initialState, action) {
           irrigationDone: state.farmlogDone.irrigationDone,
           groomingDone: state.farmlogDone.groomingDone,
           harvestDone: action.payload,
+          gardenManDone: true,
+          otherIssuesDone: true,
+        },
+      };
+    case RESET_DATA:
+      return {
+        farmlogInfo: {},
+        plantingInfo: {},
+        irrigationInfo: {},
+        groomingInfo: {},
+        harvestInfo: {},
+        gardenManInfo: {},
+        otherIssuesInfo: {},
+        farmlogDone: {
+          infoDone: true,
+          plantingDone: false,
+          irrigationDone: false,
+          groomingDone: false,
+          harvestDone: false,
           gardenManDone: true,
           otherIssuesDone: true,
         },

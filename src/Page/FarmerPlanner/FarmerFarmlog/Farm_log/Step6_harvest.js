@@ -12,6 +12,7 @@ export default function Step6(props) {
   let [Errmsg, setErrMsg] = useState("");
 
   const readytoharvest = useSelector((state) => state.cropStore.ReadyToHarvest);
+
   //  Selected on Farmlog S1 user
   const clientSelected = useSelector(
     (state) => state.farmlogStore.farmlogInfo.users
