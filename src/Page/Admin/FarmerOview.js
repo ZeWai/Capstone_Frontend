@@ -172,7 +172,7 @@ export const FarmerOview = () => {
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                            ❌
+                            ❌Unassigned
                           </button>
                         ) : (
                           <button
@@ -182,7 +182,7 @@ export const FarmerOview = () => {
                             onClick={assignPlace}
                             name={clients.id}
                           >
-                            ✔️
+                              ✔️ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Assigned
                           </button>
                         )}
                       </div>
