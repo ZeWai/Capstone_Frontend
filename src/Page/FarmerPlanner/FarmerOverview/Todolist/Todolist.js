@@ -16,11 +16,10 @@ export default function Todolist(props) {
     dispatch(GetTodoThunk(props.location,props.currentview))
   }, [dispatch, props.location, props.currentview])
 
-  const checkwork = (sowing, harvest, harvest_date, irrigate, sowing_date) => {
+  const checkwork = (sowing, harvest, harvest_date) => {
     if (sowing === "false") return "Sow 🌱"
-    if (harvest === "false" && harvest_date > today) {
-      if ((today - sowing_date) % irrigate === 0) return "Irrigate 💧"  }
     if (harvest === "false" && harvest_date <= today) return "Harvest 🎑"
+    return "Irrigate 💧"
   }
 
   return (
@@ -34,7 +33,7 @@ export default function Todolist(props) {
         Crop Name &nbsp;: {data.name} 
         <br/>
             Work Today :
-            {checkwork(`${data.sowing}`, `${data.harvest}`, `${parseInt(`${data.harvest_date.slice(0, 4)}${data.harvest_date.slice(5, 7)}${data.harvest_date.slice(8, 10)}`)}`, `${data.irrigation_period}`, `${parseInt(`${data.sowing_date.slice(0, 4)}${data.sowing_date.slice(5, 7)}${data.sowing_date.slice(8, 10)}`)}`,)}
+            {checkwork(`${data.sowing}`, `${data.harvest}`, `${parseInt(`${data.harvest_date.slice(0, 4)}${data.harvest_date.slice(5, 7)}${data.harvest_date.slice(8, 10)}`)}`)}
         </div>
         </div>) :
         <div className="noworkcard">
